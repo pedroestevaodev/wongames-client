@@ -36,7 +36,7 @@ dependencies:
     specifier: ^0.2.1
     version: 0.2.1(next@13.4.12)(react-dom@18.2.0)(react@18.2.0)
   postcss:
-    specifier: 8.4.31
+    specifier: '>=8.4.31'
     version: 8.4.31
   react:
     specifier: 18.2.0
