@@ -29,7 +29,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"__tests__/index.test.js"
-, "generators/plopfile.js"	],
+		"__tests__/index.test.js", 
+		"generators/plopfile.js"
+	],
 	"exclude": ["node_modules"]
 }
