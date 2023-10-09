@@ -2,9 +2,6 @@ import React, { ReactNode } from 'react';
 import StyledComponentsRegistry from '@/lib/registry';
 import { Providers } from '@/components/Providers';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'React Avançado - Boilerplate',
@@ -17,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="pt-BR">
-			<body className={inter.className}>
+			<body className="dark text-foreground bg-background">
 				<StyledComponentsRegistry>
 					<Providers>{children}</Providers>
 				</StyledComponentsRegistry>

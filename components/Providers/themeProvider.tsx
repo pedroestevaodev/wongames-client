@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { ThemeProvider } from 'next-themes';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 export default function ThemeProviderWrapper({
 	children
@@ -9,12 +9,12 @@ export default function ThemeProviderWrapper({
 	children: ReactNode;
 }) {
 	return (
-		<ThemeProvider
+		<NextThemesProvider
 			attribute="data-theme-mode"
 			defaultTheme="system"
 			themes={['light', 'dark', 'system']}
 		>
 			{children}
-		</ThemeProvider>
+		</NextThemesProvider>
 	);
 }

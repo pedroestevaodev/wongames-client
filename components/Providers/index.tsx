@@ -1,12 +1,15 @@
 import { PropsWithChildren } from 'react';
 import GlobalStyles from '@/public/styles/global';
+import NextUIProviderWrapper from './nextUIProvider';
 import ThemeProviderWrapper from './themeProvider';
 
 export function Providers({ children }: PropsWithChildren) {
 	return (
 		<>
 			<GlobalStyles />
-			<ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+			<NextUIProviderWrapper>
+				<ThemeProviderWrapper>{children}</ThemeProviderWrapper>
+			</NextUIProviderWrapper>
 		</>
 	);
 }

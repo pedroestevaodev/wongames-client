@@ -1,31 +1,32 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
+import { Switch } from '@nextui-org/react';
+import { MoonIcon } from './MoonIcon';
+import { SunIcon } from './SunIcon';
 
 const ThemeToggle = () => {
-	const [icon, setIcon] = useState('🌙');
+	// const [mounted, setMounted] = useState(false);
 	const { theme, setTheme } = useTheme();
 
 	const toggleTheme = () => {
 		setTheme(theme === 'dark' ? 'light' : 'dark');
 	};
 
-	useEffect(() => {
-		theme === 'dark' ? setIcon('🌞') : setIcon('🌙');
-	}, [theme]);
-
 	return (
-		<div className="sx-header-themeToggle ms-1 header-item d-none d-sm-flex">
-			<button
-				type="button"
-				className="btn btn-secondary btn-icon btn-topbar rounded-circle light-dark-mode"
-				onClick={toggleTheme}
-			>
-				{/* <i className={`bx bx-${theme === "dark" ? "sun" : "moon"} fs-22`} /> */}
-				{icon}
-			</button>
-		</div>
+		<Switch
+			defaultChecked
+			size="lg"
+			color="secondary"
+			thumbIcon={({ isSelected, className }) =>
+				isSelected ? (
+					<SunIcon className={className} />
+				) : (
+					<MoonIcon className={className} />
+				)
+			}
+			onClick={toggleTheme}
+		/>
 	);
 };
 

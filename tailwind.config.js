@@ -1,3 +1,5 @@
+import { nextui } from '@nextui-org/react';
+
 /** @type {import('tailwindcss').Config} */
 
 const tailwindConfig = {
@@ -5,7 +7,8 @@ const tailwindConfig = {
 	content: [
 		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
-		'./app/**/*.{js,ts,jsx,tsx,mdx}'
+		'./app/**/*.{js,ts,jsx,tsx,mdx}',
+		'./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
 	],
 	theme: {
 		extend: {
@@ -40,7 +43,25 @@ const tailwindConfig = {
 			'max-xxl': { max: '1399px' }
 		}
 	},
-	plugins: []
+	plugins: [
+		nextui({
+			prefix: 'nextui',
+			addCommonColors: false,
+			defaultTheme: 'light',
+			defaultExtendTheme: 'light',
+			layout: {},
+			themes: {
+				light: {
+					layout: {},
+					colors: {}
+				},
+				dark: {
+					layout: {},
+					colors: {}
+				}
+			}
+		})
+	]
 };
 
-module.exports = tailwindConfig;
+export default tailwindConfig;
