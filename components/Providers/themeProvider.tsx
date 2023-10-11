@@ -11,8 +11,8 @@ export default function ThemeProviderWrapper({
 	return (
 		<NextThemesProvider
 			attribute="data-theme-mode"
-			defaultTheme="system"
-			themes={['light', 'dark', 'system']}
+			defaultTheme="light"
+			themes={['light', 'dark']}
 		>
 			{children}
 		</NextThemesProvider>

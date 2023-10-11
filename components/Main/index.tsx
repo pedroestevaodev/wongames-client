@@ -1,5 +1,7 @@
 import React from 'react';
 import * as S from './styles';
+// import ThemeToggle from "../ThemeToggle";
+// import Logo from "../Logo";
 
 const Main = ({
 	title = 'React Avançado',
@@ -21,6 +23,8 @@ const Main = ({
 				height={30}
 				alt="Um desenvolvedor de frente para uma tela com código."
 			/>
+			{/* <ThemeToggle />
+			<Logo size="large" /> */}
 		</S.Wrapper>
 	);
 };

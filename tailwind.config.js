@@ -20,7 +20,7 @@ const tailwindConfig = {
 				18: '4.5rem'
 			},
 			fontFamily: {
-				sans: ['Gilroy', 'sans-serif']
+				sans: ['"Poppins"', 'sans-serif']
 			},
 			colors: {
 				blue: {
@@ -41,6 +41,10 @@ const tailwindConfig = {
 			'max-lg': { max: '991px' },
 			'max-xl': { max: '1199px' },
 			'max-xxl': { max: '1399px' }
+		},
+		logo: {
+			light: '#FAFAFA',
+			dark: '#0A0D27'
 		}
 	},
 	plugins: [
