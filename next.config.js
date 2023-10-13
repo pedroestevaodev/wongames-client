@@ -3,6 +3,9 @@
 const nextConfig = {
 	reactStrictMode: true,
 	compress: true,
+	experimental: {
+		appDir: true
+	},
 	compiler: {
 		styledComponents: true
 	}
