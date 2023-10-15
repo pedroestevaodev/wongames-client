@@ -10,8 +10,8 @@ const Home = () => {
 			<Main />
 			<ThemeToggle />
 			<Logo hideOnMobile color="black" />
-			<Heading color="black">
-				<span>Teste</span>
+			<Heading color="black" lineLeft>
+				Won Games
 			</Heading>
 		</>
 	);
