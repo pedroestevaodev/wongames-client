@@ -52,7 +52,9 @@ const tailwindConfig = {
 				lightGray: '#EAEAEA',
 				gray: '#8F8F8F',
 				darkGray: '#2E2F42',
-				red: '#FF6347'
+				red: '#FF6347',
+				orange: '#FF5F5F',
+				pink: '#F062C0'
 			},
 			borderRadius: {
 				4: '0.4rem'
