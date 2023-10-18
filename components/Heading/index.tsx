@@ -10,6 +10,7 @@ export type HeadingProps = {
 	lineBottom?: boolean;
 	lineColor?: 'primary' | 'secondary';
 	size?: 'small' | 'medium';
+	className?: string;
 };
 
 const Heading = ({
@@ -18,7 +19,8 @@ const Heading = ({
 	lineLeft = false,
 	lineBottom = false,
 	lineColor = 'primary',
-	size = 'medium'
+	size = 'medium',
+	className
 }: HeadingProps) => {
 	return (
 		<S.HeadingContainer
@@ -47,6 +49,7 @@ const Heading = ({
 						? 'text-medium after:w-[3rem]'
 						: 'text-xlarge md:text-xxlarge'
 				}
+				${className}
             `}
 		>
 			{children}
