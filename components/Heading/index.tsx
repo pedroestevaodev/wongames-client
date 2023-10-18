@@ -8,28 +8,45 @@ export type HeadingProps = {
 	color?: 'white' | 'black';
 	lineLeft?: boolean;
 	lineBottom?: boolean;
+	lineColor?: 'primary' | 'secondary';
+	size?: 'small' | 'medium';
 };
 
 const Heading = ({
 	children,
 	color = 'black',
 	lineLeft = false,
-	lineBottom = false
+	lineBottom = false,
+	lineColor = 'primary',
+	size = 'medium'
 }: HeadingProps) => {
 	return (
 		<S.HeadingContainer
-			className={`text-xlarge md:text-xxlarge 
+			className={`font-bold 
                 ${color === 'white' ? 'text-[#FAFAFA]' : 'text-[#030517]'} 
                 ${
 									lineLeft
-										? 'pl-xxsmall border-l-[0.7rem] border-l-secondary'
+										? `pl-xxsmall border-l-[0.7rem] ${
+												lineColor === 'primary'
+													? 'border-l-primary'
+													: 'border-l-secondary'
+										  }`
 										: 'no-left-line'
 								} 
                 ${
 									lineBottom
-										? 'relative mb-medium after:absolute after:left-0 after:bottom-[-1rem] after:w-[5rem] after:border-[0.5rem] after:border-primary'
+										? `relative mb-medium after:absolute after:left-0 after:bottom-[-1rem] after:w-[5rem] after:border-[0.38rem] ${
+												lineColor === 'primary'
+													? 'after:border-primary'
+													: 'after:border-secondary'
+										  }`
 										: 'no-bottom-line'
 								}
+				${
+					size === 'small'
+						? 'text-medium after:w-[3rem]'
+						: 'text-xlarge md:text-xxlarge'
+				}
             `}
 		>
 			{children}
