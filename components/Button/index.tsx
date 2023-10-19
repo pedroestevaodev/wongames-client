@@ -1,15 +1,18 @@
 'use client';
 
-import React from 'react';
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import * as S from './styles';
 
+type ButtonTypes =
+	| AnchorHTMLAttributes<HTMLAnchorElement>
+	| ButtonHTMLAttributes<HTMLButtonElement>;
+
 export type ButtonProps = {
-	children?: React.ReactNode;
 	size?: 'small' | 'medium' | 'large';
 	fullWidth?: boolean;
 	icon?: React.ReactNode;
-	onClick?: () => (event: React.MouseEvent<HTMLButtonElement>) => void;
-};
+	as?: React.ElementType;
+} & ButtonTypes;
 
 const Button = ({
 	children,
@@ -20,7 +23,7 @@ const Button = ({
 }: ButtonProps) => {
 	return (
 		<S.ButtonContainer
-			className={`bg-gradient-to-b from-orange to-pink text-[white] border-0 rounded-4 p-xxsmall
+			className={`inline-flex items-center justify-center bg-gradient-to-b from-orange to-pink text-[white] border-0 rounded-4 p-xxsmall no-underline
                 ${
 									size === 'small'
 										? 'h-[3rem] text-xsmall'
