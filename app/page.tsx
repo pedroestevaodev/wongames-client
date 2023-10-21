@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons';
 import Menu from '@/components/Menu';
+import Ribbon from '@/components/Ribbon';
 
 const Home = () => {
 	return (
@@ -21,6 +22,11 @@ const Home = () => {
 				Buy now
 			</Button>
 			<Menu />
+			<div className="relative h-[5rem] w-[10rem] bg-black">
+				<Ribbon color="primary" size="small">
+					Teste
+				</Ribbon>
+			</div>
 		</>
 	);
 };

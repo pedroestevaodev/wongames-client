@@ -3,6 +3,7 @@
 import React from 'react';
 import * as S from './styles';
 import Button from '../Button';
+import Ribbon, { RibbonColorsProps, RibbonSizeProps } from '../Ribbon';
 
 export type BannerProps = {
 	img: string;
@@ -10,6 +11,9 @@ export type BannerProps = {
 	subTitle: string;
 	buttonLabel: string;
 	buttonLink: string;
+	ribbon?: React.ReactNode;
+	ribbonColor?: RibbonColorsProps;
+	ribbonSize?: RibbonSizeProps;
 };
 
 const Banner = ({
@@ -17,10 +21,23 @@ const Banner = ({
 	title,
 	subTitle,
 	buttonLabel,
-	buttonLink
+	buttonLink,
+	ribbon,
+	ribbonColor = 'primary',
+	ribbonSize = 'normal'
 }: BannerProps) => {
 	return (
 		<S.BannerContainer className="relative md:shadow-[0_0.4rem_0.5rem_0_rgba(0,0,0,0.2)]">
+			{!!ribbon && (
+				<Ribbon
+					color={ribbonColor}
+					size={ribbonSize}
+					className="max-xl:right-0 max-xl:before:hidden"
+				>
+					{ribbon}
+				</Ribbon>
+			)}
+
 			<S.Image
 				src={img}
 				className="bg-lightGray w-full h-[23rem] md:h-[58rem]"
