@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Ribbon from '@/components/Ribbon';
+import Ribbon, { RibbonProps } from '@/components/Ribbon';
 
 export default {
 	title: 'Ribbon',
@@ -11,7 +11,7 @@ export default {
 	}
 } as Meta;
 
-export const Default: StoryObj = {
+export const Default: StoryObj<RibbonProps> = {
 	decorators: [
 		(story) => (
 			<div

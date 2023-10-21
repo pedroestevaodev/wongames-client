@@ -22,7 +22,7 @@ export default {
 	}
 } as Meta;
 
-export const Default: StoryObj = {
+export const Default: StoryObj<BannerProps> = {
 	args: {
 		img: 'https://source.unsplash.com/user/willianjusten/1042x580',
 		title: 'Defy death',
