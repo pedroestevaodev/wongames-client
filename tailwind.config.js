@@ -16,6 +16,9 @@ const tailwindConfig = {
 				light: '#f3f3f3',
 				dark: '#0b0b0c'
 			},
+			backgroundImage: {
+				rdr2: "url('/img/red-dead-img.jpg')"
+			},
 			spacing: {
 				xxsmall: '0.8rem',
 				xsmall: '1.6rem',
