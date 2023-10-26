@@ -10,23 +10,23 @@ const Sections = styled.section`
 		${HeadingStyles.HeadingContainer},
 		${GameCardSliderStyles.GameCardSliderContainer},
         ${HighlightStyles.HighlightContainer} {
-			margin-bottom: calc(var(--medium) * 2);
+			margin-bottom: calc(3.2rem * 2);
 		}
 
 		${HeadingStyles.HeadingContainer} {
 			@media (max-width: 767px) {
-				margin-right: calc(var(--gutter) / 2);
-				margin-left: calc(var(--gutter) / 2);
+				margin-right: calc(3.2rem / 2);
+				margin-left: calc(3.2rem / 2);
 			}
 		}
 
 		${GameCardSliderStyles.GameCardSliderContainer} {
 			@media (max-width: 1399px) {
-				margin-right: calc(calc(var(--gutter) * -1) / 2);
+				margin-right: calc(-3.2rem / 2);
 			}
 		}
 
-		margin-bottom: calc(var(--large) * 2);
+		margin-bottom: calc(4rem * 2);
 	`}
 `;
 
@@ -34,11 +34,11 @@ export const HomeConstainer = styled.div``;
 
 export const SectionBanner = styled.section`
 	${() => css`
-		margin: var(--large) calc(calc(var(--gutter) * -1) / 2);
+		margin: 4rem calc(-3.2rem / 2);
 
 		@media (min-width: 768px) {
 			position: relative;
-			margin: var(--large) 0;
+			margin: 4rem 0;
 			z-index: 10;
 		}
 	`}
@@ -46,7 +46,7 @@ export const SectionBanner = styled.section`
 
 export const SectionNews = styled(Sections)`
 	${() => css`
-		margin-bottom: calc(var(--xxlarge) * 2);
+		margin-bottom: calc(5.6rem * 2);
 
 		@media (min-width: 1200px) {
 			margin-top: -13rem;
@@ -56,11 +56,11 @@ export const SectionNews = styled(Sections)`
 			margin-bottom: 0;
 			padding-top: 14rem;
 			padding-bottom: 10rem;
-			background-color: var(--lightBg);
+			background-color: #f2f2f2;
 			clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
 
 			${HeadingStyles.HeadingContainer} {
-				color: var(--black);
+				color: #030517;
 			}
 		}
 	`}
@@ -71,23 +71,23 @@ export const SectionMostPopular = styled(Sections)``;
 export const SectionUpcoming = styled(Sections)`
 	${() => css`
 		${HighlightStyles.HighlightContainer} {
-			margin-top: calc(var(--xlarge) * 2);
+			margin-top: calc(4.8rem * 2);
 		}
 	`}
 `;
 
-export const SectionFreeGames = styled.section``;
+export const SectionFreeGames = styled(Sections)``;
 
 export const SectionFooter = styled.section`
 	${() => css`
-		margin-top: var(--large);
-		padding-bottom: var(--xsmall);
-		padding-top: var(--xxlarge);
-		background-color: var(--white);
+		margin-top: 4rem;
+		padding-bottom: 1.6rem;
+		padding-top: 5.6rem;
+		background-color: #fafafa;
 		clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 100%);
 
 		@media (min-width: 768px) {
-			padding-top: calc(var(--xxlarge) * 2);
+			padding-top: calc(5.6rem * 2);
 			clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0 100%);
 		}
 	`}
