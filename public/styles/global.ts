@@ -48,13 +48,6 @@ const GlobalStyles: NamedExoticComponent<GlobalStylesProps> = createGlobalStyle`
 		font-size: 62.5%;
 	}
 
-	html, 
-	body,
-	#__next,
-	[data-overlay-container] {
-		height: 100%;
-	}
-
 	${({ removeBg }) => css`
 		body {
 			${!removeBg &&
