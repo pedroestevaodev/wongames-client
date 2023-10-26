@@ -8,7 +8,7 @@ export type HighlightProps = {
 	title: string;
 	subTitle: string;
 	backgroundImage: string;
-	floatImage: string;
+	floatImage?: string;
 	buttonLabel: string;
 	buttonLink: string;
 	alignment?: 'right' | 'left';

@@ -75,8 +75,10 @@ const Menu = ({ username }: MenuProps) => {
 			</div>
 
 			<nav
-				className={`flex items-center justify-center flex-1 flex-col bg-white absolute top-0 bottom-0 left-0 right-0 h-[100vh] overflow-hidden transition-all ${
-					isOpen ? 'translate-x-0' : 'translate-x-[-100%] pointer-events-none'
+				className={`flex items-center justify-center flex-1 flex-col bg-white top-0 bottom-0 left-0 right-0 h-[100vh] overflow-hidden transition-all z-[20] ${
+					isOpen
+						? 'fixed translate-x-0 visible'
+						: 'absolute translate-x-[-100%] invisible pointer-events-none'
 				}`}
 				aria-hidden={!isOpen}
 			>
