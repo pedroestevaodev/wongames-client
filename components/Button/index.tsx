@@ -10,6 +10,7 @@ type ButtonTypes =
 export type ButtonProps = {
 	size?: 'small' | 'medium' | 'large';
 	fullWidth?: boolean;
+	minimal?: boolean;
 	icon?: React.ReactNode;
 	as?: React.ElementType;
 } & ButtonTypes;
@@ -19,11 +20,12 @@ const Button = ({
 	icon,
 	size = 'medium',
 	fullWidth = false,
+	minimal = false,
 	...props
 }: ButtonProps) => {
 	return (
 		<S.ButtonContainer
-			className={`inline-flex items-center justify-center bg-gradient-to-b from-orange to-pink text-[white] border-0 rounded-4 p-xxsmall no-underline
+			className={`inline-flex items-center justify-center border-0 rounded-4 p-xxsmall no-underline
                 ${
 									size === 'small'
 										? 'h-[3rem] text-xsmall'
@@ -31,9 +33,11 @@ const Button = ({
 										? 'h-[4rem] text-small px-medium py-xxsmall'
 										: 'h-[5rem] text-medium px-xlarge py-xxsmall'
 								}
+				${minimal ? 'bg-none' : 'bg-gradient-to-b from-orange to-pink text-[white]'}
                 ${fullWidth ? 'w-full' : 'w-fit'}
             `}
 			hasIcon={!!icon}
+			minimal={minimal}
 			{...props}
 		>
 			{!!icon && icon}
