@@ -1,15 +1,21 @@
 import { Meta, StoryObj } from '@storybook/react';
 import TextField, { TextFieldProps } from '@/components/TextField';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default {
 	title: 'TextField',
 	component: TextField,
 	argTypes: {
-		onInput: { action: 'changed' }
+		onInput: { action: 'changed' },
+		icon: {
+			type: 'string'
+		}
 	},
 	args: {
 		label: 'E-mail',
 		labelFor: 'Email',
+		icon: <FontAwesomeIcon icon={faEnvelope} />,
 		id: 'Email',
 		initialValue: '',
 		placeholder: 'john.cage@gmail.com'
@@ -21,6 +27,20 @@ export const Default: StoryObj<TextFieldProps> = {
 		(Story) => (
 			<div style={{ maxWidth: 300, padding: 15 }}>
 				<Story />
+			</div>
+		)
+	]
+};
+
+export const WithError: StoryObj<TextFieldProps> = {
+	decorators: [
+		(Story) => (
+			<div style={{ maxWidth: 300, padding: 15 }}>
+				<Story
+					args={{
+						error: 'Ops... something is wrong'
+					}}
+				/>
 			</div>
 		)
 	]
