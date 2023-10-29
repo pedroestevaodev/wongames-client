@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default {
-	title: 'TextField',
+	title: 'Form/TextField',
 	component: TextField,
 	argTypes: {
 		onInput: { action: 'changed' },
@@ -35,12 +35,14 @@ export const Default: StoryObj<TextFieldProps> = {
 export const WithError: StoryObj<TextFieldProps> = {
 	decorators: [
 		(Story) => (
-			<div style={{ maxWidth: 300, padding: 15 }}>
-				<Story
-					args={{
-						error: 'Ops... something is wrong'
-					}}
-				/>
+			<div style={{ height: '100vh', width: '100vw' }}>
+				<div style={{ maxWidth: 300, padding: 15 }}>
+					<Story
+						args={{
+							error: 'Ops... something is wrong'
+						}}
+					/>
+				</div>
 			</div>
 		)
 	]
