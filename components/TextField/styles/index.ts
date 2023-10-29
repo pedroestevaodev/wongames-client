@@ -58,7 +58,7 @@ export const Input = styled.input<IconPositionProps>`
 	${({ iconPosition }) => css`
 		color: #030517;
 		font-family: 'Poppins', sans-serif;
-		font-size: 3.2rem;
+		font-size: 1.8rem;
 		padding: 0.8rem 0;
         padding-${iconPosition}: 1.6rem;
 		background: transparent;
@@ -79,6 +79,7 @@ export const Label = styled.label`
 export const Icon = styled.div<IconPositionProps>`
 	${({ iconPosition }) => css`
 		display: flex;
+		align-items: center;
 		width: 2.2rem;
 		color: #8f8f8f;
 		order: ${iconPosition === 'right' ? 1 : 0};
