@@ -12,28 +12,41 @@ export default {
 	},
 	argTypes: {
 		onCheck: { action: 'checked' }
-	},
-	args: {
-		label: 'Action',
-		labelFor: 'action',
-		labelColor: 'white'
 	}
 } as Meta;
 
 export const Default: StoryObj<CheckboxProps> = {
 	decorators: [
 		(Story) => (
-			<>
+			<div style={{ height: '100vh', width: '100vw' }}>
 				<div style={{ padding: 10 }}>
-					<Story />
+					<Story
+						args={{
+							name: 'category',
+							label: 'Action',
+							labelFor: 'action'
+						}}
+					/>
 				</div>
 				<div style={{ padding: 10 }}>
-					<Story />
+					<Story
+						args={{
+							name: 'category',
+							label: 'Adventure',
+							labelFor: 'adventure'
+						}}
+					/>
 				</div>
 				<div style={{ padding: 10 }}>
-					<Story />
+					<Story
+						args={{
+							name: 'category',
+							label: 'Strategy',
+							labelFor: 'strategy'
+						}}
+					/>
 				</div>
-			</>
+			</div>
 		)
 	]
 };
