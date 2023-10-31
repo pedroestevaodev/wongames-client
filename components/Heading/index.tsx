@@ -9,13 +9,13 @@ export type HeadingProps = {
 	lineLeft?: boolean;
 	lineBottom?: boolean;
 	lineColor?: 'primary' | 'secondary';
-	size?: 'small' | 'medium';
+	size?: 'small' | 'medium' | 'huge';
 	className?: string;
 };
 
 const Heading = ({
 	children,
-	color = 'black',
+	color = 'white',
 	lineLeft = false,
 	lineBottom = false,
 	lineColor = 'primary',
@@ -47,7 +47,9 @@ const Heading = ({
 				${
 					size === 'small'
 						? 'text-medium after:w-[3rem]'
-						: 'text-xlarge md:text-xxlarge'
+						: size === 'medium'
+						? 'text-xlarge md:text-xxlarge'
+						: 'text-huge'
 				}
 				${className}
             `}

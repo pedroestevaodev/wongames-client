@@ -3,11 +3,11 @@
 const nextConfig = {
 	reactStrictMode: true,
 	compress: true,
-	experimental: {
-		appDir: true
-	},
 	compiler: {
 		styledComponents: true
+	},
+	images: {
+		domains: ['source.unsplash.com']
 	}
 };
 
