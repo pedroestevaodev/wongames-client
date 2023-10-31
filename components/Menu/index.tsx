@@ -71,7 +71,11 @@ const Menu = ({ username }: MenuProps) => {
 						aria-label="Open Shopping Cart"
 					/>
 				</div>
-				{width > 767 && !username && <Button>Sign in</Button>}
+				{width > 767 && !username && (
+					<Link href="/sign-in" passHref>
+						Sign in
+					</Link>
+				)}
 			</div>
 
 			<nav
@@ -139,16 +143,16 @@ const Menu = ({ username }: MenuProps) => {
 
 				{!username && (
 					<div className="flex flex-col items-center py-0 px-xlarge pb-xlarge">
-						<Button fullWidth size="large">
+						<Button fullWidth size="large" as="a" href="/sign-in">
 							Log in now
 						</Button>
 						<span className="block my-xxsmall mx-0 text-xsmall">or</span>
 						<Link
-							href="#"
+							href="/sign-up"
 							className="no-underline text-primary border-b-[0.2rem] border-b-primary"
-							title="Sign Up"
+							passHref
 						>
-							Sign up
+							<S.CreateAccount title="Sign Up">Sign up</S.CreateAccount>
 						</Link>
 					</div>
 				)}

@@ -1,6 +1,10 @@
 'use client';
 
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
+import React, {
+	AnchorHTMLAttributes,
+	ButtonHTMLAttributes,
+	forwardRef
+} from 'react';
 import * as S from './styles';
 
 type ButtonTypes =
@@ -15,14 +19,17 @@ export type ButtonProps = {
 	as?: React.ElementType;
 } & ButtonTypes;
 
-const Button = ({
-	children,
-	icon,
-	size = 'medium',
-	fullWidth = false,
-	minimal = false,
-	...props
-}: ButtonProps) => {
+const Button: React.ForwardRefRenderFunction<S.ContainerProps, ButtonProps> = (
+	{
+		children,
+		icon,
+		size = 'medium',
+		fullWidth = false,
+		minimal = false,
+		...props
+	},
+	ref
+) => {
 	return (
 		<S.ButtonContainer
 			className={`inline-flex items-center justify-center border-0 rounded-4 p-xxsmall no-underline
@@ -38,6 +45,7 @@ const Button = ({
             `}
 			hasIcon={!!icon}
 			minimal={minimal}
+			ref={ref}
 			{...props}
 		>
 			{!!icon && icon}
@@ -46,4 +54,4 @@ const Button = ({
 	);
 };
 
-export default Button;
+export default forwardRef(Button);

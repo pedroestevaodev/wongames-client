@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { ButtonProps } from '..';
 import { darken } from 'polished';
 
-type ContainerModifiersProps = {
+export type ContainerProps = {
 	hasIcon: boolean;
 } & Pick<ButtonProps, 'size' | 'fullWidth' | 'minimal'>;
 
@@ -32,7 +32,7 @@ const containerModifiers = {
 	`
 };
 
-export const ButtonContainer = styled.button<ContainerModifiersProps>`
+export const ButtonContainer = styled.button<ContainerProps>`
 	${({ hasIcon, minimal }) => css`
 		${!!hasIcon && containerModifiers.withIcon};
 		${!!minimal && containerModifiers.minimal};
