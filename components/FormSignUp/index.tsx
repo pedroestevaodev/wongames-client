@@ -42,10 +42,7 @@ const FormSignUp = () => {
 				</Button>
 
 				<S.FormLink>
-					Already have an account?{' '}
-					<Link href="/sign-in">
-						<a>Sign in</a>
-					</Link>
+					Already have an account? <Link href="/sign-in">Sign in</Link>
 				</S.FormLink>
 			</form>
 		</S.FormSignUpContainer>

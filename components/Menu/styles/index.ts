@@ -24,7 +24,7 @@ export const MenuLink = styled(Link)`
 	}
 `;
 
-export const CreateAccount = styled.a`
+export const CreateAccount = styled(Link)`
 	text-decoration: none;
 	color: #f231a5;
 	border-bottom: 0.2rem solid #f231a5;

@@ -147,13 +147,14 @@ const Menu = ({ username }: MenuProps) => {
 							Log in now
 						</Button>
 						<span className="block my-xxsmall mx-0 text-xsmall">or</span>
-						<Link
+						<S.CreateAccount
 							href="/sign-up"
 							className="no-underline text-primary border-b-[0.2rem] border-b-primary"
 							passHref
+							title="Sign Up"
 						>
-							<S.CreateAccount title="Sign Up">Sign up</S.CreateAccount>
-						</Link>
+							Sign up
+						</S.CreateAccount>
 					</div>
 				)}
 			</nav>

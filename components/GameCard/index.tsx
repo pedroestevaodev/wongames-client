@@ -45,7 +45,7 @@ const GameCard = ({
 				</Ribbon>
 			)}
 			<S.ImageBox className="h-[14rem] w-full">
-				<Image src={img} width={300} height={140} alt={title} />
+				<Image src={img} width={300} height={140} alt={title} priority />
 			</S.ImageBox>
 			<S.Content className="relative flex flex-col justify-between h-full m-xsmall">
 				<S.Info>

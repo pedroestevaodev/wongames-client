@@ -52,17 +52,17 @@ export const SectionNews = styled(Sections)`
 			margin-top: -13rem;
 		}
 
-		@media (min-width: 768px) {
-			margin-bottom: 0;
-			padding-top: 14rem;
-			padding-bottom: 10rem;
-			background-color: #f2f2f2;
-			clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
+		/* @media (min-width: 768px) { */
+		margin-bottom: 0;
+		padding-top: 14rem;
+		padding-bottom: 10rem;
+		background-color: #f2f2f2;
+		clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 85%);
 
-			${HeadingStyles.HeadingContainer} {
-				color: #030517;
-			}
+		${HeadingStyles.HeadingContainer} {
+			color: #030517;
 		}
+		/* } */
 	`}
 `;
 
