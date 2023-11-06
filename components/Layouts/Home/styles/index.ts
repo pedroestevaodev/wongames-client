@@ -2,33 +2,7 @@
 
 import styled, { css } from 'styled-components';
 import * as HeadingStyles from '@/components/Heading/styles';
-import * as GameCardSliderStyles from '@/components/GameCardSlider/styles';
 import * as HighlightStyles from '@/components/Highlight/styles';
-
-const Sections = styled.section`
-	${() => css`
-		${HeadingStyles.HeadingContainer},
-		${GameCardSliderStyles.GameCardSliderContainer},
-        ${HighlightStyles.HighlightContainer} {
-			margin-bottom: calc(3.2rem * 2);
-		}
-
-		${HeadingStyles.HeadingContainer} {
-			@media (max-width: 767px) {
-				margin-right: calc(3.2rem / 2);
-				margin-left: calc(3.2rem / 2);
-			}
-		}
-
-		${GameCardSliderStyles.GameCardSliderContainer} {
-			@media (max-width: 1399px) {
-				margin-right: calc(-3.2rem / 2);
-			}
-		}
-
-		margin-bottom: calc(4rem * 2);
-	`}
-`;
 
 export const HomeConstainer = styled.div``;
 
@@ -44,7 +18,7 @@ export const SectionBanner = styled.section`
 	`}
 `;
 
-export const SectionNews = styled(Sections)`
+export const SectionNews = styled.div`
 	${() => css`
 		margin-bottom: calc(5.6rem * 2);
 
@@ -66,17 +40,13 @@ export const SectionNews = styled(Sections)`
 	`}
 `;
 
-export const SectionMostPopular = styled(Sections)``;
-
-export const SectionUpcoming = styled(Sections)`
+export const SectionUpcoming = styled.div`
 	${() => css`
 		${HighlightStyles.HighlightContainer} {
 			margin-top: calc(4.8rem * 2);
 		}
 	`}
 `;
-
-export const SectionFreeGames = styled(Sections)``;
 
 export const SectionFooter = styled.section`
 	${() => css`
