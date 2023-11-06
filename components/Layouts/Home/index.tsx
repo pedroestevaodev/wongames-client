@@ -1,8 +1,6 @@
 import React from 'react';
 import Container from '@/components/Container';
-import Menu from '@/components/Menu';
 import BannerSlider from '@/components/BannerSlider';
-import Footer from '@/components/Footer';
 // import { BannerProps } from '@/components/Banner';
 // import { GameCardProps } from '@/components/GameCard';
 import bannerSliderItems from '@/components/BannerSlider/mocks/mock';
@@ -10,6 +8,7 @@ import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
 import highlightItems from '@/components/Highlight/mocks/mock';
 import * as S from '@/components/Layouts/Home/styles';
 import ShowCase from '@/components/ShowCase';
+import Base from '../Base';
 
 // export type HomeProps = {
 // 	banners: BannerProps[]
@@ -37,9 +36,8 @@ const Home = () =>
 	// }: HomeProps
 	{
 		return (
-			<section>
+			<Base>
 				<Container>
-					<Menu />
 					<S.SectionBanner>
 						<BannerSlider items={bannerSliderItems} />
 					</S.SectionBanner>
@@ -65,13 +63,7 @@ const Home = () =>
 					highlight={highlightItems}
 					games={gameCardSliderItems}
 				/>
-
-				<S.SectionFooter>
-					<Container>
-						<Footer />
-					</Container>
-				</S.SectionFooter>
-			</section>
+			</Base>
 		);
 	};
 
