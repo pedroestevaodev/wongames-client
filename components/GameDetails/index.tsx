@@ -4,9 +4,22 @@ import React from 'react';
 import * as S from './styles';
 import { useWindowSize } from 'usehooks-ts';
 import Heading from '../Heading';
+import { RiWindowsFill, RiAppleFill, RiUbuntuFill } from '@remixicon/react';
 
-const GameDetails = () => {
+type PlatformProps = 'windows' | 'linux' | 'mac';
+
+export type GameDetailsProps = {
+	platforms: PlatformProps[];
+};
+
+const GameDetails = ({ platforms }: GameDetailsProps) => {
 	const { width } = useWindowSize();
+
+	const platformIcons = {
+		windows: <RiWindowsFill size={18} />,
+		linux: <RiUbuntuFill size={18} />,
+		mac: <RiAppleFill size={18} />
+	};
 
 	return (
 		<S.GameDetailsContainer>
@@ -29,6 +42,11 @@ const GameDetails = () => {
 
 				<S.Block>
 					<S.Label>Platforms</S.Label>
+					<S.IconsWrapper>
+						{platforms.map((icon: PlatformProps) => (
+							<S.Icon key={icon}>{platformIcons[icon]}</S.Icon>
+						))}
+					</S.IconsWrapper>
 				</S.Block>
 
 				<S.Block>

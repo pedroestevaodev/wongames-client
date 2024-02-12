@@ -9,7 +9,10 @@ export default {
 			default: 'dark'
 		}
 	},
-	argTypes: {}
+	argTypes: {},
+	args: {
+		platforms: ['windows', 'linux', 'mac']
+	}
 } as Meta;
 
 export const Default: StoryObj = {
