@@ -4,6 +4,7 @@ import StyledComponentsRegistry from '../lib/registry';
 import { Providers } from '../components/Providers';
 import GlobalStyles from '../public/styles/global';
 import { withThemeByClassName } from '@storybook/addon-styling';
+import '../public/styles/tailwind-import.css';
 
 export const preview: Preview = {
 	parameters: {

@@ -17,7 +17,14 @@ const config: StorybookConfig = {
 	features: {
 		storyStoreV7: false
 	},
-	addons: [],
+	addons: [
+		'@storybook/addon-controls',
+		'@storybook/addon-essentials',
+		'@storybook/addon-interactions',
+		'@storybook/addon-links',
+		'@storybook/addon-onboarding',
+		'@storybook/addon-styling'
+	],
 	typescript: {
 		reactDocgen: 'react-docgen-typescript'
 	},
