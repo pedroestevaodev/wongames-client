@@ -1,5 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
-// import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import path from 'path';
 
 const config: StorybookConfig = {
 	framework: {
@@ -7,8 +7,6 @@ const config: StorybookConfig = {
 		options: {
 			builder: {
 				useSWC: true
-				// fsCache: true,
-				// lazyCompilation: true
 			}
 		}
 	},
@@ -16,14 +14,10 @@ const config: StorybookConfig = {
 		'../components/**/*.stories.@(ts|tsx)',
 		'../app/**/*.stories.@(ts|tsx)'
 	],
-	addons: [
-		{
-			name: '@storybook/addon-essentials',
-			options: {
-				docs: false
-			}
-		}
-	],
+	features: {
+		storyStoreV7: false
+	},
+	addons: [],
 	typescript: {
 		reactDocgen: 'react-docgen-typescript'
 	},
@@ -31,17 +25,28 @@ const config: StorybookConfig = {
 		autodocs: 'tag'
 	},
 	staticDirs: ['../public'],
-	core: {}
-	// webpackFinal: async (config) => {
-	// 	if (config.resolve) {
-	// 		config.resolve.plugins = [
-	// 			...(config.resolve.plugins || []),
-	// 			new TsconfigPathsPlugin({
-	// 				extensions: config.resolve.extensions
-	// 			})
-	// 		];
-	// 	}
-	// 	return config;
-	// }
+	core: {
+		builder: {
+			name: '@storybook/builder-webpack5',
+			options: {
+				fsCache: true,
+				lazyCompilation: true
+			}
+		}
+	},
+	async webpackFinal(config, { configType }) {
+		config.resolve = config.resolve ?? {};
+		config.resolve.alias = config.resolve.alias ?? {};
+		config.resolve.alias['@'] = path.resolve(__dirname, '../');
+
+		if (configType === 'DEVELOPMENT') {
+			config.devtool = 'eval-source-map';
+		}
+		if (configType === 'PRODUCTION') {
+			config.devtool = 'source-map';
+		}
+
+		return config;
+	}
 };
 export default config;

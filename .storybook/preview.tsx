@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import type { Preview, StoryFn } from '@storybook/react';
 import StyledComponentsRegistry from '../lib/registry';
 import { Providers } from '../components/Providers';
 import GlobalStyles from '../public/styles/global';
@@ -30,8 +30,8 @@ export const preview: Preview = {
 	}
 };
 
-export const decorators = [
-	(Story) => (
+export const decorators: Parameters<StoryFn<unknown>>[0][] = [
+	(Story: React.ComponentType) => (
 		<StyledComponentsRegistry>
 			<Providers>
 				<GlobalStyles removeBg />
