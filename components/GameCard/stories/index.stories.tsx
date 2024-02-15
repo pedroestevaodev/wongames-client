@@ -2,11 +2,14 @@ import { Meta, StoryObj } from '@storybook/react';
 import GameCard, { GameCardProps } from '@/components/GameCard';
 
 export default {
-	title: 'GameCard',
+	title: 'Game/GameCard',
 	component: GameCard,
 	argTypes: {
 		ribbon: {
 			type: 'string'
+		},
+		onFav: {
+			action: 'clicked'
 		}
 	},
 	args: {
@@ -20,30 +23,32 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
-	}
-} as Meta;
-
-export const Default: StoryObj<GameCardProps> = {
+	},
 	decorators: [
 		(Story) => (
-			<div style={{ width: '30rem' }}>
-				<Story />
+			<div
+				style={{
+					width: '100%',
+					height: '100vh',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				<div style={{ width: '30rem' }}>
+					<Story />
+				</div>
 			</div>
 		)
 	]
-};
+} as Meta;
+
+export const Default: StoryObj<GameCardProps> = {};
 
 export const WithRibbon: StoryObj<GameCardProps> = {
 	args: {
 		ribbon: '20% OFF',
 		ribbonSize: 'small',
 		ribbonColor: 'primary'
-	},
-	decorators: [
-		(Story) => (
-			<div style={{ width: '30rem' }}>
-				<Story />
-			</div>
-		)
-	]
+	}
 };

@@ -10,16 +10,24 @@ export default {
 			default: 'dark'
 		}
 	},
-	argTypes: {},
-	args: GameInfoItens
-} as Meta;
-
-export const Default: StoryObj<GameInfoProps> = {
+	args: GameInfoItens,
 	decorators: [
 		(Story) => (
-			<div style={{ maxWidth: '144rem', margin: 'auto', padding: '1.5rem' }}>
-				<Story />
+			<div
+				style={{
+					width: '100%',
+					height: '100vh',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				<div style={{ maxWidth: '144rem', margin: 'auto', padding: '1.5rem' }}>
+					<Story />
+				</div>
 			</div>
 		)
 	]
-};
+} as Meta<GameInfoProps>;
+
+export const Default: StoryObj<GameInfoProps> = {};

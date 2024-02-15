@@ -6,7 +6,9 @@ const config: StorybookConfig = {
 		name: '@storybook/nextjs',
 		options: {
 			builder: {
-				useSWC: true
+				useSWC: true,
+				fsCache: true,
+				lazyCompilation: true
 			}
 		}
 	},
@@ -32,15 +34,6 @@ const config: StorybookConfig = {
 		autodocs: 'tag'
 	},
 	staticDirs: ['../public'],
-	core: {
-		builder: {
-			name: '@storybook/builder-webpack5',
-			options: {
-				fsCache: true,
-				lazyCompilation: true
-			}
-		}
-	},
 	async webpackFinal(config, { configType }) {
 		config.resolve = config.resolve ?? {};
 		config.resolve.alias = config.resolve.alias ?? {};

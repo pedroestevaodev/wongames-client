@@ -13,52 +13,59 @@ export default {
 	argTypes: {
 		onCheck: { action: 'checked' }
 	},
-	args: {
-		label: 'Action',
-		labelFor: 'action',
-		labelColor: 'white'
-	}
-} as Meta;
-
-export const Default: StoryObj<RadioProps> = {
 	decorators: [
 		(Story) => (
-			<div style={{ height: '100vh', width: '100vw' }}>
-				<div style={{ padding: 10 }}>
-					<Story
-						args={{
-							label: 'primeiro',
-							labelFor: 'primeiro',
-							id: 'primeiro',
-							name: 'nome',
-							value: 'primeiro',
-							defaultChecked: true
-						}}
-					/>
-				</div>
-				<div style={{ padding: 10 }}>
-					<Story
-						args={{
-							label: 'segundo',
-							labelFor: 'segundo',
-							id: 'segundo',
-							name: 'nome',
-							value: 'segundo'
-						}}
-					/>
-				</div>
-				<div style={{ padding: 10 }}>
-					<Story
-						args={{
-							label: 'terceiro',
-							labelFor: 'terceiro',
-							id: 'terceiro',
-							name: 'nome',
-							value: 'terceiro'
-						}}
-					/>
+			<div
+				style={{
+					height: '100vh',
+					width: '100vw',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
+				}}
+			>
+				<div style={{ width: 'fit-content' }}>
+					<Story />
 				</div>
 			</div>
 		)
 	]
+} as Meta<RadioProps>;
+
+export const Default: StoryObj<RadioProps> = {
+	render: (args) => (
+		<>
+			<div style={{ padding: 10 }}>
+				<Radio
+					label="primeiro"
+					labelFor="primeiro"
+					id="primeiro"
+					name="nome"
+					value="primeiro"
+					defaultChecked
+					{...args}
+				/>
+			</div>
+			<div style={{ padding: 10 }}>
+				<Radio
+					label="segundo"
+					labelFor="segundo"
+					id="segundo"
+					name="nome"
+					value="segundo"
+					{...args}
+				/>
+			</div>
+			<div style={{ padding: 10 }}>
+				<Radio
+					label="terceiro"
+					labelFor="terceiro"
+					id="terceiro"
+					name="nome"
+					value="terceiro"
+					{...args}
+				/>
+			</div>
+		</>
+	)
 };

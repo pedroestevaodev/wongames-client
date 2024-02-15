@@ -4,26 +4,38 @@ import Ribbon, { RibbonProps } from '@/components/Ribbon';
 export default {
 	title: 'Ribbon',
 	component: Ribbon,
+	args: {
+		children: 'Best Seller'
+	},
 	argTypes: {
 		children: {
 			type: 'string'
 		}
-	}
-} as Meta;
-
-export const Default: StoryObj<RibbonProps> = {
+	},
 	decorators: [
-		(story) => (
+		(Story) => (
 			<div
 				style={{
-					width: '40rem',
-					height: '20rem',
-					position: 'relative',
-					backgroundColor: '#888'
+					height: '100vh',
+					width: '100vw',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center'
 				}}
 			>
-				<Ribbon>{story()}</Ribbon>
+				<div
+					style={{
+						width: '40rem',
+						height: '20rem',
+						position: 'relative',
+						backgroundColor: '#888'
+					}}
+				>
+					<Story />
+				</div>
 			</div>
 		)
 	]
-};
+} as Meta<RibbonProps>;
+
+export const Default: StoryObj<RibbonProps> = {};

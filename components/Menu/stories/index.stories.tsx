@@ -5,13 +5,18 @@ import { MenuProps } from '@/components/Menu';
 export default {
 	title: 'Menu',
 	component: Menu,
-	argTypes: {},
 	parameters: {
 		layout: 'fullscreen',
 		backgrounds: {
 			default: 'dark'
 		}
 	}
-} as Meta;
+} as Meta<MenuProps>;
 
 export const Default: StoryObj<MenuProps> = {};
+
+export const Logged: StoryObj<MenuProps> = {
+	args: {
+		username: 'John Doe'
+	}
+};

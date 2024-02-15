@@ -5,48 +5,53 @@ export default {
 	title: 'Form/Checkbox',
 	component: Checkbox,
 	parameters: {
-		layout: 'fullscreen',
-		backgrounds: {
-			default: 'dark'
-		}
+		layout: 'fullscreen'
 	},
 	argTypes: {
 		onCheck: { action: 'checked' }
-	}
-} as Meta;
-
-export const Default: StoryObj<CheckboxProps> = {
+	},
 	decorators: [
 		(Story) => (
-			<div style={{ height: '100vh', width: '100vw' }}>
-				<div style={{ padding: 10 }}>
-					<Story
-						args={{
-							name: 'category',
-							label: 'Action',
-							labelFor: 'action'
-						}}
-					/>
-				</div>
-				<div style={{ padding: 10 }}>
-					<Story
-						args={{
-							name: 'category',
-							label: 'Adventure',
-							labelFor: 'adventure'
-						}}
-					/>
-				</div>
-				<div style={{ padding: 10 }}>
-					<Story
-						args={{
-							name: 'category',
-							label: 'Strategy',
-							labelFor: 'strategy'
-						}}
-					/>
+			<div
+				style={{
+					height: '100vh',
+					width: '100vw',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'center',
+					backgroundColor: '#898888'
+				}}
+			>
+				<div style={{ width: 'fit-content' }}>
+					<Story />
 				</div>
 			</div>
 		)
 	]
+} as Meta;
+
+export const Default: StoryObj<CheckboxProps> = {
+	render: (args) => (
+		<>
+			<div style={{ padding: 10 }}>
+				<Checkbox name="category" label="Action" labelFor="action" {...args} />
+			</div>
+			<div style={{ padding: 10 }}>
+				<Checkbox
+					name="category"
+					label="Adventure"
+					labelFor="adventure"
+					{...args}
+				/>
+			</div>
+			<div style={{ padding: 10 }}>
+				<Checkbox
+					name="category"
+					label="Strategy"
+					labelFor="strategy"
+					{...args}
+				/>
+			</div>
+		</>
+	)
 };

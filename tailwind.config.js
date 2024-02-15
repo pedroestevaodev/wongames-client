@@ -63,6 +63,9 @@ const tailwindConfig = {
 			},
 			borderRadius: {
 				4: '0.4rem'
+			},
+			gridTemplateColumns: {
+				'minmax-50': 'minmax(auto, 50%) 1fr'
 			}
 		},
 		screens: {

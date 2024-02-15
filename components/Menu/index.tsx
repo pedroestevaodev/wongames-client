@@ -143,9 +143,11 @@ const Menu = ({ username }: MenuProps) => {
 
 				{!username && (
 					<div className="flex flex-col items-center py-0 px-xlarge pb-xlarge">
-						<Button fullWidth size="large" as="a" href="/sign-in">
-							Log in now
-						</Button>
+						<Link href="/sign-in" passHref>
+							<Button fullWidth size="large">
+								Log in now
+							</Button>
+						</Link>
 						<span className="block my-xxsmall mx-0 text-xsmall">or</span>
 						<S.CreateAccount
 							href="/sign-up"

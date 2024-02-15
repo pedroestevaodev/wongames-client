@@ -27,17 +27,15 @@ const Slide = styled.div`
 `;
 
 export const Horizontal: StoryObj = {
-	decorators: [
-		() => (
-			<Slider settings={settings}>
-				<Slide>Slide 1</Slide>
-				<Slide>Slide 2</Slide>
-				<Slide>Slide 3</Slide>
-				<Slide>Slide 4</Slide>
-				<Slide>Slide 5</Slide>
-			</Slider>
-		)
-	]
+	render: () => (
+		<Slider settings={settings}>
+			<Slide>Slide 1</Slide>
+			<Slide>Slide 2</Slide>
+			<Slide>Slide 3</Slide>
+			<Slide>Slide 4</Slide>
+			<Slide>Slide 5</Slide>
+		</Slider>
+	)
 };
 
 const verticalSettings: Settings = {
@@ -49,15 +47,13 @@ const verticalSettings: Settings = {
 };
 
 export const Vertical: StoryObj = {
-	decorators: [
-		() => (
-			<Slider settings={verticalSettings}>
-				<Slide>Slide 1</Slide>
-				<Slide>Slide 2</Slide>
-				<Slide>Slide 3</Slide>
-				<Slide>Slide 4</Slide>
-				<Slide>Slide 5</Slide>
-			</Slider>
-		)
-	]
+	render: () => (
+		<Slider settings={verticalSettings}>
+			<Slide>Slide 1</Slide>
+			<Slide>Slide 2</Slide>
+			<Slide>Slide 3</Slide>
+			<Slide>Slide 4</Slide>
+			<Slide>Slide 5</Slide>
+		</Slider>
+	)
 };

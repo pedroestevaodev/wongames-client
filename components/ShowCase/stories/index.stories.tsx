@@ -8,19 +8,21 @@ export default {
 	component: ShowCase,
 	argTypes: {},
 	parameters: {
-		layout: 'fullscreen',
+		// layout: 'fullscreen',
 		backgrounds: {
 			default: 'dark'
 		}
 	},
 	decorators: [
 		(Story) => (
-			<div style={{ margin: '0 auto' }}>
-				<Story />
+			<div style={{ height: '100vh', width: '100vw' }}>
+				<div style={{ margin: '0 auto' }}>
+					<Story />
+				</div>
 			</div>
 		)
 	]
-} as Meta;
+} as Meta<ShowCaseProps>;
 
 export const Default: StoryObj<ShowCaseProps> = {
 	args: {
