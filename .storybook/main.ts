@@ -16,9 +16,6 @@ const config: StorybookConfig = {
 		'../components/**/*.stories.@(ts|tsx)',
 		'../app/**/*.stories.@(ts|tsx)'
 	],
-	features: {
-		storyStoreV7: false
-	},
 	addons: [
 		'@storybook/addon-controls',
 		'@storybook/addon-essentials',
