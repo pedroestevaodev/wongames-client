@@ -29,7 +29,7 @@ const GameItem = ({
 		<S.GameItemContainer>
 			<S.GameContent>
 				<S.ImageBox>
-					<Image src={img} alt={title} />
+					<Image src={img} width={151} height={70} alt={title} />
 				</S.ImageBox>
 
 				<S.Content>
@@ -54,7 +54,12 @@ const GameItem = ({
 					<p>{paymentInfo.purchaseDate}</p>
 					<S.CardInfo>
 						<span>{paymentInfo.number}</span>
-						<Image src={paymentInfo.img} alt={paymentInfo.flag} />
+						<Image
+							src={paymentInfo.img}
+							width={38}
+							height={24}
+							alt={paymentInfo.flag}
+						/>
 					</S.CardInfo>
 				</S.PaymentContent>
 			)}
