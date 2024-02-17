@@ -1,4 +1,6 @@
-const TextContentMock = {
+import { TextContentProps } from '..';
+
+const TextContentMock: TextContentProps = {
 	title: 'Description',
 	content: `
         <h1>Heading</h1>

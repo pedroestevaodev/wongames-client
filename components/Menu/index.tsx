@@ -20,7 +20,7 @@ const Menu = ({ username }: MenuProps) => {
 	const { width } = useWindowSize();
 
 	return (
-		<S.MenuContainer className="relative flex items-center justify-between px-0 py-small">
+		<S.MenuContainer className="relative flex items-center justify-between px-0 py-small z-menu">
 			{width < 768 && (
 				<div className="flex items-center justify-center text-white w-[2.4rem] h-[2.4rem]">
 					<FontAwesomeIcon
@@ -33,7 +33,9 @@ const Menu = ({ username }: MenuProps) => {
 			)}
 
 			<div className="max-md:absolute max-md:left-[50%] max-md:translate-x-[-50%]">
-				<Logo hideOnMobile />
+				<Link href="/">
+					<Logo hideOnMobile />
+				</Link>
 			</div>
 
 			{width > 767 && (
@@ -43,7 +45,7 @@ const Menu = ({ username }: MenuProps) => {
 					}`}
 				>
 					<S.MenuLink
-						href="#"
+						href="/"
 						className={`relative text-medium my-0 mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
 							isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
 						}`}
@@ -99,7 +101,7 @@ const Menu = ({ username }: MenuProps) => {
 					}`}
 				>
 					<S.MenuLink
-						href="#"
+						href="/"
 						className={`relative text-medium my-[0.3rem] mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
 							isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
 						}`}

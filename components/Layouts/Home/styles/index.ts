@@ -8,11 +8,11 @@ export const HomeConstainer = styled.div``;
 
 export const SectionBanner = styled.section`
 	${() => css`
-		margin: 4rem calc(-3.2rem / 2);
+		margin: 0 calc(-3.2rem / 2) 4rem;
 
 		@media (min-width: 768px) {
 			position: relative;
-			margin: 4rem 0;
+			margin-bottom: 4rem;
 			z-index: 10;
 		}
 	`}

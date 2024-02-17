@@ -1,4 +1,6 @@
-const gameCardSliderItems = [
+import { GameCardProps } from '@/components/GameCard';
+
+const gameCardSliderItems: GameCardProps[] = [
 	{
 		title: 'Population Zero',
 		developer: 'Rockstar Games',

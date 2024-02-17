@@ -66,6 +66,13 @@ const tailwindConfig = {
 			},
 			gridTemplateColumns: {
 				'minmax-50': 'minmax(auto, 50%) 1fr'
+			},
+			zIndex: {
+				base: 10,
+				menu: 20,
+				overlay: 30,
+				modal: 40,
+				alwaysOnTop: 50
 			}
 		},
 		screens: {

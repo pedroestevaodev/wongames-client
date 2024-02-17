@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 
 const Container = styled.div`
 	${() => css`
+		width: 100%;
 		max-width: 130rem;
 		margin-left: auto;
 		margin-right: auto;
