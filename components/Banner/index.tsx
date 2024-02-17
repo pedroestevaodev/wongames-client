@@ -4,6 +4,7 @@ import React from 'react';
 import * as S from './styles';
 import Button from '../Button';
 import Ribbon, { RibbonColorsProps, RibbonSizeProps } from '../Ribbon';
+import Link from 'next/link';
 
 export type BannerProps = {
 	img: string;
@@ -53,7 +54,7 @@ const Banner = ({
 					className="text-white text-small font-normal mb-xsmall md:text-large"
 					dangerouslySetInnerHTML={{ __html: subTitle }}
 				/>
-				<Button as="a" href={buttonLink} size="large">
+				<Button as={Link} href={buttonLink} size="large">
 					{buttonLabel}
 				</Button>
 			</div>
