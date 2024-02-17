@@ -3,6 +3,7 @@
 import React from 'react';
 import * as S from './styles';
 import Button from '../Button';
+import Link from 'next/link';
 
 export type HighlightProps = {
 	title: string;
@@ -45,7 +46,7 @@ const Highlight = ({
 				<S.SubTitle className="text-small font-light text-white mb-medium md:text-large">
 					{subTitle}
 				</S.SubTitle>
-				<Button as="a" href={buttonLink}>
+				<Button as={Link} href={buttonLink}>
 					{buttonLabel}
 				</Button>
 			</S.Content>
