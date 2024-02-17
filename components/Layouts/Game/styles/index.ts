@@ -58,13 +58,4 @@ export const SectionDescription = styled(Section)`
 	}
 `;
 
-export const SectionGameDetails = styled(Section)`
-	> div {
-		padding-bottom: 4.8rem;
-		border-bottom: 0.1rem solid rgba(181, 181, 181, 0.3);
-
-		@media (min-width: 768px) {
-			padding-bottom: calc(5.6rem * 2);
-		}
-	}
-`;
+export const SectionGameDetails = styled(Section)``;

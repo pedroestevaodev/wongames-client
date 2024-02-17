@@ -1,22 +1,7 @@
-import { GalleryImageProps } from '@/components/Gallery';
 import GalleryMock from '@/components/Gallery/mocks/mock';
-import { GameCardProps } from '@/components/GameCard';
 import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
-import { GameDetailsProps } from '@/components/GameDetails';
-import { GameInfoProps } from '@/components/GameInfo';
-import { HighlightProps } from '@/components/Highlight';
 import highlightItems from '@/components/Highlight/mocks/mock';
-
-type GamePageMockProps = {
-	cover: string;
-	gameInfo: GameInfoProps;
-	gallery: GalleryImageProps[];
-	description: string;
-	details: GameDetailsProps;
-	upcomingGames: GameCardProps[];
-	upcomingHighlight: HighlightProps;
-	recommendedGames: GameCardProps[];
-};
+import { GameLayoutProps } from '..';
 
 const descriptionHTMLMock: string = `
 <img src="https://items.gog.com/not_a_cp/ENG_product-page-addons-2020_yellow_on_black.png"><br>
@@ -34,7 +19,7 @@ CD PROJEKT S.A. All rights reserved. All other copyrights and trademarks are the
 respective owners.
 </p>`;
 
-const gamePageMock: GamePageMockProps = {
+const gamePageMock: GameLayoutProps = {
 	cover:
 		'https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg',
 	gameInfo: {
