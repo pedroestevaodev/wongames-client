@@ -12,6 +12,7 @@ type GamePageProps = {
 const Index = ({ props, params }: GamePageProps) => {
 	console.log(params);
 	console.log(props);
+
 	return (
 		// <Game {...props} />
 		<Game
