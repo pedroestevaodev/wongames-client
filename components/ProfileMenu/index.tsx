@@ -8,7 +8,7 @@ import {
 } from '@remixicon/react';
 
 export type ProfileMenuProps = {
-	activeLink?: string;
+	activeLink?: '/profile/me' | '/profile/cards' | '/profile/orders' | string;
 };
 
 const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
