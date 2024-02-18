@@ -5,7 +5,7 @@ import ExploreSidebar, {
 import items from '../mocks/mock';
 
 export default {
-	title: 'ExploreSidebar',
+	title: 'Form/ExploreSidebar',
 	component: ExploreSidebar,
 	args: { items },
 	parameters: {
