@@ -6,6 +6,12 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 export default {
 	title: 'Form/Button',
 	component: Button,
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'dark'
+		}
+	},
 	argTypes: {
 		children: {
 			type: 'string'
@@ -19,22 +25,7 @@ export default {
 				type: 'boolean'
 			}
 		}
-	},
-	decorators: [
-		(Story) => (
-			<div
-				style={{
-					width: '100%',
-					height: '100vh',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				}}
-			>
-				<Story />
-			</div>
-		)
-	]
+	}
 } as Meta<ButtonProps>;
 
 export const Default: StoryObj<ButtonProps> = {

@@ -2,9 +2,10 @@ import { Meta, StoryObj } from '@storybook/react';
 import Empty, { EmptyProps } from '@/components/Empty';
 
 export default {
-	title: 'Empty',
+	title: 'Page/Empty',
 	component: Empty,
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}

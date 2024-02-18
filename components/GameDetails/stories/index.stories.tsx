@@ -6,6 +6,7 @@ export default {
 	title: 'Game/GameDetails',
 	component: GameDetails,
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}

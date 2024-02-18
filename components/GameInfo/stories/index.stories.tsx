@@ -6,6 +6,7 @@ export default {
 	title: 'Game/GameInfo',
 	component: GameInfo,
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
@@ -13,18 +14,8 @@ export default {
 	args: GameInfoItens,
 	decorators: [
 		(Story) => (
-			<div
-				style={{
-					width: '100%',
-					height: '100vh',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				}}
-			>
-				<div style={{ maxWidth: '144rem', margin: 'auto', padding: '1.5rem' }}>
-					<Story />
-				</div>
+			<div style={{ maxWidth: '144rem', margin: 'auto', padding: '1.5rem' }}>
+				<Story />
 			</div>
 		)
 	]

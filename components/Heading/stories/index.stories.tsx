@@ -4,6 +4,12 @@ import Heading, { HeadingProps } from '@/components/Heading';
 export default {
 	title: 'Heading',
 	component: Heading,
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'dark'
+		}
+	},
 	argTypes: {
 		children: {
 			type: 'string'

@@ -5,29 +5,11 @@ export default {
 	title: 'Form/Checkbox',
 	component: Checkbox,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'centered'
 	},
 	argTypes: {
 		onCheck: { action: 'checked' }
-	},
-	decorators: [
-		(Story) => (
-			<div
-				style={{
-					height: '100vh',
-					width: '100vw',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					backgroundColor: '#898888'
-				}}
-			>
-				<div style={{ width: 'fit-content' }}>
-					<Story />
-				</div>
-			</div>
-		)
-	]
+	}
 } as Meta;
 
 export const Default: StoryObj<CheckboxProps> = {

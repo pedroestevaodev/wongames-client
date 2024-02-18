@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProfileMenu, { ProfileMenuProps } from '@/components/ProfileMenu';
 
 export default {
-	title: 'ProfileMenu',
+	title: 'Page/ProfileMenu',
 	component: ProfileMenu,
 	parameters: {
 		layout: 'centered',

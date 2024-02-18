@@ -3,25 +3,18 @@ import CartList, { CartListProps } from '@/components/CartList';
 import cartListMock from '../mocks/mock';
 
 export default {
-	title: 'CartList',
+	title: 'Payment/CartList',
 	component: CartList,
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'dark'
+		}
+	},
 	args: {
 		items: cartListMock,
 		total: 'R$ 330,00'
 	},
-	// argTypes: {
-	//     items: {
-	//         type: ''
-	//     }
-	// },
-	pararmeters: {
-		backgrounds: {
-			default: 'dark'
-		}
-	}
-} as Meta;
-
-export const Default: StoryObj<CartListProps> = {
 	decorators: [
 		(Story) => (
 			<div style={{ maxWidth: 800 }}>
@@ -29,4 +22,6 @@ export const Default: StoryObj<CartListProps> = {
 			</div>
 		)
 	]
-};
+} as Meta<CartListProps>;
+
+export const Default: StoryObj<CartListProps> = {};

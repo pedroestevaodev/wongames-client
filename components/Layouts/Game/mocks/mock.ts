@@ -1,7 +1,7 @@
+import { GameLayoutProps } from '..';
 import GalleryMock from '@/components/Gallery/mocks/mock';
 import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
 import highlightItems from '@/components/Highlight/mocks/mock';
-import { GameLayoutProps } from '..';
 
 const descriptionHTMLMock: string = `
 <img src="https://items.gog.com/not_a_cp/ENG_product-page-addons-2020_yellow_on_black.png"><br>

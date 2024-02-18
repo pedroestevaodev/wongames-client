@@ -6,7 +6,20 @@ import styled from 'styled-components';
 export default {
 	title: 'Slider',
 	component: Slider,
-	argTypes: {}
+	parameters: {
+		backgrounds: {
+			default: 'dark'
+		}
+	},
+	decorators: [
+		(Story) => (
+			<div style={{ height: '100vh' }}>
+				<div style={{ margin: '0 auto', padding: '3rem 0' }}>
+					<Story />
+				</div>
+			</div>
+		)
+	]
 } as Meta;
 
 const settings: Settings = {

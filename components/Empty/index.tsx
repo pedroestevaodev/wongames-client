@@ -16,8 +16,8 @@ const Empty = ({ title, description, hasLink }: EmptyProps) => {
 		<S.EmptyContainer>
 			<S.EmptyImage
 				src="/img/empty.svg"
-				width={300}
-				height={300}
+				width={400}
+				height={400}
 				alt="A gamer in a couch playing videogame"
 				role="image"
 			/>

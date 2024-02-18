@@ -18,7 +18,6 @@ export default {
 		buttonLink: '/games/defy-death'
 	},
 	parameters: {
-		layout: 'fullscreen',
 		backgrounds: {
 			default: 'dark'
 		}

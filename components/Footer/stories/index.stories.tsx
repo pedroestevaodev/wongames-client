@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Footer from '@/components/Footer';
 
 export default {
-	title: 'Footer',
+	title: 'Page/Footer',
 	component: Footer,
 	parameters: {
 		backgrounds: {

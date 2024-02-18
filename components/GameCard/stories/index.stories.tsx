@@ -20,24 +20,15 @@ export default {
 		promotionalPrice: 'R$ 200,00'
 	},
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
 	},
 	decorators: [
 		(Story) => (
-			<div
-				style={{
-					width: '100%',
-					height: '100vh',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				}}
-			>
-				<div style={{ width: '30rem' }}>
-					<Story />
-				</div>
+			<div style={{ width: '30rem' }}>
+				<Story />
 			</div>
 		)
 	]

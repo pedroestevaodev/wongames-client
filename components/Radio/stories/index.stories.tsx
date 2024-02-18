@@ -5,31 +5,14 @@ export default {
 	title: 'Form/Radio',
 	component: Radio,
 	parameters: {
-		layout: 'fullscreen',
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
 	},
 	argTypes: {
 		onCheck: { action: 'checked' }
-	},
-	decorators: [
-		(Story) => (
-			<div
-				style={{
-					height: '100vh',
-					width: '100vw',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				}}
-			>
-				<div style={{ width: 'fit-content' }}>
-					<Story />
-				</div>
-			</div>
-		)
-	]
+	}
 } as Meta<RadioProps>;
 
 export const Default: StoryObj<RadioProps> = {

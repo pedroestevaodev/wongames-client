@@ -7,16 +7,13 @@ export default {
 	title: 'Form/TextField',
 	component: TextField,
 	parameters: {
-		layout: 'fullscreen',
+		layout: 'centered',
 		backgrounds: {
 			default: 'light'
 		}
 	},
 	argTypes: {
 		onInput: { action: 'changed' }
-		// icon: {
-		// 	type: 'string'
-		// }
 	},
 	args: {
 		label: 'E-mail',
@@ -28,18 +25,8 @@ export default {
 	},
 	decorators: [
 		(Story) => (
-			<div
-				style={{
-					height: '100vh',
-					width: '100vw',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				}}
-			>
-				<div style={{ maxWidth: 300, padding: 15 }}>
-					<Story />
-				</div>
+			<div style={{ maxWidth: 300, padding: 15 }}>
+				<Story />
 			</div>
 		)
 	]

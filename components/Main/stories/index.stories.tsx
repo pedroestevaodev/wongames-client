@@ -2,10 +2,10 @@ import { Meta, StoryObj } from '@storybook/react';
 import Main from '@/components/Main';
 
 export default {
-	title: 'Main',
+	title: 'Page/Main',
 	component: Main,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'centered'
 	}
 } as Meta;
 

@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Auth from '@/components/Layouts/Auth';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default {
-	title: 'Layout/Auth',
-	component: Auth,
+	title: 'Page/ThemeToggle',
+	component: ThemeToggle,
 	parameters: {
-		layout: 'fullscreen'
+		layout: 'centered'
 	}
 } as Meta;
 

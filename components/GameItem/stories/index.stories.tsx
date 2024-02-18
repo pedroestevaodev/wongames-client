@@ -2,8 +2,14 @@ import { Meta, StoryObj } from '@storybook/react';
 import GameItem, { GameItemProps } from '@/components/GameItem';
 
 export default {
-	title: 'GameItem',
+	title: 'Game/GameItem',
 	component: GameItem,
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'dark'
+		}
+	},
 	args: {
 		img: 'https://source.unsplash.com/user/willianjusten/151x70',
 		title: 'Red Dead Redemption 2',

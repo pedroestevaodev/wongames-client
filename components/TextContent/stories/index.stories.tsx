@@ -7,6 +7,7 @@ export default {
 	component: TextContent,
 	args: TextContentMock,
 	parameters: {
+		layout: 'fullscreen',
 		backgrounds: {
 			default: 'won-dark'
 		}

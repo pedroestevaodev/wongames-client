@@ -4,6 +4,12 @@ import Ribbon, { RibbonProps } from '@/components/Ribbon';
 export default {
 	title: 'Ribbon',
 	component: Ribbon,
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'dark'
+		}
+	},
 	args: {
 		children: 'Best Seller'
 	},
@@ -16,23 +22,13 @@ export default {
 		(Story) => (
 			<div
 				style={{
-					height: '100vh',
-					width: '100vw',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
+					width: '40rem',
+					height: '20rem',
+					position: 'relative',
+					backgroundColor: '#888'
 				}}
 			>
-				<div
-					style={{
-						width: '40rem',
-						height: '20rem',
-						position: 'relative',
-						backgroundColor: '#888'
-					}}
-				>
-					<Story />
-				</div>
+				<Story />
 			</div>
 		)
 	]

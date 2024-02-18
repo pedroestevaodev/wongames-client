@@ -6,6 +6,7 @@ export default {
 	title: 'Highlight',
 	component: Highlight,
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
@@ -13,18 +14,8 @@ export default {
 	args: { ...item },
 	decorators: [
 		(Story) => (
-			<div
-				style={{
-					width: '100%',
-					height: '100vh',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				}}
-			>
-				<div style={{ maxWidth: '104rem' }}>
-					<Story />
-				</div>
+			<div style={{ maxWidth: '104rem' }}>
+				<Story />
 			</div>
 		)
 	]

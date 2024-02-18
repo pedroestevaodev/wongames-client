@@ -5,9 +5,10 @@ import PaymentOptions, {
 import paymentOptionsMock from '../mocks/mock';
 
 export default {
-	title: 'PaymentOptions',
+	title: 'Payment/PaymentOptions',
 	component: PaymentOptions,
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
