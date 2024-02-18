@@ -74,7 +74,11 @@ const Menu = ({ username }: MenuProps) => {
 					/>
 				</div>
 				{width > 767 && !username && (
-					<Link href="/sign-in" passHref>
+					<Link
+						href="/sign-in"
+						className="no-underline text-white text-medium hover:text-primary transition-all"
+						passHref
+					>
 						Sign in
 					</Link>
 				)}
