@@ -9,10 +9,7 @@ export default {
 	component: ExploreSidebar,
 	args: { items },
 	parameters: {
-		layout: 'fullscreen',
-		backgrounds: {
-			default: 'dark'
-		}
+		layout: 'fullscreen'
 	},
 	decorators: [
 		(Story) => (
