@@ -17,11 +17,11 @@ export default {
 	},
 	args: {
 		label: 'E-mail',
-		labelFor: 'Email',
+		name: 'email',
 		icon: <FontAwesomeIcon icon={faEnvelope} />,
-		id: 'Email',
 		initialValue: '',
-		placeholder: 'john.cage@gmail.com'
+		placeholder: 'john.cage@gmail.com',
+		disabled: false
 	},
 	decorators: [
 		(Story) => (
