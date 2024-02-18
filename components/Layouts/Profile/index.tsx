@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import * as S from './styles';
+import { usePathname } from 'next/navigation';
 import Base from '../Base';
 import Container from '@/components/Container';
 import Heading from '@/components/Heading';
@@ -10,6 +13,8 @@ export type ProfileLayoutProps = {
 };
 
 const Profile = ({ children }: ProfileLayoutProps) => {
+	const pathname = usePathname();
+
 	return (
 		<Base>
 			<Container>
@@ -18,7 +23,7 @@ const Profile = ({ children }: ProfileLayoutProps) => {
 				</Heading>
 
 				<S.Main>
-					<ProfileMenu />
+					<ProfileMenu activeLink={pathname} />
 					<S.Content>{children}</S.Content>
 				</S.Main>
 			</Container>
