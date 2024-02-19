@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const GalleryContainer = styled.div`
 	.slick-prev,
@@ -48,13 +48,13 @@ type ModalProps = {
 };
 
 const modalModifiers = {
-	open: () => `
-        opacity: 1;
-    `,
-	close: () => `
-        opacity: 0;
-        pointer-events: none;
-    `
+	open: () => css`
+		opacity: 1;
+	`,
+	close: () => css`
+		opacity: 0;
+		pointer-events: none;
+	`
 };
 
 export const Modal = styled.div<ModalProps>`

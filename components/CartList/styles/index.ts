@@ -1,7 +1,7 @@
 'use client';
 
-import { tint } from 'polished';
 import styled from 'styled-components';
+import { tint } from 'polished';
 
 export const CartListContainer = styled.main`
 	background: #fafafa;

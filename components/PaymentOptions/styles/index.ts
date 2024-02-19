@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { tint } from 'polished';
 import * as ButtonStyles from '@/components/Button/styles';
 
@@ -32,15 +32,15 @@ export const CardsList = styled.div`
 	flex-direction: column;
 `;
 
-const ItemStyles = () => `
-    background: #EAEAEA;
-    border-radius: 0.2rem;
-    color: #030517;
-    padding: 0 0.8rem;
-    height: 5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+const ItemStyles = () => css`
+	background: #eaeaea;
+	border-radius: 0.2rem;
+	color: #030517;
+	padding: 0 0.8rem;
+	height: 5rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
 `;
 
 export const CardItem = styled.div`

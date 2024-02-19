@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { rgba } from 'polished';
 import * as CheckboxStyles from '@/components/Checkbox/styles';
 import * as RadioStyles from '@/components/Radio/styles';
@@ -56,83 +56,83 @@ export const Footer = styled.div`
 `;
 
 const wrapperModifiers = {
-	open: () => `
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        top: 0;
-        left: 0;
-        z-index: 40;
+	open: () => css`
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		top: 0;
+		left: 0;
+		z-index: 40;
 
-        ${Overlay} {
-            background-color: #fff;
-            top: 0;
-            left: 0;
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            opacity: 1;
-            z-index: 40;
-        }
+		${Overlay} {
+			background-color: #fff;
+			top: 0;
+			left: 0;
+			position: fixed;
+			width: 100%;
+			height: 100vh;
+			opacity: 1;
+			z-index: 40;
+		}
 
-        ${Content} {
-            margin-top: 3.2rem;
-            transform: translateY(0);
-            overflow-y: scroll;
-        }
+		${Content} {
+			margin-top: 3.2rem;
+			transform: translateY(0);
+			overflow-y: scroll;
+		}
 
-        ${Content}, ${Footer}, ${IconContainer} {
-            z-index: 40;
-        }
+		${Content}, ${Footer}, ${IconContainer} {
+			z-index: 40;
+		}
 
-        ${HeadingStyles.HeadingContainer} {
-            color: #030517;
-            font-size: 2.0rem;
-            font-weight: 400;
-        }
+		${HeadingStyles.HeadingContainer} {
+			color: #030517;
+			font-size: 2rem;
+			font-weight: 400;
+		}
 
-        ${RadioStyles.Label},
-        ${CheckboxStyles.Label} {
-            color: #030517;
-        }
+		${RadioStyles.Label},
+		${CheckboxStyles.Label} {
+			color: #030517;
+		}
 
-        ${IconContainer} {
-            color: #030517;
+		${IconContainer} {
+			color: #030517;
 
-            > svg {
-                position: absolute;
-                width: 30px;
-                right: 0.8rem;
-                top: 0.8rem;
+			> svg {
+				position: absolute;
+				width: 30px;
+				right: 0.8rem;
+				top: 0.8rem;
 
-                &:first-child {
-                    display: none;
-                }
-            }
-        }
-    `,
-	close: () => `
-        ${IconContainer} {
-            color: #FAFAFA;
+				&:first-child {
+					display: none;
+				}
+			}
+		}
+	`,
+	close: () => css`
+		${IconContainer} {
+			color: #fafafa;
 
-            > svg:last-child {
-                display: none;
-            }
-        }
+			> svg:last-child {
+				display: none;
+			}
+		}
 
-        ${Content} {
-            transform: translateY(3rem);
-            height: 0;
-        }
+		${Content} {
+			transform: translateY(3rem);
+			height: 0;
+		}
 
-        ${Content}, ${Footer} {
-            position: absolute;
-            visibility: hidden;
-            left: 0;
-        }
-    `
+		${Content}, ${Footer} {
+			position: absolute;
+			visibility: hidden;
+			left: 0;
+		}
+	`
 };
 
 type ExploreSidebarStyleProps = {
@@ -140,10 +140,10 @@ type ExploreSidebarStyleProps = {
 };
 
 export const ExploreSidebarContainer = styled.div<ExploreSidebarStyleProps>`
-	${({ isOpen }) => `
-        @media (max-width: 767px) {
-            ${!!isOpen && wrapperModifiers.open()}
-            ${!isOpen && wrapperModifiers.close()}
-        }
-    `}
+	${({ isOpen }) => css`
+		@media (max-width: 767px) {
+			${!!isOpen && wrapperModifiers.open()}
+			${!isOpen && wrapperModifiers.close()}
+		}
+	`}
 `;

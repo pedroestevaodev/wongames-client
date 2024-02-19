@@ -19,10 +19,6 @@ export const Content = styled.div`
 	@media (min-width: 768px) {
 		grid-template-columns: repeat(4, 1fr);
 	}
-
-	/* @media (min-width: 1024px) {
-        grid-template-columns: repeat(4, 1fr);
-    } */
 `;
 
 export const Column = styled.div`
@@ -34,6 +30,7 @@ export const Column = styled.div`
 		margin-bottom: 0.8rem;
 		text-decoration: none;
 	}
+
 	a {
 		word-wrap: break-word;
 		overflow-wrap: break-word;

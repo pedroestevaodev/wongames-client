@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Link from 'next/link';
 
 export const ProfileMenuContainer = styled.nav`
@@ -18,14 +18,14 @@ export const ProfileMenuContainer = styled.nav`
 `;
 
 const menuModifiers = {
-	default: () => `
-        background-color: #FAFAFA;
-        color: #030517;
-    `,
-	active: () => `
-        background-color: #F231A5;
-        color: #FAFAFA;
-    `
+	default: () => css`
+		background-color: #fafafa;
+		color: #030517;
+	`,
+	active: () => css`
+		background-color: #f231a5;
+		color: #fafafa;
+	`
 };
 
 type MenuProps = {
