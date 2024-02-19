@@ -1,13 +1,40 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { tint } from 'polished';
+import * as EmptyStyles from '@/components/Empty/styles';
 
-export const CartListContainer = styled.main`
-	background: #fafafa;
-	display: flex;
-	flex-direction: column;
-	align-self: start;
+type CartListContainerProps = {
+	isEmpty: boolean;
+};
+
+export const CartListContainer = styled.main<CartListContainerProps>`
+	${({ isEmpty }) => css`
+		background: #fafafa;
+		display: flex;
+		flex-direction: column;
+		align-self: start;
+
+		${isEmpty &&
+		css`
+			${EmptyStyles.EmptyContainer} {
+				padding-bottom: 3.2rem;
+			}
+
+			${EmptyStyles.EmptyImage} {
+				max-width: 20rem;
+			}
+
+			${EmptyStyles.Title} {
+				font-size: 1.8rem;
+			}
+
+			${EmptyStyles.Description} {
+				color: #030517;
+				font-size: 1.6rem;
+			}
+		`}
+	`}
 `;
 
 export const Footer = styled.div`

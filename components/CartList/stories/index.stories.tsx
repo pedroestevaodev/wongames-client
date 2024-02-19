@@ -31,3 +31,9 @@ export const WithButton: StoryObj<CartListProps> = {
 		hasButton: true
 	}
 };
+
+export const Empty: StoryObj<CartListProps> = {
+	args: {
+		items: []
+	}
+};
