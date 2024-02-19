@@ -25,3 +25,9 @@ export default {
 } as Meta<CartListProps>;
 
 export const Default: StoryObj<CartListProps> = {};
+
+export const WithButton: StoryObj<CartListProps> = {
+	args: {
+		hasButton: true
+	}
+};

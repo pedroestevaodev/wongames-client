@@ -17,6 +17,7 @@ export const Footer = styled.div`
 	font-size: 1.4rem;
 	padding: 2rem;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 
 	@media (min-width: 768px) {
@@ -24,6 +25,8 @@ export const Footer = styled.div`
 		padding: 2.4rem;
 	}
 `;
+
+export const FooterLabel = styled.span``;
 
 export const Total = styled.span`
 	color: #f231a5;
