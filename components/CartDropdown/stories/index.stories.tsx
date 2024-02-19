@@ -27,3 +27,9 @@ export default {
 } as Meta<CartDropdownProps>;
 
 export const Default: StoryObj<CartDropdownProps> = {};
+
+export const Empty: StoryObj<CartDropdownProps> = {
+	args: {
+		items: []
+	}
+};
