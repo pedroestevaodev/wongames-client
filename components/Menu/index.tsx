@@ -10,6 +10,8 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Button from '../Button';
 import { useWindowSize } from 'usehooks-ts';
+import CartDropdown from '../CartDropdown';
+import UserDropdown from '../UserDropdown';
 
 export type MenuProps = {
 	username?: string;
@@ -53,7 +55,7 @@ const Menu = ({ username }: MenuProps) => {
 						Home
 					</S.MenuLink>
 					<S.MenuLink
-						href="#"
+						href="/games"
 						className={`relative text-medium my-0 mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
 							isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
 						}`}
@@ -68,20 +70,28 @@ const Menu = ({ username }: MenuProps) => {
 					<FontAwesomeIcon icon={faMagnifyingGlass} aria-label="Search" />
 				</div>
 				<div className="flex items-center justify-center text-white w-[2.4rem] h-[2.4rem]">
-					<FontAwesomeIcon
-						icon={faCartShopping}
-						aria-label="Open Shopping Cart"
-					/>
+					{width > 767 && <CartDropdown />}
+					{width < 768 && (
+						<Link href="/cart">
+							<FontAwesomeIcon
+								icon={faCartShopping}
+								aria-label="Open Shopping Cart"
+							/>
+						</Link>
+					)}
 				</div>
-				{width > 767 && !username && (
-					<Link
-						href="/sign-in"
-						className="no-underline text-white text-medium hover:text-primary transition-all"
-						passHref
-					>
-						Sign in
-					</Link>
-				)}
+				{width > 767 &&
+					(!username ? (
+						<Link
+							href="/sign-in"
+							className="no-underline text-white text-medium hover:text-primary transition-all"
+							passHref
+						>
+							Sign in
+						</Link>
+					) : (
+						<UserDropdown username={username} />
+					))}
 			</div>
 
 			<nav
@@ -113,7 +123,7 @@ const Menu = ({ username }: MenuProps) => {
 						Home
 					</S.MenuLink>
 					<S.MenuLink
-						href="#"
+						href="/games"
 						className={`relative text-medium my-[0.3rem] mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
 							isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
 						}`}
@@ -124,7 +134,7 @@ const Menu = ({ username }: MenuProps) => {
 					{!!username && (
 						<>
 							<S.MenuLink
-								href="#"
+								href="/profile/me"
 								className={`relative text-medium my-[0.3rem] mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
 									isOpen
 										? 'text-black font-bold text-xlarge mb-small'
@@ -134,7 +144,7 @@ const Menu = ({ username }: MenuProps) => {
 								My Account
 							</S.MenuLink>
 							<S.MenuLink
-								href="#"
+								href="/profile/wishlist"
 								className={`relative text-medium my-[0.3rem] mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
 									isOpen
 										? 'text-black font-bold text-xlarge mb-small'

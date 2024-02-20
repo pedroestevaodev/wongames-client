@@ -24,6 +24,6 @@ export const Default: StoryObj<MenuProps> = {};
 
 export const Logged: StoryObj<MenuProps> = {
 	args: {
-		username: 'John Doe'
+		username: 'Pedro'
 	}
 };
