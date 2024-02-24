@@ -40,48 +40,47 @@ const Menu = ({ username }: MenuProps) => {
 				</Link>
 			</div>
 
-			{width > 767 && (
-				<div
-					className={`ml-small flex text-white mr-auto ${
-						isOpen ? 'flex-1 justify-center' : 'justify-between'
+			<div
+				className={`hidden md:flex ml-small text-white mr-auto ${
+					isOpen ? 'flex-1 justify-center' : 'justify-between'
+				}`}
+			>
+				<S.MenuLink
+					href="/"
+					className={`relative text-medium my-0 mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
+						isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
 					}`}
 				>
-					<S.MenuLink
-						href="/"
-						className={`relative text-medium my-0 mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
-							isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
-						}`}
-					>
-						Home
-					</S.MenuLink>
-					<S.MenuLink
-						href="/games"
-						className={`relative text-medium my-0 mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
-							isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
-						}`}
-					>
-						Explore
-					</S.MenuLink>
-				</div>
-			)}
+					Home
+				</S.MenuLink>
+				<S.MenuLink
+					href="/games"
+					className={`relative text-medium my-0 mx-small mb-0 no-underline text-center hover:after:absolute hover:after:block hover:after:h-[0.3rem] hover:after:bg-primary ${
+						isOpen ? 'text-black font-bold text-xlarge mb-small' : 'isClosed'
+					}`}
+				>
+					Explore
+				</S.MenuLink>
+			</div>
 
 			<div className="flex items-center gap-[8px]">
 				<div className="flex items-center justify-center text-white w-[2.4rem] h-[2.4rem]">
 					<FontAwesomeIcon icon={faMagnifyingGlass} aria-label="Search" />
 				</div>
 				<div className="flex items-center justify-center text-white w-[2.4rem] h-[2.4rem]">
-					{width > 767 && <CartDropdown />}
-					{width < 768 && (
+					{width < 768 ? (
 						<Link href="/cart">
 							<FontAwesomeIcon
 								icon={faCartShopping}
 								aria-label="Open Shopping Cart"
 							/>
 						</Link>
+					) : (
+						<CartDropdown />
 					)}
 				</div>
-				{width > 767 &&
-					(!username ? (
+				<div className="hidden md:block">
+					{!username ? (
 						<Link
 							href="/sign-in"
 							className="no-underline text-white text-medium hover:text-primary transition-all"
@@ -91,7 +90,8 @@ const Menu = ({ username }: MenuProps) => {
 						</Link>
 					) : (
 						<UserDropdown username={username} />
-					))}
+					)}
+				</div>
 			</div>
 
 			<nav

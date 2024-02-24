@@ -1,12 +1,10 @@
 'use client';
 
-import { ReactNode } from 'react';
+import React from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 
 export default function NextUIProviderWrapper({
 	children
-}: {
-	children: ReactNode;
-}) {
+}: React.PropsWithChildren) {
 	return <NextUIProvider>{children}</NextUIProvider>;
 }

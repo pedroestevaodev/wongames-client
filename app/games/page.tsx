@@ -1,14 +1,37 @@
 import React from 'react';
-import Games, { GamesLayoutProps } from '@/components/Layouts/Games';
-import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
+import Games from // GamesLayoutProps
+'@/components/Layouts/Games';
+import { getClient } from '@/lib/apolloClient';
+import { QUERY_GAMES } from '@/graphql/queries/games';
 import exploreSidebarMock from '@/components/ExploreSidebar/mocks/mock';
 
-const GamesPage = (props: GamesLayoutProps) => {
-	console.log(props);
+const GamesPage = async () => {
+	const { data } = await getClient().query({
+		query: QUERY_GAMES,
+		variables: { limit: 9 },
+		context: {
+			fetchOptions: {
+				next: { revalidate: 60 }
+			}
+		}
+	});
+
+	const gamesData = data.games.data.map((game) => ({
+		title: game.attributes.name,
+		developer: game.attributes.developers.data[0].attributes.name,
+		img: `http://localhost:1338${game.attributes.cover.data.attributes.url}`,
+		price: new Intl.NumberFormat('en', {
+			style: 'currency',
+			currency: 'USD'
+		}).format(game.attributes.price)
+	}));
 
 	return (
-		// <Games {...props} />
-		<Games filterItems={exploreSidebarMock} games={gameCardSliderItems} />
+		<Games
+			games={gamesData}
+			filterItems={exploreSidebarMock}
+			// {...data as GamesLayoutProps}
+		/>
 	);
 };
 

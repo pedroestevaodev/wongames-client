@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import { CartListContainer as CartListStyle } from '@/components/CartList/styles';
 
-export const CartDropdownContainer = styled.main`
+export const CartDropdownContainer = styled.div`
 	${CartListStyle} {
 		width: 56rem;
 	}
