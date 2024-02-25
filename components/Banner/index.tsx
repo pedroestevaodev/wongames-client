@@ -28,7 +28,7 @@ const Banner = ({
 	ribbonSize = 'normal'
 }: BannerProps) => {
 	return (
-		<S.BannerContainer className="relative md:shadow-[0_0.4rem_0.5rem_0_rgba(0,0,0,0.2)]">
+		<S.BannerContainer className="relative md:shadow-[0_0.4rem_0.5rem_0_rgba(0,0,0,0.2)] rounded-[6px]">
 			{!!ribbon && (
 				<Ribbon
 					color={ribbonColor}
@@ -41,7 +41,7 @@ const Banner = ({
 
 			<S.Image
 				src={img}
-				className="bg-lightGray w-full h-[23rem] md:h-[58rem]"
+				className="bg-lightGray w-full h-[23rem] md:h-[58rem] rounded-[6px] overflow-hidden"
 				role="img"
 				aria-label={title}
 			/>

@@ -73,6 +73,15 @@ const tailwindConfig = {
 				overlay: 30,
 				modal: 40,
 				alwaysOnTop: 50
+			},
+			keyframes: {
+				hoverAnimation: {
+					from: { width: '0', left: '50%' },
+					to: { width: '100%', left: '0' }
+				}
+			},
+			animation: {
+				hoverAnimation: 'hoverAnimation 0.2s forwards'
 			}
 		},
 		screens: {

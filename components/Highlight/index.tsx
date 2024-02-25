@@ -26,7 +26,7 @@ const Highlight = ({
 }: HighlightProps) => {
 	return (
 		<S.HighlightContainer
-			className="relative h-[23rem] grid md:h-[32rem] after:absolute after:w-full after:h-full after:bg-[rgba(0,0,0,0.6)]"
+			className="relative h-[23rem] grid md:h-[32rem] rounded-[6px] overflow-hidden after:absolute after:w-full after:h-full after:bg-[rgba(0,0,0,0.6)] after:rounded-[6px]"
 			backgroundImage={backgroundImage}
 			alignment={alignment}
 		>

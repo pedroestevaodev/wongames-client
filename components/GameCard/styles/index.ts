@@ -1,6 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
+import Link from 'next/link';
 
 type PriceProps = {
 	isPromotional?: boolean;
@@ -22,7 +23,9 @@ const priceModifiers = {
 	`
 };
 
-export const GameCardContainer = styled.article``;
+export const GameCardContainer = styled(Link)`
+	text-decoration: none;
+`;
 
 export const ImageBox = styled.div`
 	background-color: #f6f7f8;
