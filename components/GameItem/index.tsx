@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { RiDownloadCloudFill } from '@remixicon/react';
+import { formatPrice } from '@/utils/formats';
 
 export type PaymentInfoProps = {
 	number: string;
@@ -13,7 +14,7 @@ export type PaymentInfoProps = {
 export type GameItemProps = {
 	img: string;
 	title: string;
-	price: string;
+	price: number | bigint;
 	downloadLink?: string;
 	paymentInfo?: PaymentInfoProps;
 };
@@ -45,7 +46,7 @@ const GameItem = ({
 							</S.DownloadLink>
 						)}
 					</S.Title>
-					<S.Price>{price}</S.Price>
+					<S.Price>{formatPrice(price)}</S.Price>
 				</S.Content>
 			</S.GameContent>
 

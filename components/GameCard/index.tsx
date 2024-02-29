@@ -9,14 +9,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as heartRegular } from '@fortawesome/free-regular-svg-icons';
 import Ribbon, { RibbonColorsProps, RibbonSizeProps } from '../Ribbon';
+import { formatPrice } from '@/utils/formats';
 
 export type GameCardProps = {
 	slug: string;
 	title: string;
 	developer: string;
 	img: string;
-	price: string;
-	promotionalPrice?: string;
+	price: number | bigint;
+	promotionalPrice?: number | bigint;
 	favorite?: boolean;
 	ribbon?: React.ReactNode;
 	ribbonColor?: RibbonColorsProps;
@@ -83,8 +84,10 @@ const GameCard = ({
 						)}
 					</S.FavButton>
 					<S.BuyBox className="flex items-center justify-end mt-xxsmall">
-						{!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}
-						<S.Price>{promotionalPrice || price}</S.Price>
+						{!!promotionalPrice && (
+							<S.Price isPromotional>{formatPrice(price)}</S.Price>
+						)}
+						<S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
 						<Button
 							icon={<FontAwesomeIcon icon={faCartShopping} />}
 							size="small"

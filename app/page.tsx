@@ -1,26 +1,36 @@
 import React from 'react';
-import Home from // HomeLayoutProps
-'@/components/Layouts/Home';
-import bannerSliderItems from '@/components/BannerSlider/mocks/mock';
+import Home from '@/components/Layouts/Home';
 import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
 import highlightItems from '@/components/Highlight/mocks/mock';
-// import { getClient } from "@/lib/apolloClient";
-// import { gql } from "@apollo/client";
-
-// const query = gql`
-// 	query getGames {
-// 		games {
-// 			data {
-// 				attributes {
-// 					name
-// 				}
-// 			}
-// 		}
-// 	}
-// `;
+import { GET_HOME } from '@/graphql/queries/home';
+import { getClient } from '@/lib/apolloClient';
+import { Query } from '@/graphql/graphql';
+import { BannerProps } from '@/components/Banner';
+import { RibbonColorsProps, RibbonSizeProps } from '@/components/Ribbon';
 
 const Index = async () => {
-	// const { data, loading, error } = await getClient().query({ query });
+	const { data } = await getClient().query<Query>({
+		query: GET_HOME,
+		context: {
+			fetchOptions: {
+				next: { revalidate: 10 }
+			}
+		}
+	});
+
+	const bannersData = data.banners?.data.map((banner) => ({
+		img: `http://localhost:1338${banner.attributes?.Image?.data?.attributes?.url}`,
+		title: banner.attributes?.Title || '',
+		subTitle: banner.attributes?.SubTitle || '',
+		buttonLabel: banner.attributes?.Button?.Label || '',
+		buttonLink: banner.attributes?.Button?.Link || '',
+		...(banner.attributes?.Ribbon && {
+			ribbon: (banner.attributes.Ribbon.Text as React.ReactNode) || null,
+			ribbonColor:
+				(banner.attributes.Ribbon.Color as RibbonColorsProps) || null,
+			ribbonSize: (banner.attributes.Ribbon.Size as RibbonSizeProps) || null
+		})
+	}));
 
 	return (
 		<>
@@ -32,7 +42,7 @@ const Index = async () => {
 				</p>
 			)} */}
 			<Home
-				banners={bannerSliderItems}
+				banners={bannersData as BannerProps[]}
 				newGames={gameCardSliderItems}
 				mostPopularHighlight={highlightItems}
 				mostPopularGames={gameCardSliderItems}

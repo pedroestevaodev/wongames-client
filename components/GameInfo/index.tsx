@@ -8,11 +8,12 @@ import Button from '../Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { formatPrice } from '@/utils/formats';
 
 export type GameInfoProps = {
 	title: string;
 	description: string;
-	price: string;
+	price: number | bigint;
 };
 
 const GameInfo = ({ title, description, price }: GameInfoProps) => {
@@ -22,7 +23,7 @@ const GameInfo = ({ title, description, price }: GameInfoProps) => {
 				{title}
 			</Heading>
 
-			<Ribbon color="secondary">{`$${price}`}</Ribbon>
+			<Ribbon color="secondary">{formatPrice(price)}</Ribbon>
 
 			<S.Description>{description}</S.Description>
 

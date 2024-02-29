@@ -36,6 +36,58 @@ export type Scalars = {
 	Upload: { input: any; output: any };
 };
 
+export type Banner = {
+	__typename?: 'Banner';
+	Button?: Maybe<ComponentPageButton>;
+	Image: UploadFileEntityResponse;
+	Ribbon?: Maybe<ComponentPageRibbon>;
+	SubTitle: Scalars['String']['output'];
+	Title: Scalars['String']['output'];
+	createdAt?: Maybe<Scalars['DateTime']['output']>;
+	publishedAt?: Maybe<Scalars['DateTime']['output']>;
+	updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type BannerEntity = {
+	__typename?: 'BannerEntity';
+	attributes?: Maybe<Banner>;
+	id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type BannerEntityResponse = {
+	__typename?: 'BannerEntityResponse';
+	data?: Maybe<BannerEntity>;
+};
+
+export type BannerEntityResponseCollection = {
+	__typename?: 'BannerEntityResponseCollection';
+	data: Array<BannerEntity>;
+	meta: ResponseCollectionMeta;
+};
+
+export type BannerFiltersInput = {
+	Button?: InputMaybe<ComponentPageButtonFiltersInput>;
+	Ribbon?: InputMaybe<ComponentPageRibbonFiltersInput>;
+	SubTitle?: InputMaybe<StringFilterInput>;
+	Title?: InputMaybe<StringFilterInput>;
+	and?: InputMaybe<Array<InputMaybe<BannerFiltersInput>>>;
+	createdAt?: InputMaybe<DateTimeFilterInput>;
+	id?: InputMaybe<IdFilterInput>;
+	not?: InputMaybe<BannerFiltersInput>;
+	or?: InputMaybe<Array<InputMaybe<BannerFiltersInput>>>;
+	publishedAt?: InputMaybe<DateTimeFilterInput>;
+	updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type BannerInput = {
+	Button?: InputMaybe<ComponentPageButtonInput>;
+	Image?: InputMaybe<Scalars['ID']['input']>;
+	Ribbon?: InputMaybe<ComponentPageRibbonInput>;
+	SubTitle?: InputMaybe<Scalars['String']['input']>;
+	Title?: InputMaybe<Scalars['String']['input']>;
+	publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
 export type BooleanFilterInput = {
 	and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
 	between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -114,6 +166,51 @@ export type CategoryInput = {
 export type CategoryRelationResponseCollection = {
 	__typename?: 'CategoryRelationResponseCollection';
 	data: Array<CategoryEntity>;
+};
+
+export type ComponentPageButton = {
+	__typename?: 'ComponentPageButton';
+	Label: Scalars['String']['output'];
+	Link: Scalars['String']['output'];
+	id: Scalars['ID']['output'];
+};
+
+export type ComponentPageButtonFiltersInput = {
+	Label?: InputMaybe<StringFilterInput>;
+	Link?: InputMaybe<StringFilterInput>;
+	and?: InputMaybe<Array<InputMaybe<ComponentPageButtonFiltersInput>>>;
+	not?: InputMaybe<ComponentPageButtonFiltersInput>;
+	or?: InputMaybe<Array<InputMaybe<ComponentPageButtonFiltersInput>>>;
+};
+
+export type ComponentPageButtonInput = {
+	Label?: InputMaybe<Scalars['String']['input']>;
+	Link?: InputMaybe<Scalars['String']['input']>;
+	id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type ComponentPageRibbon = {
+	__typename?: 'ComponentPageRibbon';
+	Color?: Maybe<Enum_Componentpageribbon_Color>;
+	Size?: Maybe<Enum_Componentpageribbon_Size>;
+	Text?: Maybe<Scalars['String']['output']>;
+	id: Scalars['ID']['output'];
+};
+
+export type ComponentPageRibbonFiltersInput = {
+	Color?: InputMaybe<StringFilterInput>;
+	Size?: InputMaybe<StringFilterInput>;
+	Text?: InputMaybe<StringFilterInput>;
+	and?: InputMaybe<Array<InputMaybe<ComponentPageRibbonFiltersInput>>>;
+	not?: InputMaybe<ComponentPageRibbonFiltersInput>;
+	or?: InputMaybe<Array<InputMaybe<ComponentPageRibbonFiltersInput>>>;
+};
+
+export type ComponentPageRibbonInput = {
+	Color?: InputMaybe<Enum_Componentpageribbon_Color>;
+	Size?: InputMaybe<Enum_Componentpageribbon_Size>;
+	Text?: InputMaybe<Scalars['String']['input']>;
+	id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type ContentReleasesRelease = {
@@ -330,6 +427,16 @@ export type DeveloperRelationResponseCollection = {
 	data: Array<DeveloperEntity>;
 };
 
+export enum Enum_Componentpageribbon_Color {
+	Primary = 'primary',
+	Secondary = 'secondary'
+}
+
+export enum Enum_Componentpageribbon_Size {
+	Normal = 'normal',
+	Small = 'small'
+}
+
 export enum Enum_Contentreleasesreleaseaction_Type {
 	Publish = 'publish',
 	Unpublish = 'unpublish'
@@ -477,7 +584,10 @@ export type GameRelationResponseCollection = {
 };
 
 export type GenericMorph =
+	| Banner
 	| Category
+	| ComponentPageButton
+	| ComponentPageRibbon
 	| ContentReleasesRelease
 	| ContentReleasesReleaseAction
 	| Developer
@@ -606,6 +716,7 @@ export type Mutation = {
 	__typename?: 'Mutation';
 	/** Change user password. Confirm with the current password. */
 	changePassword?: Maybe<UsersPermissionsLoginPayload>;
+	createBanner?: Maybe<BannerEntityResponse>;
 	createCategory?: Maybe<CategoryEntityResponse>;
 	createContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
 	createContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
@@ -619,6 +730,7 @@ export type Mutation = {
 	createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
 	/** Create a new user */
 	createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+	deleteBanner?: Maybe<BannerEntityResponse>;
 	deleteCategory?: Maybe<CategoryEntityResponse>;
 	deleteContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
 	deleteContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
@@ -643,6 +755,7 @@ export type Mutation = {
 	removeFile?: Maybe<UploadFileEntityResponse>;
 	/** Reset user password. Confirm with a code (resetToken from forgotPassword) */
 	resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+	updateBanner?: Maybe<BannerEntityResponse>;
 	updateCategory?: Maybe<CategoryEntityResponse>;
 	updateContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
 	updateContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
@@ -664,6 +777,10 @@ export type MutationChangePasswordArgs = {
 	currentPassword: Scalars['String']['input'];
 	password: Scalars['String']['input'];
 	passwordConfirmation: Scalars['String']['input'];
+};
+
+export type MutationCreateBannerArgs = {
+	data: BannerInput;
 };
 
 export type MutationCreateCategoryArgs = {
@@ -708,6 +825,10 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
 	data: UsersPermissionsUserInput;
+};
+
+export type MutationDeleteBannerArgs = {
+	id: Scalars['ID']['input'];
 };
 
 export type MutationDeleteCategoryArgs = {
@@ -785,6 +906,11 @@ export type MutationResetPasswordArgs = {
 	code: Scalars['String']['input'];
 	password: Scalars['String']['input'];
 	passwordConfirmation: Scalars['String']['input'];
+};
+
+export type MutationUpdateBannerArgs = {
+	data: BannerInput;
+	id: Scalars['ID']['input'];
 };
 
 export type MutationUpdateCategoryArgs = {
@@ -925,6 +1051,11 @@ export type PlatformRelationResponseCollection = {
 	data: Array<PlatformEntity>;
 };
 
+export enum PublicationState {
+	Live = 'LIVE',
+	Preview = 'PREVIEW'
+}
+
 export type Publisher = {
 	__typename?: 'Publisher';
 	createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -977,6 +1108,8 @@ export type PublisherInput = {
 
 export type Query = {
 	__typename?: 'Query';
+	banner?: Maybe<BannerEntityResponse>;
+	banners?: Maybe<BannerEntityResponseCollection>;
 	categories?: Maybe<CategoryEntityResponseCollection>;
 	category?: Maybe<CategoryEntityResponse>;
 	contentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
@@ -1002,6 +1135,17 @@ export type Query = {
 	usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
 	usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
 	usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+export type QueryBannerArgs = {
+	id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type QueryBannersArgs = {
+	filters?: InputMaybe<BannerFiltersInput>;
+	pagination?: InputMaybe<PaginationArg>;
+	publicationState?: InputMaybe<PublicationState>;
+	sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type QueryCategoriesArgs = {

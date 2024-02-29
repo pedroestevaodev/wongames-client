@@ -4,10 +4,11 @@ import Link from 'next/link';
 import GameItem, { GameItemProps } from '../GameItem';
 import Button from '../Button';
 import Empty from '../Empty';
+import { formatPrice } from '@/utils/formats';
 
 export type CartListProps = {
 	items?: GameItemProps[];
-	total?: string;
+	total?: number | bigint;
 	hasButton?: boolean;
 };
 
@@ -22,7 +23,7 @@ const CartList = ({ items = [], total, hasButton = false }: CartListProps) => {
 
 					<S.Footer>
 						{!hasButton && <S.FooterLabel>Total:</S.FooterLabel>}
-						<S.Total>{total}</S.Total>
+						<S.Total>{formatPrice(total || 0)}</S.Total>
 
 						{hasButton && (
 							<Button as={Link} href="/">

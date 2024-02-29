@@ -13,7 +13,7 @@ export default {
 	},
 	args: {
 		items: cartListMock,
-		total: 'R$ 330,00'
+		total: 330
 	},
 	decorators: [
 		(Story) => (

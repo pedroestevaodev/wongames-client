@@ -5,10 +5,11 @@ import * as S from './styles';
 import { useWindowSize } from 'usehooks-ts';
 import Heading from '../Heading';
 import { RiWindowsFill, RiAppleFill, RiUbuntuFill } from '@remixicon/react';
+import { formatDate } from '@/utils/formats';
 
-type PlatformProps = 'windows' | 'linux' | 'mac';
+export type PlatformProps = 'windows' | 'linux' | 'mac';
 
-type RatingProps = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18';
+export type RatingProps = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18';
 
 export type GameDetailsProps = {
 	developer: string;
@@ -51,13 +52,7 @@ const GameDetails = ({
 
 				<S.Block>
 					<S.Label>Release Date</S.Label>
-					<S.Description>
-						{new Intl.DateTimeFormat('en-US', {
-							day: 'numeric',
-							month: 'short',
-							year: 'numeric'
-						}).format(new Date(releaseDate))}
-					</S.Description>
+					<S.Description>{formatDate(releaseDate)}</S.Description>
 				</S.Block>
 
 				<S.Block>

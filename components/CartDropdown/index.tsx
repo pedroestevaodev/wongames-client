@@ -7,7 +7,7 @@ import CartList from '../CartList';
 
 export type CartDropdownProps = {
 	items?: GameItemProps[];
-	total?: string;
+	total?: number | bigint;
 };
 
 const CartDropdown = ({ items, total }: CartDropdownProps) => {

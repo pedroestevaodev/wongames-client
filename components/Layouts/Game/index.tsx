@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import * as S from './styles';
 import Base from '../Base';
@@ -31,6 +33,8 @@ const Game = ({
 	upcomingHighlight,
 	recommendedGames
 }: GameLayoutProps) => {
+	console.log('cover', gallery);
+
 	return (
 		<Base>
 			<S.Cover src={cover} role="image" aria-label="cover" />

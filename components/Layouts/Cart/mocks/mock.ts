@@ -6,7 +6,7 @@ import { CartLayoutProps } from '..';
 
 const cartPageMock: CartLayoutProps = {
 	items: cartListMock,
-	total: '$ 430,00',
+	total: 430,
 	cards: paymentOptionsMock,
 	recommendedGames: gameCardSliderItems,
 	recommendedHighlight: highlightItems
