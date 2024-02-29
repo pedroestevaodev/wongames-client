@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -1666,3 +1667,1295 @@ export type UsersPermissionsUserRelationResponseCollection = {
 	__typename?: 'UsersPermissionsUserRelationResponseCollection';
 	data: Array<UsersPermissionsUserEntity>;
 };
+
+export type BannerFragmentFragment = {
+	__typename?: 'Banner';
+	Title: string;
+	SubTitle: string;
+	Image: {
+		__typename?: 'UploadFileEntityResponse';
+		data?: {
+			__typename?: 'UploadFileEntity';
+			attributes?: { __typename?: 'UploadFile'; url: string } | null;
+		} | null;
+	};
+	Button?: {
+		__typename?: 'ComponentPageButton';
+		Label: string;
+		Link: string;
+	} | null;
+	Ribbon?: {
+		__typename?: 'ComponentPageRibbon';
+		Text?: string | null;
+		Color?: Enum_Componentpageribbon_Color | null;
+		Size?: Enum_Componentpageribbon_Size | null;
+	} | null;
+} & { ' $fragmentName'?: 'BannerFragmentFragment' };
+
+export type GameFragmentFragment = {
+	__typename?: 'Game';
+	name: string;
+	slug: string;
+	price: number;
+	cover?: {
+		__typename?: 'UploadFileEntityResponse';
+		data?: {
+			__typename?: 'UploadFileEntity';
+			attributes?: { __typename?: 'UploadFile'; url: string } | null;
+		} | null;
+	} | null;
+	developers?: {
+		__typename?: 'DeveloperRelationResponseCollection';
+		data: Array<{
+			__typename?: 'DeveloperEntity';
+			attributes?: { __typename?: 'Developer'; name: string } | null;
+		}>;
+	} | null;
+} & { ' $fragmentName'?: 'GameFragmentFragment' };
+
+export type GetGamesQueryVariables = Exact<{
+	limit: Scalars['Int']['input'];
+}>;
+
+export type GetGamesQuery = {
+	__typename?: 'Query';
+	games?: {
+		__typename?: 'GameEntityResponseCollection';
+		data: Array<{
+			__typename?: 'GameEntity';
+			attributes?: {
+				__typename?: 'Game';
+				name: string;
+				slug: string;
+				price: number;
+				cover?: {
+					__typename?: 'UploadFileEntityResponse';
+					data?: {
+						__typename?: 'UploadFileEntity';
+						attributes?: { __typename?: 'UploadFile'; url: string } | null;
+					} | null;
+				} | null;
+				developers?: {
+					__typename?: 'DeveloperRelationResponseCollection';
+					data: Array<{
+						__typename?: 'DeveloperEntity';
+						attributes?: { __typename?: 'Developer'; name: string } | null;
+					}>;
+				} | null;
+			} | null;
+		}>;
+	} | null;
+};
+
+export type GetGameBySlugQueryVariables = Exact<{
+	slug: Scalars['String']['input'];
+}>;
+
+export type GetGameBySlugQuery = {
+	__typename?: 'Query';
+	games?: {
+		__typename?: 'GameEntityResponseCollection';
+		data: Array<{
+			__typename?: 'GameEntity';
+			attributes?: {
+				__typename?: 'Game';
+				name: string;
+				short_description?: string | null;
+				description?: string | null;
+				price: number;
+				rating?: Enum_Game_Rating | null;
+				release_date?: any | null;
+				gallery?: {
+					__typename?: 'UploadFileRelationResponseCollection';
+					data: Array<{
+						__typename?: 'UploadFileEntity';
+						attributes?: {
+							__typename?: 'UploadFile';
+							url: string;
+							alternativeText?: string | null;
+						} | null;
+					}>;
+				} | null;
+				cover?: {
+					__typename?: 'UploadFileEntityResponse';
+					data?: {
+						__typename?: 'UploadFileEntity';
+						attributes?: { __typename?: 'UploadFile'; url: string } | null;
+					} | null;
+				} | null;
+				developers?: {
+					__typename?: 'DeveloperRelationResponseCollection';
+					data: Array<{
+						__typename?: 'DeveloperEntity';
+						attributes?: { __typename?: 'Developer'; name: string } | null;
+					}>;
+				} | null;
+				publisher?: {
+					__typename?: 'PublisherEntityResponse';
+					data?: {
+						__typename?: 'PublisherEntity';
+						attributes?: { __typename?: 'Publisher'; name: string } | null;
+					} | null;
+				} | null;
+				categories?: {
+					__typename?: 'CategoryRelationResponseCollection';
+					data: Array<{
+						__typename?: 'CategoryEntity';
+						attributes?: { __typename?: 'Category'; name: string } | null;
+					}>;
+				} | null;
+				platforms?: {
+					__typename?: 'PlatformRelationResponseCollection';
+					data: Array<{
+						__typename?: 'PlatformEntity';
+						attributes?: { __typename?: 'Platform'; name: string } | null;
+					}>;
+				} | null;
+			} | null;
+		}>;
+	} | null;
+};
+
+export type GetHomeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetHomeQuery = {
+	__typename?: 'Query';
+	banners?: {
+		__typename?: 'BannerEntityResponseCollection';
+		data: Array<{
+			__typename?: 'BannerEntity';
+			attributes?:
+				| ({ __typename?: 'Banner' } & {
+						' $fragmentRefs'?: {
+							BannerFragmentFragment: BannerFragmentFragment;
+						};
+				  })
+				| null;
+		}>;
+	} | null;
+	newGames?: {
+		__typename?: 'GameEntityResponseCollection';
+		data: Array<{
+			__typename?: 'GameEntity';
+			attributes?:
+				| ({ __typename?: 'Game' } & {
+						' $fragmentRefs'?: { GameFragmentFragment: GameFragmentFragment };
+				  })
+				| null;
+		}>;
+	} | null;
+	upcomingGames?: {
+		__typename?: 'GameEntityResponseCollection';
+		data: Array<{
+			__typename?: 'GameEntity';
+			attributes?:
+				| ({ __typename?: 'Game' } & {
+						' $fragmentRefs'?: { GameFragmentFragment: GameFragmentFragment };
+				  })
+				| null;
+		}>;
+	} | null;
+	freeGames?: {
+		__typename?: 'GameEntityResponseCollection';
+		data: Array<{
+			__typename?: 'GameEntity';
+			attributes?:
+				| ({ __typename?: 'Game' } & {
+						' $fragmentRefs'?: { GameFragmentFragment: GameFragmentFragment };
+				  })
+				| null;
+		}>;
+	} | null;
+};
+
+export const BannerFragmentFragmentDoc = {
+	kind: 'Document',
+	definitions: [
+		{
+			kind: 'FragmentDefinition',
+			name: { kind: 'Name', value: 'BannerFragment' },
+			typeCondition: {
+				kind: 'NamedType',
+				name: { kind: 'Name', value: 'Banner' }
+			},
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{ kind: 'Field', name: { kind: 'Name', value: 'Title' } },
+					{ kind: 'Field', name: { kind: 'Name', value: 'SubTitle' } },
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'Image' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'url' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'Button' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{ kind: 'Field', name: { kind: 'Name', value: 'Label' } },
+								{ kind: 'Field', name: { kind: 'Name', value: 'Link' } }
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'Ribbon' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{ kind: 'Field', name: { kind: 'Name', value: 'Text' } },
+								{ kind: 'Field', name: { kind: 'Name', value: 'Color' } },
+								{ kind: 'Field', name: { kind: 'Name', value: 'Size' } }
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+} as unknown as DocumentNode<BannerFragmentFragment, unknown>;
+export const GameFragmentFragmentDoc = {
+	kind: 'Document',
+	definitions: [
+		{
+			kind: 'FragmentDefinition',
+			name: { kind: 'Name', value: 'GameFragment' },
+			typeCondition: {
+				kind: 'NamedType',
+				name: { kind: 'Name', value: 'Game' }
+			},
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{ kind: 'Field', name: { kind: 'Name', value: 'name' } },
+					{ kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'cover' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'url' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'developers' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'name' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{ kind: 'Field', name: { kind: 'Name', value: 'price' } }
+				]
+			}
+		}
+	]
+} as unknown as DocumentNode<GameFragmentFragment, unknown>;
+export const GetGamesDocument = {
+	kind: 'Document',
+	definitions: [
+		{
+			kind: 'OperationDefinition',
+			operation: 'query',
+			name: { kind: 'Name', value: 'GetGames' },
+			variableDefinitions: [
+				{
+					kind: 'VariableDefinition',
+					variable: {
+						kind: 'Variable',
+						name: { kind: 'Name', value: 'limit' }
+					},
+					type: {
+						kind: 'NonNullType',
+						type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } }
+					}
+				}
+			],
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'games' },
+						arguments: [
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'pagination' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'limit' },
+											value: {
+												kind: 'Variable',
+												name: { kind: 'Name', value: 'limit' }
+											}
+										}
+									]
+								}
+							}
+						],
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'name' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'slug' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'cover' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'url'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'developers' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'name'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'price' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+} as unknown as DocumentNode<GetGamesQuery, GetGamesQueryVariables>;
+export const GetGameBySlugDocument = {
+	kind: 'Document',
+	definitions: [
+		{
+			kind: 'OperationDefinition',
+			operation: 'query',
+			name: { kind: 'Name', value: 'GetGameBySlug' },
+			variableDefinitions: [
+				{
+					kind: 'VariableDefinition',
+					variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+					type: {
+						kind: 'NonNullType',
+						type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
+					}
+				}
+			],
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'games' },
+						arguments: [
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'filters' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'slug' },
+											value: {
+												kind: 'ObjectValue',
+												fields: [
+													{
+														kind: 'ObjectField',
+														name: { kind: 'Name', value: 'eq' },
+														value: {
+															kind: 'Variable',
+															name: { kind: 'Name', value: 'slug' }
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							}
+						],
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'name' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'short_description' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'description' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'price' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'rating' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'release_date' }
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'gallery' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'url'
+																								}
+																							},
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'alternativeText'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'cover' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'url'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'developers' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'name'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'publisher' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'name'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'categories' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'name'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														},
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'platforms' },
+															selectionSet: {
+																kind: 'SelectionSet',
+																selections: [
+																	{
+																		kind: 'Field',
+																		name: { kind: 'Name', value: 'data' },
+																		selectionSet: {
+																			kind: 'SelectionSet',
+																			selections: [
+																				{
+																					kind: 'Field',
+																					name: {
+																						kind: 'Name',
+																						value: 'attributes'
+																					},
+																					selectionSet: {
+																						kind: 'SelectionSet',
+																						selections: [
+																							{
+																								kind: 'Field',
+																								name: {
+																									kind: 'Name',
+																									value: 'name'
+																								}
+																							}
+																						]
+																					}
+																				}
+																			]
+																		}
+																	}
+																]
+															}
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+} as unknown as DocumentNode<GetGameBySlugQuery, GetGameBySlugQueryVariables>;
+export const GetHomeDocument = {
+	kind: 'Document',
+	definitions: [
+		{
+			kind: 'OperationDefinition',
+			operation: 'query',
+			name: { kind: 'Name', value: 'GetHome' },
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'banners' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'FragmentSpread',
+															name: { kind: 'Name', value: 'BannerFragment' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						alias: { kind: 'Name', value: 'newGames' },
+						name: { kind: 'Name', value: 'games' },
+						arguments: [
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'filters' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'release_date' },
+											value: {
+												kind: 'ObjectValue',
+												fields: [
+													{
+														kind: 'ObjectField',
+														name: { kind: 'Name', value: 'lte' },
+														value: {
+															kind: 'StringValue',
+															value: '2024-02-29',
+															block: false
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							},
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'sort' },
+								value: {
+									kind: 'StringValue',
+									value: 'release_date:desc',
+									block: false
+								}
+							},
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'pagination' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'limit' },
+											value: { kind: 'IntValue', value: '8' }
+										}
+									]
+								}
+							}
+						],
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'FragmentSpread',
+															name: { kind: 'Name', value: 'GameFragment' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						alias: { kind: 'Name', value: 'upcomingGames' },
+						name: { kind: 'Name', value: 'games' },
+						arguments: [
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'filters' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'release_date' },
+											value: {
+												kind: 'ObjectValue',
+												fields: [
+													{
+														kind: 'ObjectField',
+														name: { kind: 'Name', value: 'gt' },
+														value: {
+															kind: 'StringValue',
+															value: '2024-02-29',
+															block: false
+														}
+													}
+												]
+											}
+										}
+									]
+								}
+							},
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'sort' },
+								value: {
+									kind: 'StringValue',
+									value: 'release_date:asc',
+									block: false
+								}
+							},
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'pagination' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'limit' },
+											value: { kind: 'IntValue', value: '8' }
+										}
+									]
+								}
+							}
+						],
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'FragmentSpread',
+															name: { kind: 'Name', value: 'GameFragment' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						alias: { kind: 'Name', value: 'freeGames' },
+						name: { kind: 'Name', value: 'games' },
+						arguments: [
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'filters' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'price' },
+											value: {
+												kind: 'ObjectValue',
+												fields: [
+													{
+														kind: 'ObjectField',
+														name: { kind: 'Name', value: 'eq' },
+														value: { kind: 'IntValue', value: '0' }
+													}
+												]
+											}
+										}
+									]
+								}
+							},
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'sort' },
+								value: {
+									kind: 'StringValue',
+									value: 'release_date:desc',
+									block: false
+								}
+							},
+							{
+								kind: 'Argument',
+								name: { kind: 'Name', value: 'pagination' },
+								value: {
+									kind: 'ObjectValue',
+									fields: [
+										{
+											kind: 'ObjectField',
+											name: { kind: 'Name', value: 'limit' },
+											value: { kind: 'IntValue', value: '8' }
+										}
+									]
+								}
+							}
+						],
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'FragmentSpread',
+															name: { kind: 'Name', value: 'GameFragment' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			kind: 'FragmentDefinition',
+			name: { kind: 'Name', value: 'BannerFragment' },
+			typeCondition: {
+				kind: 'NamedType',
+				name: { kind: 'Name', value: 'Banner' }
+			},
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{ kind: 'Field', name: { kind: 'Name', value: 'Title' } },
+					{ kind: 'Field', name: { kind: 'Name', value: 'SubTitle' } },
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'Image' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'url' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'Button' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{ kind: 'Field', name: { kind: 'Name', value: 'Label' } },
+								{ kind: 'Field', name: { kind: 'Name', value: 'Link' } }
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'Ribbon' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{ kind: 'Field', name: { kind: 'Name', value: 'Text' } },
+								{ kind: 'Field', name: { kind: 'Name', value: 'Color' } },
+								{ kind: 'Field', name: { kind: 'Name', value: 'Size' } }
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			kind: 'FragmentDefinition',
+			name: { kind: 'Name', value: 'GameFragment' },
+			typeCondition: {
+				kind: 'NamedType',
+				name: { kind: 'Name', value: 'Game' }
+			},
+			selectionSet: {
+				kind: 'SelectionSet',
+				selections: [
+					{ kind: 'Field', name: { kind: 'Name', value: 'name' } },
+					{ kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'cover' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'url' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						kind: 'Field',
+						name: { kind: 'Name', value: 'developers' },
+						selectionSet: {
+							kind: 'SelectionSet',
+							selections: [
+								{
+									kind: 'Field',
+									name: { kind: 'Name', value: 'data' },
+									selectionSet: {
+										kind: 'SelectionSet',
+										selections: [
+											{
+												kind: 'Field',
+												name: { kind: 'Name', value: 'attributes' },
+												selectionSet: {
+													kind: 'SelectionSet',
+													selections: [
+														{
+															kind: 'Field',
+															name: { kind: 'Name', value: 'name' }
+														}
+													]
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{ kind: 'Field', name: { kind: 'Name', value: 'price' } }
+				]
+			}
+		}
+	]
+} as unknown as DocumentNode<GetHomeQuery, GetHomeQueryVariables>;

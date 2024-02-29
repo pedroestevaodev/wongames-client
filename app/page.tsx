@@ -4,7 +4,7 @@ import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
 import highlightItems from '@/components/Highlight/mocks/mock';
 import { GET_HOME } from '@/graphql/queries/home';
 import { getClient } from '@/lib/apolloClient';
-import { Query } from '@/graphql/graphql';
+import { Query } from '@/graphql/generated/graphql';
 import { BannerProps } from '@/components/Banner';
 import { RibbonColorsProps, RibbonSizeProps } from '@/components/Ribbon';
 

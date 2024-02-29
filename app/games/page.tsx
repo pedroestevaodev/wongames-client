@@ -1,7 +1,7 @@
 import React from 'react';
 import Games from '@/components/Layouts/Games';
 import { getClient } from '@/lib/apolloClient';
-import { Query } from '@/graphql/graphql';
+import { Query } from '@/graphql/generated/graphql';
 import { GET_GAMES } from '@/graphql/queries/games';
 import { GameCardProps } from '@/components/GameCard';
 import exploreSidebarMock from '@/components/ExploreSidebar/mocks/mock';

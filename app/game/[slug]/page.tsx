@@ -1,9 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import Game from // GameLayoutProps
-'@/components/Layouts/Game';
+import Game from '@/components/Layouts/Game'; // GameLayoutProps
 import gamePageMock from '@/components/Layouts/Game/mocks/mock';
-import { Enum_Game_Rating, Query } from '@/graphql/graphql';
+import { Enum_Game_Rating, Query } from '@/graphql/generated/graphql';
 import { getClient } from '@/lib/apolloClient';
 import { GET_GAME_BY_SLUG } from '@/graphql/queries/games';
 import { PlatformProps, RatingProps } from '@/components/GameDetails';
