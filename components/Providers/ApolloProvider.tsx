@@ -11,7 +11,7 @@ import {
 
 const makeClient = () => {
 	const httpLink = new HttpLink({
-		uri: 'http://localhost:1338/graphql',
+		uri: 'http://localhost:1337/graphql',
 		fetchOptions: { cache: 'no-cache' }
 	});
 

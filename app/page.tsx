@@ -19,7 +19,7 @@ const Index = async () => {
 	});
 
 	const bannersData = data.banners?.data.map((banner) => ({
-		img: `http://localhost:1338${banner.attributes?.Image?.data?.attributes?.url}`,
+		img: `http://localhost:1337${banner.attributes?.Image?.data?.attributes?.url}`,
 		title: banner.attributes?.Title || '',
 		subTitle: banner.attributes?.SubTitle || '',
 		buttonLabel: banner.attributes?.Button?.Label || '',
