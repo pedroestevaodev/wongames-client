@@ -19,7 +19,7 @@ const TextContent = ({ title, content }: TextContentProps) => {
 			)}
 
 			<div
-				className="teset"
+				className="text-content"
 				dangerouslySetInnerHTML={{ __html: content }}
 			></div>
 		</S.TextContentContainer>

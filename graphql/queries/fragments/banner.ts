@@ -2,23 +2,23 @@ import { gql } from '@apollo/client';
 
 export const BannerFragment = gql`
 	fragment BannerFragment on Banner {
-		Title
-		SubTitle
-		Image {
+		title
+		subTitle
+		image {
 			data {
 				attributes {
 					url
 				}
 			}
 		}
-		Button {
-			Label
-			Link
+		button {
+			label
+			link
 		}
-		Ribbon {
-			Text
-			Color
-			Size
+		ribbon {
+			text
+			color
+			size
 		}
 	}
 `;

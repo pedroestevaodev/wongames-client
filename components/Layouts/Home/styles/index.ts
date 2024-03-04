@@ -2,7 +2,6 @@
 
 import styled, { css } from 'styled-components';
 import * as HeadingStyles from '@/components/Heading/styles';
-import * as HighlightStyles from '@/components/Highlight/styles';
 
 export const HomeConstainer = styled.div``;
 
@@ -37,13 +36,5 @@ export const SectionNews = styled.div`
 			color: #030517;
 		}
 		/* } */
-	`}
-`;
-
-export const SectionUpcoming = styled.div`
-	${() => css`
-		${HighlightStyles.HighlightContainer} {
-			margin-top: calc(4.8rem * 2);
-		}
 	`}
 `;

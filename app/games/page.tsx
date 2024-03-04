@@ -21,7 +21,7 @@ const GamesPage = async () => {
 		slug: game.attributes?.slug,
 		title: game.attributes?.name,
 		developer: game.attributes?.developers?.data[0].attributes?.name,
-		img: `http://localhost:1337${game.attributes?.cover?.data?.attributes?.url}`,
+		img: `${process.env.API_URL}${game.attributes?.cover?.data?.attributes?.url}`,
 		price: game.attributes?.price || 0
 	}));
 

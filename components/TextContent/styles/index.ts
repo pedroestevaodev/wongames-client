@@ -41,6 +41,12 @@ export const TextContentContainer = styled.div`
 		margin: 2.4rem 0;
 	}
 
+	.text-content {
+		ul {
+			list-style: inherit;
+		}
+	}
+
 	@media (min-width: 768px) {
 		background-color: #fafafa;
 		color: #030517;

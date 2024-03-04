@@ -10,24 +10,30 @@ import { HighlightProps } from '@/components/Highlight';
 
 export type HomeLayoutProps = {
 	banners: BannerProps[];
+	newGamesTitle: string;
 	newGames: GameCardProps[];
+	mostPopularGamesTitle: string;
 	mostPopularHighlight: HighlightProps;
 	mostPopularGames: GameCardProps[];
-	upcommingGames: GameCardProps[];
+	upcommingGamesTitle: string;
 	upcommingHighligth: HighlightProps;
-	upcommingMoreGames: GameCardProps[];
+	upcommingGames: GameCardProps[];
+	freeGamesTitle: string;
 	freeGames: GameCardProps[];
 	freeHighligth: HighlightProps;
 };
 
 const Home = ({
 	banners,
+	newGamesTitle,
 	newGames,
+	mostPopularGamesTitle,
 	mostPopularHighlight,
 	mostPopularGames,
-	upcommingGames,
+	upcommingGamesTitle,
 	upcommingHighligth,
-	upcommingMoreGames,
+	upcommingGames,
+	freeGamesTitle,
 	freeHighligth,
 	freeGames
 }: HomeLayoutProps) => {
@@ -40,22 +46,23 @@ const Home = ({
 			</Container>
 
 			<S.SectionNews>
-				<ShowCase title="News" games={newGames} />
+				<ShowCase title={newGamesTitle} games={newGames} color="black" />
 			</S.SectionNews>
 
 			<ShowCase
-				title="Most Popular"
+				title={mostPopularGamesTitle}
 				highlight={mostPopularHighlight}
 				games={mostPopularGames}
 			/>
 
-			<S.SectionUpcoming>
-				<ShowCase title="Upcoming" games={upcommingGames} />
-				<ShowCase highlight={upcommingHighligth} games={upcommingMoreGames} />
-			</S.SectionUpcoming>
+			<ShowCase
+				title={upcommingGamesTitle}
+				games={upcommingGames}
+				highlight={upcommingHighligth}
+			/>
 
 			<ShowCase
-				title="Free games"
+				title={freeGamesTitle}
 				highlight={freeHighligth}
 				games={freeGames}
 			/>

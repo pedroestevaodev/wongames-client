@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client';
 import { BannerFragment } from './fragments/banner';
+import { GameFragment } from './fragments/games';
+import { HighlightFragment } from './fragments/highlight';
 
 export const GET_HOME = gql`
-	query GetHome {
+	query GetHome($date: Date!) {
 		banners {
 			data {
 				attributes {
@@ -12,7 +14,7 @@ export const GET_HOME = gql`
 		}
 
 		newGames: games(
-			filters: { release_date: { lte: "2024-02-29" } }
+			filters: { release_date: { lte: $date } }
 			sort: "release_date:desc"
 			pagination: { limit: 8 }
 		) {
@@ -24,7 +26,7 @@ export const GET_HOME = gql`
 		}
 
 		upcomingGames: games(
-			filters: { release_date: { gt: "2024-02-29" } }
+			filters: { release_date: { gt: $date } }
 			sort: "release_date:asc"
 			pagination: { limit: 8 }
 		) {
@@ -46,7 +48,50 @@ export const GET_HOME = gql`
 				}
 			}
 		}
+
+		sections: home {
+			data {
+				attributes {
+					newGames {
+						title
+						highlight {
+							...HighlightFragment
+						}
+					}
+
+					popularGames {
+						title
+						highlight {
+							...HighlightFragment
+						}
+						games(pagination: { limit: 8 }) {
+							data {
+								attributes {
+									...GameFragment
+								}
+							}
+						}
+					}
+
+					upcomingGames {
+						title
+						highlight {
+							...HighlightFragment
+						}
+					}
+
+					freeGames {
+						title
+						highlight {
+							...HighlightFragment
+						}
+					}
+				}
+			}
+		}
 	}
 
 	${BannerFragment}
+	${GameFragment}
+	${HighlightFragment}
 `;

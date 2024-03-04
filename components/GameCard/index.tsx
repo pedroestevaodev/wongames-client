@@ -87,7 +87,9 @@ const GameCard = ({
 						{!!promotionalPrice && (
 							<S.Price isPromotional>{formatPrice(price)}</S.Price>
 						)}
-						<S.Price>{formatPrice(promotionalPrice || price)}</S.Price>
+						<S.Price>
+							{price === 0 ? 'FREE' : formatPrice(promotionalPrice || price)}
+						</S.Price>
 						<Button
 							icon={<FontAwesomeIcon icon={faCartShopping} />}
 							size="small"

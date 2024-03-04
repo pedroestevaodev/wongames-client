@@ -44,6 +44,7 @@ export const HighlightContainer = styled.section<HighlightStyleProps>`
 
 export const FloatImage = styled(Image)`
 	grid-area: floatimage;
+	width: auto;
 `;
 
 export const Content = styled.div`

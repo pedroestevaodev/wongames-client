@@ -9,7 +9,7 @@ export const { getClient } = registerApolloClient(() => {
 	return new NextSSRApolloClient({
 		cache: new NextSSRInMemoryCache(),
 		link: new HttpLink({
-			uri: 'http://localhost:1337/graphql'
+			uri: process.env.GRAPHQL_SCHEMA
 		})
 	});
 });
@@ -18,7 +18,7 @@ export const { getClient } = registerApolloClient(() => {
 //     return new ApolloClient({
 //         cache: new InMemoryCache(),
 //         link: new HttpLink({
-//             uri: 'http://localhost:1337/graphql'
+//             uri: process.env.GRAPHQL_SCHEMA
 //         }),
 //     });
 // });
