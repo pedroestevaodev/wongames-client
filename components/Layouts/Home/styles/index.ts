@@ -2,17 +2,16 @@
 
 import styled, { css } from 'styled-components';
 import * as HeadingStyles from '@/components/Heading/styles';
-import * as HighlightStyles from '@/components/Highlight/styles';
 
 export const HomeConstainer = styled.div``;
 
 export const SectionBanner = styled.section`
 	${() => css`
-		margin: 4rem calc(-3.2rem / 2);
+		margin: 0 calc(-3.2rem / 2) 4rem;
 
 		@media (min-width: 768px) {
 			position: relative;
-			margin: 4rem 0;
+			margin-bottom: 4rem;
 			z-index: 10;
 		}
 	`}
@@ -37,13 +36,5 @@ export const SectionNews = styled.div`
 			color: #030517;
 		}
 		/* } */
-	`}
-`;
-
-export const SectionUpcoming = styled.div`
-	${() => css`
-		${HighlightStyles.HighlightContainer} {
-			margin-top: calc(4.8rem * 2);
-		}
 	`}
 `;

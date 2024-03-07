@@ -6,12 +6,14 @@ import Logo from '../Logo';
 import Heading from '../Heading';
 import Link from 'next/link';
 
+const currentYear = new Date().getFullYear();
+
 const Footer = () => {
 	return (
 		<S.FooterContainer>
 			<Logo color="black" />
 
-			<div className="ra-content grid grid-cols-2 gap-gutter mt-medium md:grid-cols-4">
+			<div className="ra-content grid grid-cols-minmax-50 gap-gutter mt-medium md:grid-cols-4">
 				<div className="ra-column">
 					<Heading
 						className="uppercase"
@@ -25,7 +27,7 @@ const Footer = () => {
 
 					<Link
 						href="#"
-						className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+						className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 					>
 						sac@wongames.com
 					</Link>
@@ -45,7 +47,7 @@ const Footer = () => {
 					<nav className="ra-footer-links" aria-labelledby="social media">
 						<Link
 							href="https://www.instagram.com/won-games"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 							target="_blank"
 							rel="noopenner, noreferrer"
 						>
@@ -53,7 +55,7 @@ const Footer = () => {
 						</Link>
 						<Link
 							href="https://www.twitter.com/won-games"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 							target="_blank"
 							rel="noopenner, noreferrer"
 						>
@@ -61,7 +63,7 @@ const Footer = () => {
 						</Link>
 						<Link
 							href="https://www.youtube.com/won-games"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 							target="_blank"
 							rel="noopenner, noreferrer"
 						>
@@ -69,7 +71,7 @@ const Footer = () => {
 						</Link>
 						<Link
 							href="https://www.facebook.com/won-games"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 							target="_blank"
 							rel="noopenner, noreferrer"
 						>
@@ -92,19 +94,19 @@ const Footer = () => {
 					<nav className="ra-footer-links" aria-labelledby="footer resources">
 						<Link
 							href="/"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 						>
 							Home
 						</Link>
 						<Link
 							href="/games"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 						>
 							Store
 						</Link>
 						<Link
 							href="/search"
-							className="block text-gray no-underline mb-xxsmall text-small hover:underline"
+							className="block text-gray no-underline mb-xxsmall text-small hover:underline w-fit"
 						>
 							Buscar
 						</Link>
@@ -122,20 +124,20 @@ const Footer = () => {
 						Location
 					</Heading>
 
-					<span className="block text-gray no-underline mb-xxsmall text-small">
+					<span className="block text-gray no-underline mb-xxsmall text-small w-fit">
 						Lorem ipsum dolor sit
 					</span>
-					<span className="block text-gray no-underline mb-xxsmall text-small">
+					<span className="block text-gray no-underline mb-xxsmall text-small w-fit">
 						Lorem ipsum
 					</span>
-					<span className="block text-gray no-underline mb-xxsmall text-small">
+					<span className="block text-gray no-underline mb-xxsmall text-small w-fit">
 						Lorem, ipsum dolor
 					</span>
 				</div>
 			</div>
 
 			<div className="ra-footer text-gray text-xsmall mt-large mb-medium text-center">
-				Won Games 2023 © All rights reserved
+				Won Games {currentYear} © All rights reserved
 			</div>
 		</S.FooterContainer>
 	);

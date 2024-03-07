@@ -1,9 +1,10 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import type { Preview, StoryFn } from '@storybook/react';
 import StyledComponentsRegistry from '../lib/registry';
 import { Providers } from '../components/Providers';
 import GlobalStyles from '../public/styles/global';
 import { withThemeByClassName } from '@storybook/addon-styling';
+import '../public/styles/tailwind-import.css';
 
 export const preview: Preview = {
 	parameters: {
@@ -30,8 +31,8 @@ export const preview: Preview = {
 	}
 };
 
-export const decorators = [
-	(Story) => (
+export const decorators: Parameters<StoryFn<unknown>>[0][] = [
+	(Story: React.ComponentType) => (
 		<StyledComponentsRegistry>
 			<Providers>
 				<GlobalStyles removeBg />

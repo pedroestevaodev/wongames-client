@@ -6,23 +6,23 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 export default {
 	title: 'Form/TextField',
 	component: TextField,
-	argTypes: {
-		onInput: { action: 'changed' },
-		icon: {
-			type: 'string'
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'light'
 		}
+	},
+	argTypes: {
+		onInput: { action: 'changed' }
 	},
 	args: {
 		label: 'E-mail',
-		labelFor: 'Email',
+		name: 'email',
 		icon: <FontAwesomeIcon icon={faEnvelope} />,
-		id: 'Email',
 		initialValue: '',
-		placeholder: 'john.cage@gmail.com'
-	}
-} as Meta;
-
-export const Default: StoryObj<TextFieldProps> = {
+		placeholder: 'john.cage@gmail.com',
+		disabled: false
+	},
 	decorators: [
 		(Story) => (
 			<div style={{ maxWidth: 300, padding: 15 }}>
@@ -30,20 +30,12 @@ export const Default: StoryObj<TextFieldProps> = {
 			</div>
 		)
 	]
-};
+} as Meta<TextFieldProps>;
+
+export const Default: StoryObj<TextFieldProps> = {};
 
 export const WithError: StoryObj<TextFieldProps> = {
-	decorators: [
-		(Story) => (
-			<div style={{ height: '100vh', width: '100vw' }}>
-				<div style={{ maxWidth: 300, padding: 15 }}>
-					<Story
-						args={{
-							error: 'Ops... something is wrong'
-						}}
-					/>
-				</div>
-			</div>
-		)
-	]
+	args: {
+		error: 'Ops... something is wrong'
+	}
 };

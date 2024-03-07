@@ -2,9 +2,11 @@ import { Meta, StoryObj } from '@storybook/react';
 import Auth from '@/components/Layouts/Auth';
 
 export default {
-	title: 'Auth',
+	title: 'Layout/Auth',
 	component: Auth,
-	argTypes: {}
+	parameters: {
+		layout: 'fullscreen'
+	}
 } as Meta;
 
 export const Default: StoryObj = {};

@@ -42,8 +42,8 @@ export const GameCardSliderContainer = styled.section<ContainerProps>`
 			cursor: pointer;
 			position: absolute;
 			top: 50%;
-			width: 2.5rem;
-			height: 2.5rem;
+			width: 3.5rem;
+			height: 3.5rem;
 			padding: 0;
 			transform: translate(0, -50%);
 		}

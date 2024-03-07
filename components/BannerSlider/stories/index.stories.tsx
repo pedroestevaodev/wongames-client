@@ -10,19 +10,21 @@ export default {
 		items
 	},
 	parameters: {
-		layout: 'fullscreen',
 		backgrounds: {
 			default: 'dark'
 		}
-	}
-} as Meta;
-
-export const Default: StoryObj<BannerSliderProps> = {
+	},
 	decorators: [
 		(Story) => (
-			<div style={{ maxWidth: '130rem', margin: '0 auto' }}>
-				<Story />
+			<div style={{ width: '100%', height: '100vh' }}>
+				<div
+					style={{ maxWidth: '130rem', margin: '0 auto', padding: '50px 0' }}
+				>
+					<Story />
+				</div>
 			</div>
 		)
 	]
-};
+} as Meta<BannerSliderProps>;
+
+export const Default: StoryObj<BannerSliderProps> = {};

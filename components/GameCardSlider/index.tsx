@@ -4,8 +4,7 @@ import React from 'react';
 import * as S from './styles';
 import Slider, { SliderSettings } from '../Slider';
 import GameCard, { GameCardProps } from '../GameCard';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { RiArrowLeftSLine, RiArrowRightSLine } from '@remixicon/react';
 
 const settings: SliderSettings = {
 	arrows: true,
@@ -42,8 +41,8 @@ const settings: SliderSettings = {
 			}
 		}
 	],
-	nextArrow: <FontAwesomeIcon icon={faArrowRight} aria-label="next games" />,
-	prevArrow: <FontAwesomeIcon icon={faArrowLeft} aria-label="previous games" />
+	nextArrow: <RiArrowRightSLine size={35} aria-label="next games" />,
+	prevArrow: <RiArrowLeftSLine size={35} aria-label="previous games" />
 };
 
 export type GameCardSliderProps = {

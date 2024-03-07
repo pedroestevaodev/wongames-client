@@ -2,12 +2,14 @@ import { Meta, StoryObj } from '@storybook/react';
 import FormSignIn from '@/components/FormSignIn';
 
 export default {
-	title: 'FormSignIn',
+	title: 'Form/FormSignIn',
 	component: FormSignIn,
-	argTypes: {}
-} as Meta;
-
-export const Default: StoryObj = {
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'light'
+		}
+	},
 	decorators: [
 		(Story) => (
 			<div style={{ width: 300, margin: 'auto' }}>
@@ -15,4 +17,6 @@ export const Default: StoryObj = {
 			</div>
 		)
 	]
-};
+} as Meta;
+
+export const Default: StoryObj = {};

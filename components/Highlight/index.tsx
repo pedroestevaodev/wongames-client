@@ -3,6 +3,7 @@
 import React from 'react';
 import * as S from './styles';
 import Button from '../Button';
+import Link from 'next/link';
 
 export type HighlightProps = {
 	title: string;
@@ -25,7 +26,7 @@ const Highlight = ({
 }: HighlightProps) => {
 	return (
 		<S.HighlightContainer
-			className="relative h-[23rem] grid md:h-[32rem] after:absolute after:w-full after:h-full after:bg-[rgba(0,0,0,0.6)]"
+			className="relative h-[23rem] grid md:h-[32rem] rounded-[6px] overflow-hidden after:absolute after:w-full after:h-full after:bg-[rgba(0,0,0,0.6)] after:rounded-[6px]"
 			backgroundImage={backgroundImage}
 			alignment={alignment}
 		>
@@ -45,7 +46,7 @@ const Highlight = ({
 				<S.SubTitle className="text-small font-light text-white mb-medium md:text-large">
 					{subTitle}
 				</S.SubTitle>
-				<Button as="a" href={buttonLink}>
+				<Button as={Link} href={buttonLink}>
 					{buttonLabel}
 				</Button>
 			</S.Content>

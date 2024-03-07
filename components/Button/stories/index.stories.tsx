@@ -4,14 +4,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 export default {
-	title: 'Button',
+	title: 'Form/Button',
 	component: Button,
+	parameters: {
+		layout: 'centered',
+		backgrounds: {
+			default: 'dark'
+		}
+	},
 	argTypes: {
 		children: {
 			type: 'string'
+		},
+		size: {
+			options: ['small', 'medium', 'large'],
+			control: { type: 'select' }
+		},
+		minimal: {
+			control: {
+				type: 'boolean'
+			}
 		}
 	}
-} as Meta;
+} as Meta<ButtonProps>;
 
 export const Default: StoryObj<ButtonProps> = {
 	args: {

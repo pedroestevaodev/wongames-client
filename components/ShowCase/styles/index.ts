@@ -1,10 +1,10 @@
 'use client';
 
+import styled from 'styled-components';
 import Container from '@/components/Container';
 import * as GameCardSliderStyle from '@/components/GameCardSlider/styles';
 import * as HeadingStyles from '@/components/Heading/styles';
 import * as HighlightStyles from '@/components/Highlight/styles';
-import styled from 'styled-components';
 
 export const ShowCaseContainer = styled(Container).attrs({ as: 'section' })`
 	${HeadingStyles.HeadingContainer},

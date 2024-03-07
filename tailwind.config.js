@@ -63,6 +63,25 @@ const tailwindConfig = {
 			},
 			borderRadius: {
 				4: '0.4rem'
+			},
+			gridTemplateColumns: {
+				'minmax-50': 'minmax(auto, 50%) 1fr'
+			},
+			zIndex: {
+				base: 10,
+				menu: 20,
+				overlay: 30,
+				modal: 40,
+				alwaysOnTop: 50
+			},
+			keyframes: {
+				hoverAnimation: {
+					from: { width: '0', left: '50%' },
+					to: { width: '100%', left: '0' }
+				}
+			},
+			animation: {
+				hoverAnimation: 'hoverAnimation 0.2s forwards'
 			}
 		},
 		screens: {

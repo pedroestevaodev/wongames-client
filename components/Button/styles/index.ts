@@ -29,12 +29,19 @@ const containerModifiers = {
 		&:hover {
 			color: ${darken(0.1, '#F231A5')};
 		}
+	`,
+	disabled: () => css`
+		&:disabled {
+			cursor: not-allowed;
+			filter: saturate(50%);
+		}
 	`
 };
 
 export const ButtonContainer = styled.button<ContainerProps>`
-	${({ hasIcon, minimal }) => css`
+	${({ hasIcon, minimal, disabled }) => css`
 		${!!hasIcon && containerModifiers.withIcon};
 		${!!minimal && containerModifiers.minimal};
+		${disabled && containerModifiers.disabled};
 	`}
 `;

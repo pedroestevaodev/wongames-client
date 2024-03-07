@@ -6,15 +6,12 @@ export default {
 	title: 'Game/GameInfo',
 	component: GameInfo,
 	parameters: {
+		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
 	},
-	argTypes: {},
-	args: GameInfoItens
-} as Meta;
-
-export const Default: StoryObj<GameInfoProps> = {
+	args: GameInfoItens,
 	decorators: [
 		(Story) => (
 			<div style={{ maxWidth: '144rem', margin: 'auto', padding: '1.5rem' }}>
@@ -22,4 +19,6 @@ export const Default: StoryObj<GameInfoProps> = {
 			</div>
 		)
 	]
-};
+} as Meta<GameInfoProps>;
+
+export const Default: StoryObj<GameInfoProps> = {};

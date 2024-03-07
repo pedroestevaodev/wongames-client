@@ -2,7 +2,17 @@
 
 import styled from 'styled-components';
 
-export const BaseContainer = styled.div``;
+export const BaseContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+`;
+
+export const Content = styled.div`
+	flex: 1 0 auto;
+	margin-top: 4.8rem;
+`;
 
 export const SectionFooter = styled.section`
 	margin-top: 4rem;

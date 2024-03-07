@@ -34,3 +34,17 @@ export const Description = styled.p`
 	font-weight: 600;
 	color: #fafafa;
 `;
+
+export const IconsWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	color: #fafafa;
+`;
+
+export const Icon = styled.span`
+	margin-left: 0.8rem;
+
+	&:first-child {
+		margin-left: 0;
+	}
+`;
