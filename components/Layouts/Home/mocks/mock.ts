@@ -5,12 +5,15 @@ import highlightItems from '@/components/Highlight/mocks/mock';
 
 const homeLayoutMock: HomeLayoutProps = {
 	banners: bannerSliderItems,
+	newGamesTitle: 'New Games',
 	newGames: gameCardSliderItems,
+	mostPopularGamesTitle: 'Most Popular',
 	mostPopularHighlight: highlightItems,
 	mostPopularGames: gameCardSliderItems,
-	upcommingGames: gameCardSliderItems,
+	upcommingGamesTitle: 'Upcomming',
 	upcommingHighligth: highlightItems,
-	upcommingMoreGames: gameCardSliderItems,
+	upcommingGames: gameCardSliderItems,
+	freeGamesTitle: 'Free Games',
 	freeHighligth: highlightItems,
 	freeGames: gameCardSliderItems
 };

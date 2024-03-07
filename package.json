@@ -16,14 +16,8 @@
     "component:headless": "cypress run --component",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "prepare": "husky install",
-    "codegen": "graphql-codegen --config codegen.ts"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run typecheck && npm run lint"
-    }
+    "codegen": "graphql-codegen --config codegen.ts",
+    "prepare": "husky"
   },
   "lint-staged": {
     "**/*": [
@@ -89,7 +83,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-storybook": "^0.6.14",
     "eslint-plugin-testing-library": "^5.11.1",
-    "husky": "^8.0.0",
+    "husky": "^9.0.11",
     "identity-obj-proxy": "^3.0.0",
     "lint-staged": "^14.0.1",
     "plop": "^4.0.0",
