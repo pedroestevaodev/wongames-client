@@ -1,20 +1,9 @@
 import React from 'react';
-import Cart, { CartLayoutProps } from '@/components/Layouts/Cart';
+import Cart from '@/components/Layouts/Cart';
 import cartPageMock from '@/components/Layouts/Cart/mocks/mock';
 
-type CartPageProps = {
-	props: CartLayoutProps;
-	params: {
-		slug: string;
-	};
-};
-
-const CartPage = ({ props, params }: CartPageProps) => {
-	console.log(params);
-	console.log(props);
-
+const CartPage = () => {
 	return (
-		// <Cart {...props} />
 		<Cart
 			recommendedGames={cartPageMock.recommendedGames}
 			recommendedHighlight={cartPageMock.recommendedHighlight}
