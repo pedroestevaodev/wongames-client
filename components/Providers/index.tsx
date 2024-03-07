@@ -1,8 +1,8 @@
-import React from 'react';
-import GlobalStyles from '@/public/styles/global';
-import NextUIProviderWrapper from './NextUIProvider';
-import ThemeProviderWrapper from './ThemeProvider';
-import ApolloProviderWrapper from './ApolloProvider';
+import React from "react";
+import GlobalStyles from "@/public/styles/global";
+import ApolloProviderWrapper from "./ApolloProvider";
+import NextUIProviderWrapper from "./NextUIProvider";
+import ThemeProviderWrapper from "./ThemeProvider";
 
 export function Providers({ children }: React.PropsWithChildren) {
 	return (
