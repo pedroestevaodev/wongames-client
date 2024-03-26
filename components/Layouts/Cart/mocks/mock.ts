@@ -8,6 +8,7 @@ const cartPageMock: CartLayoutProps = {
 	items: cartListMock,
 	total: 430,
 	cards: paymentOptionsMock,
+	recommendedTitle: 'You may like these games',
 	recommendedGames: gameCardSliderItems,
 	recommendedHighlight: highlightItems
 };

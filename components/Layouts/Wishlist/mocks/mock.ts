@@ -4,6 +4,7 @@ import { WishlistLayoutProps } from '..';
 
 const wishlistLayoutMock: WishlistLayoutProps = {
 	games: gameCardSliderItems,
+	recommendedTitle: 'You may like these games',
 	recommendedGames: gameCardSliderItems.slice(0, 5),
 	recommendedHighlight: highlightItems
 };
