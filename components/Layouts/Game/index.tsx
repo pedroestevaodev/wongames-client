@@ -18,8 +18,10 @@ export type GameLayoutProps = {
 	gallery?: GalleryImageProps[];
 	description: string;
 	details: GameDetailsProps;
+	upcomingTitle: string;
 	upcomingGames: GameCardProps[];
 	upcomingHighlight: HighlightProps;
+	recommendedTitle: string;
 	recommendedGames: GameCardProps[];
 };
 
@@ -29,8 +31,10 @@ const Game = ({
 	gallery,
 	description,
 	details,
+	upcomingTitle,
 	upcomingGames,
 	upcomingHighlight,
+	recommendedTitle,
 	recommendedGames
 }: GameLayoutProps) => {
 	console.log('cover', gallery);
@@ -58,12 +62,12 @@ const Game = ({
 				</S.SectionGameDetails>
 
 				<ShowCase
-					title="Upcomming"
+					title={upcomingTitle}
 					games={upcomingGames}
 					highlight={upcomingHighlight}
 				/>
 
-				<ShowCase title="You may like these games" games={recommendedGames} />
+				<ShowCase title={recommendedTitle} games={recommendedGames} />
 			</S.Main>
 		</Base>
 	);
