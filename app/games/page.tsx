@@ -9,7 +9,7 @@ import { gamesMapper } from "@/utils/mappers";
 const GamesPage = async () => {
 	const { data } = await getClient().query<GetGamesQuery, GetGamesQueryVariables>({
 		query: GET_GAMES,
-		variables: { limit: 15 },
+		variables: { start: 0, limit: 15 },
 		context: {
 			fetchOptions: {
 				next: { revalidate: 60 }

@@ -9,11 +9,14 @@ import { GalleryImageProps } from '@/components/Gallery';
 import { GET_RECOMMENDED } from "@/graphql/queries/recommended";
 import { gamesMapper, highlightMapper } from "@/utils/mappers";
 import { GET_UPCOMING } from "@/graphql/queries/upcoming";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-const Index = async ({ params }: { params: { slug: string } }) => {
+const Index = async ({ params }: Params) => {
+	const { slug } = params;
+
 	const { data, error } = await getClient().query<Query>({
 		query: GET_GAME_BY_SLUG,
-		variables: { slug: params.slug },
+		variables: { slug: slug },
 		context: {
 			fetchOptions: {
 				next: { revalidate: 60 }
@@ -51,7 +54,7 @@ const Index = async ({ params }: { params: { slug: string } }) => {
 	return (
 		<Game
 			cover={
-				`${process.env.API_URL}${data.games?.data[0]?.attributes?.cover?.data?.attributes?.url}` ||
+				`${process.env.NEXT_PUBLIC_API_URL}${data.games?.data[0]?.attributes?.cover?.data?.attributes?.url}` ||
 				''
 			}
 			gameInfo={{
@@ -61,7 +64,7 @@ const Index = async ({ params }: { params: { slug: string } }) => {
 			}}
 			gallery={
 				(data.games?.data[0]?.attributes?.gallery?.data.map((image) => ({
-					src: `${process.env.API_URL}${image.attributes?.url}`,
+					src: `${process.env.NEXT_PUBLIC_API_URL}${image.attributes?.url}`,
 					label: image.attributes?.alternativeText
 				})) as unknown as GalleryImageProps[]) ?? []
 			}

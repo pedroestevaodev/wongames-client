@@ -8,20 +8,23 @@
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
-		"module": "esnext",
+		"module": "ESNext",
 		"moduleResolution": "Node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["./*"],
+			"@types/*": ["./@types/*"]
+		},
 		"plugins": [
 			{
 				"name": "next"
 			}
 		],
-		"paths": {
-			"@/*": ["./*"]
-		}
+		"typeRoots": ["./@types", "./node_modules/@types"]
 	},
 	"include": [
 		"next-env.d.ts",

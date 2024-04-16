@@ -7,9 +7,15 @@ import GameCard, { GameCardProps } from '@/components/GameCard';
 import ExploreSidebar, { ItemProps } from '@/components/ExploreSidebar';
 import Grid from '@/components/Grid';
 import { RiArrowDownSLine } from '@remixicon/react';
-import { useQuery } from "@apollo/client";
-import { GetGamesQuery, GetGamesQueryVariables } from "@/graphql/generated/graphql";
+import { 
+	GameEntityResponseCollection, 
+	// GameFragmentFragment, 
+	GetGamesQuery, 
+	GetGamesQueryVariables 
+} from "@/graphql/generated/graphql";
 import { GET_GAMES } from "@/graphql/queries/games";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { gamesMapper } from "@/utils/mappers";
 
 export type GamesLayoutProps = {
 	games?: GameCardProps[];
@@ -17,8 +23,8 @@ export type GamesLayoutProps = {
 };
 
 const Games = ({ filterItems }: GamesLayoutProps) => {
-	const { loading, error, data } = useQuery<GetGamesQuery, GetGamesQueryVariables>(GET_GAMES, { 
-		variables: { limit: 15 }, 
+	const { error, data, fetchMore } = useSuspenseQuery<GetGamesQuery, GetGamesQueryVariables>(GET_GAMES, { 
+		variables: { start: 0, limit: 15 }, 
 	});
 
 	const handleFilter = () => {
@@ -26,39 +32,47 @@ const Games = ({ filterItems }: GamesLayoutProps) => {
 	};
 
 	const handleShowMore = () => {
-		return;
+		fetchMore({ variables: { start: 15, limit: 15 }});
 	};
 
-	if (loading) return <p>Loading...</p>;
+	// if (loading) return <p>Loading...</p>;
 	if (error) return null;
 
-	console.log(data);
+	// console.log(data);
 
 	return (
 		<Base>
-			<code>
-				<pre>
-					{JSON.stringify(data, null, 2)}
-				</pre>
-			</code>
 			<S.Main>
 				<ExploreSidebar items={filterItems} onFilter={handleFilter} />
 
 				<section>
 					<Grid>
-						{(data?.games as GameCardProps[] | undefined)?.map((game) => (
+						{/* {data.games?.data.map((game) => (
 							<GameCard 
-								key={game.title}
+								key={(game.attributes as GameFragmentFragment).slug}
+								title={(game.attributes as GameFragmentFragment).name}
+								slug={(game.attributes as GameFragmentFragment).slug}
+								developer={(game.attributes as GameFragmentFragment).developers?.data[0].attributes?.name || 'Desconhecido'}
+								img={`http://localhost:1337${(game.attributes as GameFragmentFragment).cover?.data?.attributes?.url}`}
+								price={(game.attributes as GameFragmentFragment).price}
+							/>
+						))} */}
+						{gamesMapper(data.games as GameEntityResponseCollection).map((game) => (
+							<GameCard 
+								key={game.slug}
 								title={game.title}
 								slug={game.slug}
-								developer={game.developer}
-								img={`${process.env.API_URL}${game.img}`}
+								developer={game.developer || 'Desconhecido'}
+								img={game.img}
 								price={game.price}
 							/>
 						))}
 					</Grid>
 
-					<S.ShowMore role="button" onClick={handleShowMore}>
+					<S.ShowMore 
+						role="button" 
+						onClick={handleShowMore}
+					>
 						<p>Show More</p>
 						<RiArrowDownSLine size={35} />
 					</S.ShowMore>

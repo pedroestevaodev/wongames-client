@@ -13,7 +13,7 @@ import {
 export const bannerMapper = (banners: BannerEntityResponseCollection) => {
 	return (
 		(banners?.data?.map((banner: BannerEntity) => ({
-			img: `${process.env.API_URL}${(
+			img: `${process.env.NEXT_PUBLIC_API_URL}${(
 				banner.attributes as BannerFragmentFragment
 			)?.image?.data?.attributes?.url}`,
 			title: (banner.attributes as BannerFragmentFragment)?.title || '',
@@ -41,7 +41,21 @@ export const gamesMapper = (games: GameEntityResponseCollection) => {
 			slug: (game.attributes as GameFragmentFragment).slug,
 			developer: (game.attributes as GameFragmentFragment).developers?.data[0]
 				.attributes?.name,
-			img: `${process.env.API_URL}${(game.attributes as GameFragmentFragment)
+			img: `${process.env.NEXT_PUBLIC_API_URL}${(game.attributes as GameFragmentFragment)
+				.cover?.data?.attributes?.url}`,
+			price: (game.attributes as GameFragmentFragment).price
+		})) as GameCardProps[]) || []
+	);
+};
+
+export const staticGamesParams = (games: GameEntityResponseCollection) => {
+	return (
+		(games?.data.map((game) => ({
+			title: (game.attributes as GameFragmentFragment).name,
+			slug: (game.attributes as GameFragmentFragment).slug,
+			developer: (game.attributes as GameFragmentFragment).developers?.data[0]
+				.attributes?.name,
+			img: `${process.env.NEXT_PUBLIC_API_URL}${(game.attributes as GameFragmentFragment)
 				.cover?.data?.attributes?.url}`,
 			price: (game.attributes as GameFragmentFragment).price
 		})) as GameCardProps[]) || []
@@ -54,8 +68,8 @@ export const highlightMapper = (highlight: HighlightFragmentFragment) => {
 		({
 			title: highlight.title,
 			subTitle: highlight.subTitle,
-			backgroundImage: `${process.env.API_URL}${highlight.background?.data?.attributes?.url}`,
-			floatImage: `${process.env.API_URL}${highlight.floatImage?.data?.attributes?.url}`,
+			backgroundImage: `${process.env.NEXT_PUBLIC_API_URL}${highlight.background?.data?.attributes?.url}`,
+			floatImage: `${process.env.NEXT_PUBLIC_API_URL}${highlight.floatImage?.data?.attributes?.url}`,
 			buttonLabel: highlight.buttonLabel,
 			buttonLink: highlight.buttonLink,
 			alignment: highlight.alignment
