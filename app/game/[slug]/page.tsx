@@ -9,9 +9,8 @@ import { GalleryImageProps } from '@/components/Gallery';
 import { GET_RECOMMENDED } from "@/graphql/queries/recommended";
 import { gamesMapper, highlightMapper } from "@/utils/mappers";
 import { GET_UPCOMING } from "@/graphql/queries/upcoming";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-const Index = async ({ params }: Params) => {
+const Index = async ({ params }: { params: { slug: string } }) => {
 	const { slug } = params;
 
 	const { data, error } = await getClient().query<Query>({

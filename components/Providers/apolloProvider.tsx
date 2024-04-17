@@ -2,8 +2,8 @@
 
 import React from "react";
 import { ApolloLink, HttpLink } from "@apollo/client";
-import { NextSSRApolloClient, NextSSRInMemoryCache, SSRMultipartLink } from "@apollo/experimental-nextjs-app-support/ssr";
-import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
+import { ApolloNextAppProvider, NextSSRApolloClient, NextSSRInMemoryCache, SSRMultipartLink } from "@apollo/experimental-nextjs-app-support/ssr";
+import { offsetLimitPagination } from "@apollo/client/utilities";
 
 const makeClient = () => {
 	const httpLink = new HttpLink({
@@ -12,7 +12,21 @@ const makeClient = () => {
 	});
 
 	return new NextSSRApolloClient({
-		cache: new NextSSRInMemoryCache(),
+		cache: new NextSSRInMemoryCache({
+			typePolicies: {
+				Query: {
+					fields: {
+						// games: {
+						// 	keyArgs: false,
+						// 	merge(existing = [], incoming) {
+						// 		return [...existing, ...incoming];
+						// 	}
+						// }
+						games: offsetLimitPagination(),
+					}
+				}
+			}
+		}),
 		link:
 			typeof window === 'undefined'
 				? ApolloLink.from([

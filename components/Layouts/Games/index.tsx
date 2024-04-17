@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useTransition } from 'react';
 import * as S from './styles';
 import Base from '../Base';
 import GameCard, { GameCardProps } from '@/components/GameCard';
@@ -23,6 +23,8 @@ export type GamesLayoutProps = {
 };
 
 const Games = ({ filterItems }: GamesLayoutProps) => {
+	const [isPending, startTransition] = useTransition();
+
 	const { error, data, fetchMore } = useSuspenseQuery<GetGamesQuery, GetGamesQueryVariables>(GET_GAMES, { 
 		variables: { start: 0, limit: 15 }, 
 	});
@@ -32,7 +34,14 @@ const Games = ({ filterItems }: GamesLayoutProps) => {
 	};
 
 	const handleShowMore = () => {
-		fetchMore({ variables: { start: 15, limit: 15 }});
+		startTransition(() => {
+			fetchMore({ 
+				variables: { 
+					start: data.games?.data.length || 0,
+					limit: 15 
+				}
+			});
+		});
 	};
 
 	// if (loading) return <p>Loading...</p>;
@@ -72,6 +81,7 @@ const Games = ({ filterItems }: GamesLayoutProps) => {
 					<S.ShowMore 
 						role="button" 
 						onClick={handleShowMore}
+						style={{ display: isPending ? 'none' : 'flex' }}
 					>
 						<p>Show More</p>
 						<RiArrowDownSLine size={35} />
