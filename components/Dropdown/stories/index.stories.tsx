@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Dropdown, { DropdownProps } from '@/components/Dropdown';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Dropdown',
@@ -9,6 +10,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	}
 } as Meta<DropdownProps>;
 

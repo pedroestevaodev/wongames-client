@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import CartIcon, { CartIconProps } from '@/components/CartIcon';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'CartIcon',
@@ -9,6 +10,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	}
 } as Meta<CartIconProps>;
 

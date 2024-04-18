@@ -1,11 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Gallery, { GalleryProps } from '@/components/Gallery';
 import items from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Gallery',
 	component: Gallery,
-	args: { items },
+	args: { 
+		items,
+		onClick: fn()
+	},
 	parameters: {
 		layout: 'centered',
 		backgrounds: {

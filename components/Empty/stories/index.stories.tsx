@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Empty, { EmptyProps } from '@/components/Empty';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Page/Empty',
@@ -9,6 +10,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	}
 } as Meta<EmptyProps>;
 

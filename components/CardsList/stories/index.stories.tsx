@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import CardsList, { CardsListProps } from '@/components/CardsList';
 import paymentOptionsMock from '@/components/PaymentOptions/mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Profile/CardsList',
@@ -12,7 +13,8 @@ export default {
 		}
 	},
 	args: {
-		cards: paymentOptionsMock
+		cards: paymentOptionsMock,
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (

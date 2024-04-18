@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Ribbon, { RibbonProps } from '@/components/Ribbon';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Ribbon',
@@ -11,7 +12,8 @@ export default {
 		}
 	},
 	args: {
-		children: 'Best Seller'
+		children: 'Best Seller',
+		onClick: fn()
 	},
 	argTypes: {
 		children: {

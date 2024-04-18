@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import UserDropdown, { UserDropwdownProps } from '@/components/UserDropdown';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'UserDropdown',
@@ -9,6 +10,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (

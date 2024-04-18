@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import GameItem, { GameItemProps } from '@/components/GameItem';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Game/GameItem',
@@ -13,7 +14,8 @@ export default {
 	args: {
 		img: 'https://source.unsplash.com/user/willianjusten/151x70',
 		title: 'Red Dead Redemption 2',
-		price: 215
+		price: 215,
+		onClick: fn()
 	}
 } as Meta<GameItemProps>;
 

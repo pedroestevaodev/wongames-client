@@ -3,11 +3,15 @@ import ExploreSidebar, {
 	ExploreSidebarProps
 } from '@/components/ExploreSidebar';
 import items from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Form/ExploreSidebar',
 	component: ExploreSidebar,
-	args: { items },
+	args: { 
+		items,
+		onClick: fn()
+	},
 	parameters: {
 		layout: 'fullscreen'
 	},
@@ -25,8 +29,10 @@ export const Default: StoryObj<ExploreSidebarProps> = {};
 export const WithInitialValues: StoryObj<ExploreSidebarProps> = {
 	args: {
 		initialValues: {
-			windows: true,
-			sort_by: 'low-to-high'
+			price: 'under-50',
+			sort_by: 'low-to-high',
+			system: 'windows',
+			genre: 'rpg'
 		}
 	}
 };

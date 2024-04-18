@@ -1,13 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react';
 import BannerSlider, { BannerSliderProps } from '@/components/BannerSlider';
 import items from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'BannerSlider',
 	component: BannerSlider,
 	argTypes: {},
 	args: {
-		items
+		items,
+		onClick: fn()
 	},
 	parameters: {
 		backgrounds: {

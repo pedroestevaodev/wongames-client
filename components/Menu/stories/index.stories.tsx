@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Menu from '@/components/Menu';
 import { MenuProps } from '@/components/Menu';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Page/Menu',
@@ -10,6 +11,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (

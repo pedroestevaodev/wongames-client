@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import OrdersList, { OrdersListProps } from '@/components/OrdersList';
 import ordersListMock from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Profile/OrdersList',
@@ -12,7 +13,8 @@ export default {
 		}
 	},
 	args: {
-		items: ordersListMock
+		items: ordersListMock,
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (

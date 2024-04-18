@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import TextField, { TextFieldProps } from '@/components/TextField';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Form/TextField',
@@ -21,7 +22,8 @@ export default {
 		icon: <FontAwesomeIcon icon={faEnvelope} />,
 		initialValue: '',
 		placeholder: 'john.cage@gmail.com',
-		disabled: false
+		disabled: false,
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (
