@@ -18,7 +18,7 @@ import {
 
 const makeClient = () => {
 	const httpLink = new HttpLink({
-		uri: process.env.GRAPHQL_SCHEMA,
+		uri: 'http://localhost:1337/graphql',
 		fetchOptions: { cache: 'no-store' }
 	});
 
@@ -30,7 +30,11 @@ const makeClient = () => {
 						// games: {
 						// 	keyArgs: false,
 						// 	merge(existing = [], incoming) {
-						// 		return [...existing, ...incoming];
+						// 		if (Array.isArray(incoming)) {
+						// 			return [...existing, ...incoming];
+						// 		} else {
+						// 			return existing;
+						// 		}
 						// 	}
 						// }
 						games: concatPagination(),
