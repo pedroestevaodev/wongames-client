@@ -6,10 +6,6 @@ import {
 	HttpLink,
 } from "@apollo/client";
 import { 
-	concatPagination, 
-	// offsetLimitPagination
-} from "@apollo/client/utilities";
-import { 
 	ApolloNextAppProvider, 
 	NextSSRApolloClient, 
 	NextSSRInMemoryCache, 
@@ -18,7 +14,7 @@ import {
 
 const makeClient = () => {
 	const httpLink = new HttpLink({
-		uri: 'http://localhost:1337/graphql',
+		uri: process.env.NEXT_PUBLIC_GRAPHQL_SCHEMA,
 		fetchOptions: { cache: 'no-store' }
 	});
 
@@ -27,21 +23,18 @@ const makeClient = () => {
 			typePolicies: {
 				Query: {
 					fields: {
-						// games: {
-						// 	keyArgs: false,
-						// 	merge(existing = [], incoming) {
-						// 		if (Array.isArray(incoming)) {
-						// 			return [...existing, ...incoming];
-						// 		} else {
-						// 			return existing;
-						// 		}
-						// 	}
-						// }
-						games: concatPagination(),
-						// games: offsetLimitPagination(),
-					}
-				}
-			}
+						games: {
+							keyArgs: false,
+							merge(existing = { data: [] }, incoming) {
+								return {
+									...incoming,
+									data: [...existing.data, ...incoming.data]
+								}
+							},
+						},
+					},
+				},
+			},
 		}),
 		link:
 			typeof window === 'undefined'

@@ -1,8 +1,10 @@
-import { gql } from '@apollo/client';
+import { gql, QueryHookOptions } from '@apollo/client';
 import { GameFragment } from './fragments/games';
+import { GetGamesQuery, GetGamesQueryVariables } from "../generated/graphql";
+import { useQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 export const GET_GAMES = gql`
-	query GetGames($limit: Int!, $start: Int) {
+	query GetGames($limit: Int!, $start: Int!) {
 		games(pagination: { limit: $limit, start: $start }) {
 			data {
 				attributes {
@@ -74,3 +76,7 @@ export const GET_GAME_BY_SLUG = gql`
 		}
 	}
 `;
+
+export const useQueryGames = (options?: QueryHookOptions<GetGamesQuery, GetGamesQueryVariables>) => {
+	return useQuery<GetGamesQuery, GetGamesQueryVariables>(GET_GAMES, options);
+};

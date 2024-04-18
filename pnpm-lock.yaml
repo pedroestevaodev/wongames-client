@@ -117,6 +117,9 @@ importers:
       '@parcel/watcher':
         specifier: ^2.4.1
         version: 2.4.1
+      '@storybook/addon-a11y':
+        specifier: ^8.0.8
+        version: 8.0.8
       '@storybook/addon-controls':
         specifier: ^7.6.17
         version: 7.6.17(@types/react-dom@18.2.7)(@types/react@18.2.18)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -2884,6 +2887,9 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
+  '@storybook/addon-a11y@8.0.8':
+    resolution: {integrity: sha512-QiNzKej1C3QjPBHm8nwk0lqv9N9cLInlyJ62Cp+/+ethcH2elNnBf1H3ad/DC6XIQRyMtvvhCOnzygAMnjCq1w==}
+
   '@storybook/addon-actions@7.6.17':
     resolution: {integrity: sha512-TBphs4v6LRfyTpFo/WINF0TkMaE3rrNog7wW5mbz6n0j8o53kDN4o9ZEcygSL5zQX43CAaghQTeDCss7ueG7ZQ==}
 
@@ -2907,6 +2913,9 @@ packages:
 
   '@storybook/addon-highlight@7.6.17':
     resolution: {integrity: sha512-R1yBPUUqGn+60aJakn8q+5Zt34E/gU3n3VmgPdryP0LJUdZ5q1/RZShoVDV+yYQ40htMH6oaCv3OyyPzFAGJ6A==}
+
+  '@storybook/addon-highlight@8.0.8':
+    resolution: {integrity: sha512-KKD7xiNhxZQM4fdDidtcla6jSzgN1f9qe1AwFSHLXwIW22+4c97Vgf+AookN7cJvB77HxRUnvQH//zV1CJEDug==}
 
   '@storybook/addon-interactions@7.6.17':
     resolution: {integrity: sha512-6zlX+RDQ1PlA6fp7C+hun8t7h2RXfCGs5dGrhEenp2lqnR/rYuUJRC0tmKpkZBb8kZVcbSChzkB/JYkBjBCzpQ==}
@@ -12506,6 +12515,11 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
+  '@storybook/addon-a11y@8.0.8':
+    dependencies:
+      '@storybook/addon-highlight': 8.0.8
+      axe-core: 4.7.0
+
   '@storybook/addon-actions@7.6.17':
     dependencies:
       '@storybook/core-events': 7.6.17
@@ -12588,6 +12602,10 @@ snapshots:
       - supports-color
 
   '@storybook/addon-highlight@7.6.17':
+    dependencies:
+      '@storybook/global': 5.0.0
+
+  '@storybook/addon-highlight@8.0.8':
     dependencies:
       '@storybook/global': 5.0.0
 
