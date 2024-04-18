@@ -1,9 +1,13 @@
 'use client';
 
-import React, { useTransition } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import * as S from './styles';
 import Base from '../Base';
-import GameCard, { GameCardProps } from '@/components/GameCard';
+import 
+	GameCard, 
+	{ 
+		GameCardProps 
+	} from '@/components/GameCard';
 import ExploreSidebar, { ItemProps } from '@/components/ExploreSidebar';
 import Grid from '@/components/Grid';
 import { RiArrowDownSLine } from '@remixicon/react';
@@ -24,9 +28,10 @@ export type GamesLayoutProps = {
 
 const Games = ({ filterItems }: GamesLayoutProps) => {
 	const [isPending, startTransition] = useTransition();
+	const [pagination, setPagination] = useState({ start: 0, limit: 15 });
 
 	const { error, data, fetchMore } = useSuspenseQuery<GetGamesQuery, GetGamesQueryVariables>(GET_GAMES, { 
-		variables: { start: 0, limit: 15 }, 
+		variables: { limit: 15, start: 0 },
 	});
 
 	const handleFilter = () => {
@@ -34,20 +39,27 @@ const Games = ({ filterItems }: GamesLayoutProps) => {
 	};
 
 	const handleShowMore = () => {
+		setPagination({ 
+			start: pagination.start + pagination.limit, 
+			limit: data.games?.data.length ?? 0
+		});
+		
 		startTransition(() => {
-			fetchMore({ 
-				variables: { 
-					start: data.games?.data.length || 0,
-					limit: 15 
-				}
+			fetchMore({
+				variables: {
+					limit: 15,
+					start: pagination.start,
+				},
 			});
 		});
 	};
 
+	useEffect(() => {
+		console.log('Data:', data.games?.data);
+	}, [data]);
+
 	// if (loading) return <p>Loading...</p>;
 	if (error) return null;
-
-	// console.log(data);
 
 	return (
 		<Base>

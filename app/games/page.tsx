@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Games from '@/components/Layouts/Games';
 import { getClient } from '@/lib/apolloClient';
 import { GameEntityResponseCollection, GetGamesQuery, GetGamesQueryVariables } from '@/graphql/generated/graphql';
@@ -18,11 +18,13 @@ const GamesPage = async () => {
 	});
 
 	return (
-		<Games
-			games={gamesMapper(data.games as GameEntityResponseCollection)}
-			filterItems={exploreSidebarMock}
-			// {...data as GamesLayoutProps}
-		/>
+		<Suspense fallback={<div>Loading...</div>}>
+			<Games
+				games={gamesMapper(data.games as GameEntityResponseCollection)}
+				filterItems={exploreSidebarMock}
+				// {...data as GamesLayoutProps}
+			/>
+		</Suspense>
 	);
 };
 

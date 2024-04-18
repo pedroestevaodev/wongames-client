@@ -1,14 +1,25 @@
 'use client';
 
 import React from "react";
-import { ApolloLink, HttpLink } from "@apollo/client";
-import { ApolloNextAppProvider, NextSSRApolloClient, NextSSRInMemoryCache, SSRMultipartLink } from "@apollo/experimental-nextjs-app-support/ssr";
-import { offsetLimitPagination } from "@apollo/client/utilities";
+import { 
+	ApolloLink, 
+	HttpLink,
+} from "@apollo/client";
+import { 
+	concatPagination, 
+	// offsetLimitPagination
+} from "@apollo/client/utilities";
+import { 
+	ApolloNextAppProvider, 
+	NextSSRApolloClient, 
+	NextSSRInMemoryCache, 
+	SSRMultipartLink 
+} from "@apollo/experimental-nextjs-app-support/ssr";
 
 const makeClient = () => {
 	const httpLink = new HttpLink({
 		uri: process.env.GRAPHQL_SCHEMA,
-		fetchOptions: { cache: 'no-cache' }
+		fetchOptions: { cache: 'no-store' }
 	});
 
 	return new NextSSRApolloClient({
@@ -22,7 +33,8 @@ const makeClient = () => {
 						// 		return [...existing, ...incoming];
 						// 	}
 						// }
-						games: offsetLimitPagination(),
+						games: concatPagination(),
+						// games: offsetLimitPagination(),
 					}
 				}
 			}
