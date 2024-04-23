@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Highlight, { HighlightProps } from '@/components/Highlight';
 import item from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Highlight',
@@ -11,7 +12,10 @@ export default {
 			default: 'dark'
 		}
 	},
-	args: { ...item },
+	args: { 
+		...item,
+		onClick: fn()
+	},
 	decorators: [
 		(Story) => (
 			<div style={{ maxWidth: '104rem' }}>

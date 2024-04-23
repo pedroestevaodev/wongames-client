@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Button, { ButtonProps } from '@/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Form/Button',
@@ -11,6 +12,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	},
 	argTypes: {
 		children: {

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Heading, { HeadingProps } from '@/components/Heading';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Heading',
@@ -9,6 +10,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args:{
+		onClick: fn()
 	},
 	argTypes: {
 		children: {

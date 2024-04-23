@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Profile, { ProfileLayoutProps } from '@/components/Layouts/Profile';
 import FormProfile from '@/components/FormProfile';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Layout/Profile',
@@ -9,7 +10,8 @@ export default {
 		layout: 'fullscreen'
 	},
 	args: {
-		children: <FormProfile />
+		children: <FormProfile />,
+		onClick: fn()
 	}
 } as Meta<ProfileLayoutProps>;
 

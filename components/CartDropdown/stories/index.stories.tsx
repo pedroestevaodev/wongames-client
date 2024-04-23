@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import CartDropdown, { CartDropdownProps } from '@/components/CartDropdown';
 import cartListMock from '@/components/CartList/mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'CartDropdown',
@@ -13,7 +14,8 @@ export default {
 	},
 	args: {
 		items: cartListMock,
-		total: 330
+		total: 330,
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (

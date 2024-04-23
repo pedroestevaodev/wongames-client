@@ -2,11 +2,15 @@ import { Meta, StoryObj } from '@storybook/react';
 import GameCardSlider from '@/components/GameCardSlider';
 import { GameCardProps } from '@/components/GameCard';
 import items from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Game/GameCardSlider',
 	component: GameCardSlider,
-	args: { items },
+	args: { 
+		items,
+		onClick: fn()
+	},
 	parameters: {
 		layout: 'fullscreen',
 		backgrounds: {

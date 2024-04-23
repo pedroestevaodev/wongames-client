@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Banner, { BannerProps } from '@/components/Banner';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Banner',
@@ -15,7 +16,8 @@ export default {
 		subTitle:
 			'<p>Play the new <strong className="text-primary font-bold">CrashLands</strong> season</p>',
 		buttonLabel: 'Buy now',
-		buttonLink: '/games/defy-death'
+		buttonLink: '/games/defy-death',
+		onClick: fn()
 	},
 	parameters: {
 		backgrounds: {

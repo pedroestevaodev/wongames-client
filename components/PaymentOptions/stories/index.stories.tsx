@@ -3,6 +3,7 @@ import PaymentOptions, {
 	PaymentOptionsProps
 } from '@/components/PaymentOptions';
 import paymentOptionsMock from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Payment/PaymentOptions',
@@ -14,7 +15,8 @@ export default {
 		}
 	},
 	args: {
-		cards: paymentOptionsMock
+		cards: paymentOptionsMock,
+		onClick: fn()
 	},
 	argTypes: {
 		handlePayment: {

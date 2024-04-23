@@ -38,8 +38,10 @@ const gamePageMock: GameLayoutProps = {
 		rating: 'BR18',
 		genres: ['Action', 'Role-playing']
 	},
+	upcomingTitle: 'Upcoming games',
 	upcomingGames: gameCardSliderItems,
 	upcomingHighlight: highlightItems,
+	recommendedTitle: 'You may like these games',
 	recommendedGames: gameCardSliderItems
 };
 

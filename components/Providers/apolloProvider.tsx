@@ -1,18 +1,41 @@
 'use client';
 
 import React from "react";
-import { ApolloLink, HttpLink } from "@apollo/client";
-import { NextSSRApolloClient, NextSSRInMemoryCache, SSRMultipartLink } from "@apollo/experimental-nextjs-app-support/ssr";
-import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
+import { 
+	ApolloLink, 
+	HttpLink,
+} from "@apollo/client";
+import { 
+	ApolloNextAppProvider, 
+	NextSSRApolloClient, 
+	NextSSRInMemoryCache, 
+	SSRMultipartLink 
+} from "@apollo/experimental-nextjs-app-support/ssr";
 
 const makeClient = () => {
 	const httpLink = new HttpLink({
-		uri: process.env.GRAPHQL_SCHEMA,
-		fetchOptions: { cache: 'no-cache' }
+		uri: process.env.NEXT_PUBLIC_GRAPHQL_SCHEMA,
+		fetchOptions: { cache: 'no-store' }
 	});
 
 	return new NextSSRApolloClient({
-		cache: new NextSSRInMemoryCache(),
+		cache: new NextSSRInMemoryCache({
+			typePolicies: {
+				Query: {
+					fields: {
+						games: {
+							keyArgs: false,
+							merge(existing = { data: [] }, incoming) {
+								return {
+									...incoming,
+									data: [...existing.data, ...incoming.data]
+								}
+							},
+						},
+					},
+				},
+			},
+		}),
 		link:
 			typeof window === 'undefined'
 				? ApolloLink.from([

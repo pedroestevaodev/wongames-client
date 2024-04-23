@@ -9,7 +9,11 @@ import {
 	GetHomeQueryVariables,
 	HighlightFragmentFragment
 } from '@/graphql/generated/graphql';
-import { bannerMapper, gamesMapper, highlightMapper } from '@/utils/mappers';
+import { 
+	bannerMapper, 
+	gamesMapper, 
+	highlightMapper 
+} from '@/utils/mappers';
 
 const Index = async () => {
 	const {

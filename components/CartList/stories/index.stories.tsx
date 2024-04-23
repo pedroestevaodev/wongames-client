@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import CartList, { CartListProps } from '@/components/CartList';
 import cartListMock from '../mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Payment/CartList',
@@ -13,7 +14,8 @@ export default {
 	},
 	args: {
 		items: cartListMock,
-		total: 330
+		total: 330,
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (

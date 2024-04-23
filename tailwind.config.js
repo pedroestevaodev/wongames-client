@@ -12,6 +12,9 @@ const tailwindConfig = {
 	],
 	theme: {
 		extend: {
+			animation: {
+				hoverAnimation: 'hoverAnimation 0.2s forwards'
+			},
 			backgroundColor: {
 				light: '#f3f3f3',
 				dark: '#0b0b0c'
@@ -19,16 +22,22 @@ const tailwindConfig = {
 			backgroundImage: {
 				rdr2: "url('/img/red-dead-img.jpg')"
 			},
-			spacing: {
-				xxsmall: '0.8rem',
-				xsmall: '1.6rem',
-				small: '2.4rem',
-				medium: '3.2rem',
-				large: '4.0rem',
-				xlarge: '4.8rem',
-				xxlarge: '5.6rem',
-				container: '130rem',
-				gutter: '3.2rem'
+			borderRadius: {
+				4: '0.4rem'
+			},
+			colors: {
+				primary: '#F231A5',
+				secondary: '#3CD3C1',
+				mainBg: '#06092B',
+				lightBg: '#F2F2F2',
+				white: '#FAFAFA',
+				black: '#030517',
+				lightGray: '#EAEAEA',
+				gray: '#8F8F8F',
+				darkGray: '#2E2F42',
+				red: '#FF6347',
+				orange: '#FF5F5F',
+				pink: '#F062C0'
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif']
@@ -47,32 +56,8 @@ const tailwindConfig = {
 				normal: 400,
 				bold: 600
 			},
-			colors: {
-				primary: '#F231A5',
-				secondary: '#3CD3C1',
-				mainBg: '#06092B',
-				lightBg: '#F2F2F2',
-				white: '#FAFAFA',
-				black: '#030517',
-				lightGray: '#EAEAEA',
-				gray: '#8F8F8F',
-				darkGray: '#2E2F42',
-				red: '#FF6347',
-				orange: '#FF5F5F',
-				pink: '#F062C0'
-			},
-			borderRadius: {
-				4: '0.4rem'
-			},
 			gridTemplateColumns: {
 				'minmax-50': 'minmax(auto, 50%) 1fr'
-			},
-			zIndex: {
-				base: 10,
-				menu: 20,
-				overlay: 30,
-				modal: 40,
-				alwaysOnTop: 50
 			},
 			keyframes: {
 				hoverAnimation: {
@@ -80,8 +65,23 @@ const tailwindConfig = {
 					to: { width: '100%', left: '0' }
 				}
 			},
-			animation: {
-				hoverAnimation: 'hoverAnimation 0.2s forwards'
+			spacing: {
+				xxsmall: '0.8rem',
+				xsmall: '1.6rem',
+				small: '2.4rem',
+				medium: '3.2rem',
+				large: '4.0rem',
+				xlarge: '4.8rem',
+				xxlarge: '5.6rem',
+				container: '130rem',
+				gutter: '3.2rem'
+			},
+			zIndex: {
+				base: 10,
+				menu: 20,
+				overlay: 30,
+				modal: 40,
+				alwaysOnTop: 50
 			}
 		},
 		screens: {

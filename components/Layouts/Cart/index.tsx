@@ -16,12 +16,14 @@ import Divider from '@/components/Divider';
 import ShowCase from '@/components/ShowCase';
 
 export type CartLayoutProps = {
+	recommendedTitle: string;
 	recommendedGames: GameCardProps[];
 	recommendedHighlight: HighlightProps;
 } & CartListProps &
 	Pick<PaymentOptionsProps, 'cards'>;
 
 const Cart = ({
+	recommendedTitle,
 	recommendedGames,
 	recommendedHighlight,
 	items,
@@ -55,7 +57,7 @@ const Cart = ({
 			</Container>
 
 			<ShowCase
-				title="You may like these games"
+				title={recommendedTitle}
 				games={recommendedGames}
 				highlight={recommendedHighlight}
 			/>

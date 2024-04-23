@@ -17,6 +17,10 @@ const highlightModifiers = {
 		${Content} {
 			text-align: right;
 		}
+
+		${FloatImage} {
+			justify-self: start;
+		}
 	`,
 	left: () => css`
 		grid-template-areas: 'content floatimage';

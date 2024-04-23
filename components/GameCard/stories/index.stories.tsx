@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import GameCard, { GameCardProps } from '@/components/GameCard';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'Game/GameCard',
@@ -18,7 +19,8 @@ export default {
 		developer: 'Rockstar Games',
 		img: 'https://source.unsplash.com/user/willianjusten/300x140',
 		price: 235,
-		promotionalPrice: 200
+		promotionalPrice: 200,
+		onClick: fn()
 	},
 	parameters: {
 		layout: 'centered',

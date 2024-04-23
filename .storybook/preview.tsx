@@ -1,14 +1,14 @@
 import React from 'react';
 import type { Preview, StoryFn } from '@storybook/react';
+import { withThemeByClassName } from '@storybook/addon-themes';
 import StyledComponentsRegistry from '../lib/registry';
 import { Providers } from '../components/Providers';
 import GlobalStyles from '../public/styles/global';
-import { withThemeByClassName } from '@storybook/addon-styling';
 import '../public/styles/tailwind-import.css';
 
 export const preview: Preview = {
 	parameters: {
-		actions: { argTypesRegex: '^on[A-Z].*' },
+		// actions: { argTypesRegex: '^on[A-Z].*' },
 		controls: {
 			matchers: {
 				color: /(background|color)$/i,

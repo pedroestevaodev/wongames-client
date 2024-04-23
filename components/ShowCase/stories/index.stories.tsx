@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ShowCase, { ShowCaseProps } from '@/components/ShowCase';
 import highlightItems from '@/components/Highlight/mocks/mock';
 import gameCardSliderItems from '@/components/GameCardSlider/mocks/mock';
+import { fn } from "@storybook/test";
 
 export default {
 	title: 'ShowCase',
@@ -11,6 +12,9 @@ export default {
 		backgrounds: {
 			default: 'dark'
 		}
+	},
+	args: {
+		onClick: fn()
 	},
 	decorators: [
 		(Story) => (
