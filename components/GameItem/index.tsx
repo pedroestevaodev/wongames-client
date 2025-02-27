@@ -2,32 +2,36 @@ import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
 import { RiDownloadCloudFill } from '@remixicon/react';
-import { formatPrice } from '@/utils/formats';
+import { useCart } from "@/hooks/useCart";
 
 export type PaymentInfoProps = {
-	number: string;
-	flag: string;
-	img: string;
-	purchaseDate: string;
+	number: string
+	flag: string | null
+	img: string | null
+	purchaseDate: string
 };
 
 export type GameItemProps = {
+	id: string;
 	img: string;
 	title: string;
-	price: number | bigint;
+	price: string;
 	downloadLink?: string;
 	paymentInfo?: PaymentInfoProps;
 };
 
 const GameItem = ({
+	id,
 	img,
 	title,
 	price,
 	downloadLink,
 	paymentInfo
 }: GameItemProps) => {
+	const { isInCart, removeFromCart } = useCart();
+
 	return (
-		<S.GameItemContainer>
+		<S.GameItemContainer data-cy="game-item">
 			<S.GameContent>
 				<S.ImageBox>
 					<Image src={img} width={151} height={70} alt={title} />
@@ -46,7 +50,12 @@ const GameItem = ({
 							</S.DownloadLink>
 						)}
 					</S.Title>
-					<S.Price>{formatPrice(price)}</S.Price>
+					<S.Group>
+						<S.Price>{price}</S.Price>
+						{isInCart(id) && (
+							<S.Remove onClick={() => removeFromCart(id)}>Remove</S.Remove>
+						)}
+					</S.Group>
 				</S.Content>
 			</S.GameContent>
 
@@ -55,12 +64,14 @@ const GameItem = ({
 					<p>{paymentInfo.purchaseDate}</p>
 					<S.CardInfo>
 						<span>{paymentInfo.number}</span>
-						<Image
-							src={paymentInfo.img}
-							width={38}
-							height={24}
-							alt={paymentInfo.flag}
-						/>
+						{!!paymentInfo.img && !!paymentInfo.flag && (
+							<Image
+								src={paymentInfo.img}
+								width={38}
+								height={24}
+								alt={paymentInfo.flag}
+							/>
+						)}
 					</S.CardInfo>
 				</S.PaymentContent>
 			)}

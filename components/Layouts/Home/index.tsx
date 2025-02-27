@@ -15,12 +15,12 @@ export type HomeLayoutProps = {
 	mostPopularGamesTitle: string;
 	mostPopularHighlight: HighlightProps;
 	mostPopularGames: GameCardProps[];
-	upcommingGamesTitle: string;
-	upcommingHighligth: HighlightProps;
-	upcommingGames: GameCardProps[];
+	upcomingGamesTitle: string;
+	upcomingHighlight: HighlightProps;
+	upcomingGames: GameCardProps[];
 	freeGamesTitle: string;
 	freeGames: GameCardProps[];
-	freeHighligth: HighlightProps;
+	freeHighlight: HighlightProps;
 };
 
 const Home = ({
@@ -30,11 +30,11 @@ const Home = ({
 	mostPopularGamesTitle,
 	mostPopularHighlight,
 	mostPopularGames,
-	upcommingGamesTitle,
-	upcommingHighligth,
-	upcommingGames,
+	upcomingGamesTitle,
+	upcomingHighlight,
+	upcomingGames,
 	freeGamesTitle,
-	freeHighligth,
+	freeHighlight,
 	freeGames
 }: HomeLayoutProps) => {
 	return (
@@ -56,15 +56,15 @@ const Home = ({
 			/>
 
 			<ShowCase
-				title={upcommingGamesTitle}
-				games={upcommingGames}
-				highlight={upcommingHighligth}
+				title={freeGamesTitle}
+				highlight={freeHighlight}
+				games={freeGames}
 			/>
 
 			<ShowCase
-				title={freeGamesTitle}
-				highlight={freeHighligth}
-				games={freeGames}
+				title={upcomingGamesTitle}
+				highlight={upcomingHighlight}
+				games={upcomingGames}
 			/>
 		</Base>
 	);

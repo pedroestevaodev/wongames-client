@@ -1,12 +1,9 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { GameCardSliderProps } from '..';
 
-type ContainerProps = Pick<GameCardSliderProps, 'color'>;
-
-export const GameCardSliderContainer = styled.section<ContainerProps>`
-	${({ color }) => css`
+export const GameCardSliderContainer = styled.section<{ $color: 'white' | 'black' }>`
+	${({ $color }) => css`
 		@media (max-width: 1399px) {
 			overflow-x: hidden;
 		}
@@ -38,7 +35,7 @@ export const GameCardSliderContainer = styled.section<ContainerProps>`
 		.slick-prev,
 		.slick-next {
 			display: block;
-			color: ${color};
+			color: ${$color};
 			cursor: pointer;
 			position: absolute;
 			top: 50%;

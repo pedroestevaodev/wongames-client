@@ -2,19 +2,17 @@ import React from 'react';
 import * as S from './styles';
 import Dropdown from '../Dropdown';
 import CartIcon from '../CartIcon';
-import { GameItemProps } from '../GameItem';
 import CartList from '../CartList';
 
 export type CartDropdownProps = {
-	items?: GameItemProps[];
-	total?: number | bigint;
+	className?: string;
 };
 
-const CartDropdown = ({ items, total }: CartDropdownProps) => {
+const CartDropdown = ({ className = "" }: CartDropdownProps) => {
 	return (
-		<S.CartDropdownContainer>
-			<Dropdown title={<CartIcon quantity={items?.length} />}>
-				<CartList items={items} total={total} hasButton />
+		<S.CartDropdownContainer className={className}>
+			<Dropdown title={<CartIcon />}>
+				<CartList hasButton />
 			</Dropdown>
 		</S.CartDropdownContainer>
 	);

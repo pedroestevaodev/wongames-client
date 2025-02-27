@@ -1,55 +1,55 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import media from "styled-media-query";
+import * as HeadingStyles from '@/components/Heading/styles';
 
 export const TextContentContainer = styled.div`
-	color: #fafafa;
+	${({ theme }) => css`
+		color: ${theme.colors.white};
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		color: #fafafa;
-		margin: 1.6rem 0;
+		${media.greaterThan('medium')`
+			background: ${theme.colors.white};
+			padding: ${theme.spacings.medium};
+			color: ${theme.colors.black};
+		`}
 
-		@media (min-width: 768px) {
-			color: #030517;
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			color: ${theme.colors.white};
+			margin: ${theme.spacings.xsmall} 0;
+			${HeadingStyles.wrapperModifiers.lineLeft(theme, 'secondary')};
+
+			${media.greaterThan('medium')`
+				color: ${theme.colors.black};
+			`}
 		}
-	}
 
-	p {
-		margin-bottom: 1.6rem;
-	}
-
-	a {
-		color: #f231a5;
-	}
-
-	img {
-		max-width: minmax(70rem, 100%);
-		margin-bottom: 1.6rem;
-	}
-
-	ul,
-	ol {
-		padding: 1.6rem 2.4rem;
-	}
-
-	hr {
-		margin: 2.4rem 0;
-	}
-
-	.text-content {
-		ul {
-			list-style: inherit;
+		p {
+			margin-bottom: ${theme.spacings.xsmall};
 		}
-	}
 
-	@media (min-width: 768px) {
-		background-color: #fafafa;
-		color: #030517;
-		padding: 3.2rem;
-	}
+		a {
+			color: ${theme.colors.primary};
+		}
+
+		img,
+		video {
+			max-width: min(70rem, 100%);
+			margin-bottom: ${theme.spacings.xsmall};
+		}
+
+		ul,
+		ol {
+			padding: ${theme.spacings.xsmall} ${theme.spacings.small};
+		}
+
+		hr {
+			margin: ${theme.spacings.small} 0;
+		}
+	`}
 `;

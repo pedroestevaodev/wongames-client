@@ -2,7 +2,7 @@ import { BannerProps } from '@/components/Banner';
 
 const bannerSliderItems: BannerProps[] = [
 	{
-		img: 'https://source.unsplash.com/user/willianjusten/1042x580',
+		img: 'https://images.unsplash.com/photo-1674461315270-d6b04eaff631',
 		title: 'Defy death 1',
 		subTitle: '<p>Play the new <strong>CrashLands</strong> season',
 		buttonLabel: 'Buy now',
@@ -10,14 +10,14 @@ const bannerSliderItems: BannerProps[] = [
 		ribbon: 'Bestselling'
 	},
 	{
-		img: 'https://source.unsplash.com/user/willianjusten/1042x582',
+		img: 'https://images.unsplash.com/photo-1674461315270-d6b04eaff631',
 		title: 'Defy death 2',
 		subTitle: '<p>Play the new <strong>CrashLands</strong> season',
 		buttonLabel: 'Buy now',
 		buttonLink: '/games/defy-death'
 	},
 	{
-		img: 'https://source.unsplash.com/user/willianjusten/1042x581',
+		img: 'https://images.unsplash.com/photo-1674461315270-d6b04eaff631',
 		title: 'Defy death 3',
 		subTitle: '<p>Play the new <strong>CrashLands</strong> season',
 		buttonLabel: 'Buy now',

@@ -10,11 +10,11 @@ const homeLayoutMock: HomeLayoutProps = {
 	mostPopularGamesTitle: 'Most Popular',
 	mostPopularHighlight: highlightItems,
 	mostPopularGames: gameCardSliderItems,
-	upcommingGamesTitle: 'Upcomming',
-	upcommingHighligth: highlightItems,
-	upcommingGames: gameCardSliderItems,
+	upcomingGamesTitle: 'Upcomming',
+	upcomingHighlight: highlightItems,
+	upcomingGames: gameCardSliderItems,
 	freeGamesTitle: 'Free Games',
-	freeHighligth: highlightItems,
+	freeHighlight: highlightItems,
 	freeGames: gameCardSliderItems
 };
 

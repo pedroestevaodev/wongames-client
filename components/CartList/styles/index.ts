@@ -3,22 +3,23 @@
 import styled, { css } from 'styled-components';
 import { tint } from 'polished';
 import * as EmptyStyles from '@/components/Empty/styles';
+import media from "styled-media-query";
 
 type CartListContainerProps = {
-	isEmpty: boolean;
+	$isEmpty: boolean;
 };
 
 export const CartListContainer = styled.main<CartListContainerProps>`
-	${({ isEmpty }) => css`
-		background: #fafafa;
+	${({ theme, $isEmpty }) => css`
+		background-color: ${theme.colors.white};
 		display: flex;
 		flex-direction: column;
 		align-self: start;
 
-		${isEmpty &&
+		${$isEmpty &&
 		css`
 			${EmptyStyles.EmptyContainer} {
-				padding-bottom: 3.2rem;
+				padding-bottom: ${theme.spacings.medium};
 			}
 
 			${EmptyStyles.EmptyImage} {
@@ -26,35 +27,60 @@ export const CartListContainer = styled.main<CartListContainerProps>`
 			}
 
 			${EmptyStyles.Title} {
-				font-size: 1.8rem;
+				font-size: ${theme.font.sizes.large};
 			}
 
 			${EmptyStyles.Description} {
-				color: #030517;
-				font-size: 1.6rem;
+				color: ${theme.colors.black};
+        		font-size: ${theme.font.sizes.medium};
 			}
 		`}
 	`}
 `;
 
-export const Footer = styled.div`
-	background: ${tint(0.2, '#EAEAEA')};
-	color: #030517;
-	font-weight: 600;
-	font-size: 1.4rem;
-	padding: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+export const Loading = styled.div`
+	${({ theme }) => css`
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: ${theme.colors.white};
+		height: 40rem;
+		min-width: 56rem;
 
-	@media (min-width: 768px) {
-		font-size: 1.6rem;
-		padding: 2.4rem;
-	}
+		svg {
+			height: 10rem;
+			width: 10rem;
+		}
+	`}
+`;
+
+export const GamesList = styled.div`
+	max-height: 40rem;
+	overflow-y: auto;
+`;
+
+export const Footer = styled.div`
+	${({ theme }) => css`
+		background: ${tint(0.2, theme.colors.lightGray)};
+		color: ${theme.colors.black};
+		font-weight: ${theme.font.bold};
+		font-size: ${theme.font.sizes.small};
+		padding: 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		${media.greaterThan('medium')`
+			font-size: ${theme.font.sizes.medium};
+			padding: ${theme.spacings.small};
+		`}
+	`}
 `;
 
 export const FooterLabel = styled.span``;
 
 export const Total = styled.span`
-	color: #f231a5;
+	${({ theme }) => css`
+		color: ${theme.colors.primary};
+	`}
 `;

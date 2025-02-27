@@ -9,7 +9,6 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Button from '../Button';
-import { useWindowSize } from 'usehooks-ts';
 import CartDropdown from '../CartDropdown';
 import UserDropdown from '../UserDropdown';
 
@@ -19,59 +18,55 @@ export type MenuProps = {
 };
 
 const Menu = ({ username, loading }: MenuProps) => {
-	const [isOpen, setIsOpen] = useState(false);
-	const { width } = useWindowSize();
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	return (
-		<S.MenuContainer isOpen={isOpen}>
-			{width < 768 && (
-				<S.IconWrapper onClick={() => setIsOpen(!isOpen)}>
-					<FontAwesomeIcon icon={faBars} aria-label="Open Menu" />
-				</S.IconWrapper>
-			)}
+		<S.MenuContainer $isOpen={isOpen}>
+			<S.IconWrapper className="flex md:!hidden" aria-label="Open Menu" onClick={() => setIsOpen(!isOpen)}>
+				<FontAwesomeIcon icon={faBars} />
+			</S.IconWrapper>
 
 			<S.LogoWrapper>
 				<Link href="/">
-					<Logo hideOnMobile />
+					<Logo $hideOnMobile />
 				</Link>
 			</S.LogoWrapper>
 
-			{width > 767 ? (
-				<S.MenuNav>
-					<S.MenuLink href="/">Home</S.MenuLink>
-					<S.MenuLink href="/games">Explore</S.MenuLink>
-				</S.MenuNav>
-			) : null}
+			<S.MenuNav className="hidden md:block">
+				<S.MenuLink href="/">Home</S.MenuLink>
+				<S.MenuLink href="/games">Explore</S.MenuLink>
+			</S.MenuNav>
 
 			{!loading && (
 				<>
 					<S.MenuGroup>
 						<S.IconWrapper>
-							<FontAwesomeIcon icon={faMagnifyingGlass} aria-label="Search" />
+							<FontAwesomeIcon icon={faMagnifyingGlass} className="!size-[16px]" aria-label="Search" />
 						</S.IconWrapper>
 						<S.IconWrapper>
-							{width < 768 ? (
-								<Link href="/cart">
-									<FontAwesomeIcon
-										icon={faCartShopping}
-										aria-label="Open Shopping Cart"
-									/>
-								</Link>
-							) : (
-								<CartDropdown />
-							)}
+							<Link href="/cart" className="flex items-center justify-center md:hidden">
+								<FontAwesomeIcon
+									icon={faCartShopping}
+									className="!size-[18px]"
+									aria-label="Open Shopping Cart"
+								/>
+							</Link>
+							<CartDropdown className="hidden md:block" />
 						</S.IconWrapper>
-						{width > 767 &&
-							(!username ? (
-								<Button as={Link} href="/sign-in">
-									Sign in
-								</Button>
-							) : (
-								<UserDropdown username={username} />
-							))}
+						{!username ? (
+							<Button 
+								as={Link} 
+								href="/sign-in"
+								className="hidden md:inline-flex"
+							>
+								Sign in
+							</Button>
+						) : (
+							<UserDropdown className="hidden md:block" username={username} />
+						)}
 					</S.MenuGroup>
 
-					<S.MenuFull isOpen={isOpen} aria-hidden={!isOpen}>
+					<S.MenuFull $isOpen={isOpen} aria-hidden={!isOpen}>
 						<FontAwesomeIcon
 							icon={faXmark}
 							aria-label="Close Menu"
@@ -104,6 +99,7 @@ const Menu = ({ username, loading }: MenuProps) => {
 					</S.MenuFull>
 				</>
 			)}
+
 		</S.MenuContainer>
 	);
 };

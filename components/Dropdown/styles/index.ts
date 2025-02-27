@@ -3,7 +3,7 @@
 import styled, { css } from 'styled-components';
 
 type DropdownContainerProps = {
-	isOpen?: boolean;
+	$isOpen?: boolean;
 };
 
 const wrapperModifiers = {
@@ -23,7 +23,7 @@ const wrapperModifiers = {
 };
 
 export const DropdownContainer = styled.div<DropdownContainerProps>`
-	${({ isOpen }) => css`
+	${({ theme, $isOpen }) => css`
 		position: relative;
 		width: max-content;
 
@@ -31,53 +31,59 @@ export const DropdownContainer = styled.div<DropdownContainerProps>`
 		${Overlay} {
 			transition:
 				transform 0.2s ease-in,
-				opacity 0.3s ease-in-out;
+				opacity ${theme.transition.default};
 
-			${isOpen && wrapperModifiers.open()}
-			${!isOpen && wrapperModifiers.close()}
+			${$isOpen && wrapperModifiers.open()}
+			${!$isOpen && wrapperModifiers.close()}
 		}
 	`}
 `;
 
 export const Title = styled.div`
-	position: relative;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	color: #fafafa;
-	padding-right: 2.4rem;
-	z-index: 50;
+	${({ theme }) => css`
+		position: relative;
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		color: ${theme.colors.white};
+		padding-right: 2.4rem;
+		z-index: ${theme.layers.alwaysOnTop};
+	`}
 `;
 
 export const Content = styled.div`
-	position: absolute;
-	right: 0;
-	display: flex;
-	flex-direction: column;
-	background-color: #fafafa;
-	border-radius: 6px;
-	color: #030517;
-	cursor: auto;
-	margin-top: 2.4rem;
-	z-index: 50;
-
-	&::before {
-		content: '';
+	${({ theme }) => css`
 		position: absolute;
-		top: -1.2rem;
-		right: 2.4rem;
-		border-right: 1.2rem solid transparent;
-		border-left: 1.2rem solid transparent;
-		border-bottom: 1.2rem solid #fafafa;
-	}
+		right: 0;
+		display: flex;
+		flex-direction: column;
+		background-color: ${theme.colors.white};
+		border-radius: 6px;
+		color: ${theme.colors.black};
+		cursor: auto;
+		margin-top: ${theme.spacings.small};
+		z-index: ${theme.layers.alwaysOnTop};
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: -1.2rem;
+			right: ${theme.spacings.small};
+			border-right: 1.2rem solid transparent;
+			border-left: 1.2rem solid transparent;
+			border-bottom: 1.2rem solid ${theme.colors.white};
+		}
+	`}
 `;
 
 export const Overlay = styled.div`
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 30;
+	${({ theme }) => css`
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: ${theme.layers.overlay};
+	`}
 `;

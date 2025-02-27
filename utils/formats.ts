@@ -12,3 +12,15 @@ export const formatDate = (date: string) => {
 		year: 'numeric'
 	}).format(new Date(date));
 };
+
+export const formatImageUrl = (url: string | undefined) => {
+	if (process.env.NEXT_PUBLIC_API_URL) {
+		return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+	}
+
+	if (url) {
+		return url;
+	}
+
+	return null;
+};

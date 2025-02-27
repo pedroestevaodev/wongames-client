@@ -1,14 +1,14 @@
 import React from 'react';
-import type { Preview, StoryFn } from '@storybook/react';
+import type { Preview, StoryContext, StoryFn } from '@storybook/react';
+import { ThemeProvider } from "styled-components";
 import { withThemeByClassName } from '@storybook/addon-themes';
-import StyledComponentsRegistry from '../lib/registry';
-import { Providers } from '../components/Providers';
 import GlobalStyles from '../public/styles/global';
+import { theme } from '../public/styles/theme';
+import { CartContextDefaultValues, CartContext } from '../hooks/useCart';
 import '../public/styles/tailwind-import.css';
 
 export const preview: Preview = {
 	parameters: {
-		// actions: { argTypesRegex: '^on[A-Z].*' },
 		controls: {
 			matchers: {
 				color: /(background|color)$/i,
@@ -32,13 +32,19 @@ export const preview: Preview = {
 };
 
 export const decorators: Parameters<StoryFn<unknown>>[0][] = [
-	(Story: React.ComponentType) => (
-		<StyledComponentsRegistry>
-			<Providers>
+	(Story: React.ComponentType, context: StoryContext) => (
+		<ThemeProvider theme={theme}>
+			<CartContext.Provider
+				value={{
+					...CartContextDefaultValues,
+					...(context?.args?.cartContextValue || {}),
+					...context.args
+				}}
+			>
 				<GlobalStyles removeBg />
 				<Story />
-			</Providers>
-		</StyledComponentsRegistry>
+			</CartContext.Provider>
+		</ThemeProvider>
 	),
 	withThemeByClassName({
 		themes: {

@@ -5,21 +5,13 @@ import { GameFragment } from "./fragments/games";
 export const GET_RECOMMENDED = gql`
 	query GetRecommended {
 		recommended {
-			data {
-				attributes {
-					section {
-						title
-						highlight {
-							...HighlightFragment
-						}
-						games {
-                            data {
-                                attributes {
-                                    ...GameFragment
-                                }
-                            }
-						}
-					}
+			section {
+				title
+				highlight {
+					...HighlightFragment
+				}
+				games {
+					...GameFragment
 				}
 			}
 		}

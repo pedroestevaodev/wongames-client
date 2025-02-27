@@ -1,7 +1,17 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import Game from '@/components/Layouts/Game'; // GameLayoutProps
-import { Enum_Game_Rating, GameEntityResponseCollection, GetRecommendedQuery, GetRecommendedQueryVariables, GetUpcomingQuery, GetUpcomingQueryVariables, HighlightFragmentFragment, Query } from '@/graphql/generated/graphql';
+import Game from '@/components/Layouts/Game';
+import {
+	Enum_Game_Rating,
+	GameFragmentFragment,
+	GetGameBySlugQuery,
+	GetGameBySlugQueryVariables,
+	GetRecommendedQuery,
+	GetRecommendedQueryVariables,
+	GetUpcomingQuery,
+	GetUpcomingQueryVariables,
+	HighlightFragmentFragment
+} from '@/graphql/generated/graphql';
 import { getClient } from '@/lib/apolloClient';
 import { GET_GAME_BY_SLUG } from '@/graphql/queries/games';
 import { PlatformProps, RatingProps } from '@/components/GameDetails';
@@ -13,22 +23,22 @@ import { GET_UPCOMING } from "@/graphql/queries/upcoming";
 const Index = async ({ params }: { params: { slug: string } }) => {
 	const { slug } = params;
 
-	const { data, error } = await getClient().query<Query>({
+	const { data, error } = await getClient().query<GetGameBySlugQuery, GetGameBySlugQueryVariables>({
 		query: GET_GAME_BY_SLUG,
 		variables: { slug: slug },
 		context: {
 			fetchOptions: {
 				next: { revalidate: 60 }
-			}
-		}
+			},
+		},
 	});
 
-	if (!data.games?.data.length) return notFound();
+	if (!data.games.length) return notFound();
 
 	if (error) return notFound();
 
-	const { 
-		data: { recommended } 
+	const {
+		data: { recommended }
 	} = await getClient().query<GetRecommendedQuery, GetRecommendedQueryVariables>({
 		query: GET_RECOMMENDED,
 		context: {
@@ -52,47 +62,39 @@ const Index = async ({ params }: { params: { slug: string } }) => {
 
 	return (
 		<Game
-			cover={
-				`${process.env.NEXT_PUBLIC_API_URL}${data.games?.data[0]?.attributes?.cover?.data?.attributes?.url}` ||
-				''
-			}
+			cover={`${process.env.NEXT_PUBLIC_API_URL}${data.games[0]?.cover?.url}` || ''}
 			gameInfo={{
-				title: data.games?.data[0]?.attributes?.name || '',
-				price: data.games?.data[0]?.attributes?.price || 0,
-				description: data.games?.data[0]?.attributes?.short_description || ''
+				id: data.games[0]?.id || '',
+				title: data.games[0]?.name || '',
+				price: data.games[0]?.price || 0,
+				description: data.games[0]?.short_description || ''
 			}}
 			gallery={
-				(data.games?.data[0]?.attributes?.gallery?.data.map((image) => ({
-					src: `${process.env.NEXT_PUBLIC_API_URL}${image.attributes?.url}`,
-					label: image.attributes?.alternativeText
+				(data.games[0]?.gallery.map((image) => ({
+					src: `${process.env.NEXT_PUBLIC_API_URL}${image?.url}`,
+					label: image?.alternativeText
 				})) as unknown as GalleryImageProps[]) ?? []
 			}
-			description={data.games?.data[0]?.attributes?.description || ''}
+			description={data.games[0]?.description || ''}
 			details={{
-				developer:
-					data.games?.data[0]?.attributes?.developers?.data[0]?.attributes
-						?.name || '',
-				releaseDate: data.games?.data[0]?.attributes?.release_date || '',
+				developer: data.games[0]?.developers[0]?.name || '',
+				releaseDate: data.games[0]?.release_date || '',
 				platforms:
-					(data.games?.data[0]?.attributes?.platforms?.data.map(
-						(platform) => platform.attributes?.name
+					(data.games[0]?.platforms.map(
+						(platform) => platform?.name
 					) as PlatformProps[]) ?? [],
-				publisher:
-					data.games?.data[0]?.attributes?.publisher?.data?.attributes?.name ||
-					'',
-				rating:
-					(data.games?.data[0]?.attributes?.rating as RatingProps) ||
-					Enum_Game_Rating.Br18,
+				publisher: data.games[0]?.publisher?.name || '',
+				rating: (data.games[0]?.rating as RatingProps) || Enum_Game_Rating.Br18,
 				genres:
-					(data.games?.data[0].attributes?.categories?.data.map(
-						(category) => category.attributes?.name
+					(data.games[0]?.categories.map(
+						(category) => category?.name
 					) as string[]) ?? []
 			}}
-			upcomingTitle={showcase?.data?.attributes?.upcomingGames?.title || "Upcoming games"}
-			upcomingGames={gamesMapper(upcomingGames as GameEntityResponseCollection)}
-			upcomingHighlight={highlightMapper(showcase?.data?.attributes?.upcomingGames?.highlight as HighlightFragmentFragment)}
-			recommendedTitle={recommended?.data?.attributes?.section.title || "You may like these games"}
-			recommendedGames={gamesMapper(recommended?.data?.attributes?.section.games as GameEntityResponseCollection)}
+			upcomingTitle={showcase?.upcomingGames?.title || "Upcoming games"}
+			upcomingGames={gamesMapper(upcomingGames as GameFragmentFragment[])}
+			upcomingHighlight={highlightMapper(showcase?.upcomingGames?.highlight as HighlightFragmentFragment)}
+			recommendedTitle={recommended?.section.title || "You may like these games"}
+			recommendedGames={gamesMapper(recommended?.section.games as GameFragmentFragment[])}
 		/>
 	);
 };

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import FormSignUp from '@/components/FormSignUp';
+import { MockedProvider } from "@apollo/client/testing";
 
 export default {
 	title: 'Form/FormSignUp',
@@ -13,7 +14,9 @@ export default {
 	decorators: [
 		(Story) => (
 			<div style={{ width: 300, margin: 'auto' }}>
-				<Story />
+				<MockedProvider>
+					<Story />
+				</MockedProvider>
 			</div>
 		)
 	]

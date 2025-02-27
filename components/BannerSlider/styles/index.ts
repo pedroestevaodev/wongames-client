@@ -2,30 +2,34 @@
 
 import styled, { css } from 'styled-components';
 import * as BannerStyles from '@/components/Banner/styles';
+import media from "styled-media-query";
 
 export const BannerSliderContainer = styled.section`
-	${() => css`
+	${({ theme }) => css`
 		.slick-dots {
 			list-style: none;
 			display: flex !important;
 			align-items: center;
 			justify-content: center;
-			margin-top: 1.4rem;
+			margin-top: ${theme.spacings.small};
 
 			li {
-				background: #fafafa;
+				background: ${theme.colors.white};
 				width: 1.2rem;
 				height: 1.2rem;
 				border-radius: 100%;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				margin: 0 0.8rem;
+				margin: 0 ${theme.spacings.xxsmall};
 				cursor: pointer;
+				transition: box-shadow ${theme.transition.default};
+
 				&.slick-active {
-					background: #f231a5;
+					background: ${theme.colors.primary};
 				}
 			}
+
 			button {
 				opacity: 0;
 				width: 1.2rem;
@@ -34,7 +38,15 @@ export const BannerSliderContainer = styled.section`
 			}
 		}
 
-		@media (min-width: 1200px) {
+		.slick-slide {
+			visibility: hidden;
+
+			&.slick-active.slick-current {
+				visibility: visible;
+			}
+		}
+
+		${media.greaterThan('large')`
 			${BannerStyles.BannerContainer} {
 				max-width: 104rem;
 				margin: 0 auto;
@@ -49,9 +61,9 @@ export const BannerSliderContainer = styled.section`
 				margin: 0;
 
 				li {
-					margin: 0.8rem 0;
+					margin: ${theme.spacings.xxsmall} 0;
 				}
 			}
-		}
+		`}
 	`}
 `;

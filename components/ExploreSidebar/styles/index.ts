@@ -53,6 +53,10 @@ export const Items = styled.div`
 export const Footer = styled.div`
 	box-shadow: 0 -0.2rem 0.4rem ${rgba('#030517', 0.2)};
 	padding: 2.4rem;
+
+	@media (min-width: 768px) {
+		display: none;
+	}
 `;
 
 const wrapperModifiers = {
@@ -136,14 +140,14 @@ const wrapperModifiers = {
 };
 
 type ExploreSidebarStyleProps = {
-	isOpen: boolean;
+	$isOpen: boolean;
 };
 
 export const ExploreSidebarContainer = styled.div<ExploreSidebarStyleProps>`
-	${({ isOpen }) => css`
+	${({ $isOpen }) => css`
 		@media (max-width: 767px) {
-			${!!isOpen && wrapperModifiers.open()}
-			${!isOpen && wrapperModifiers.close()}
+			${!!$isOpen && wrapperModifiers.open()}
+			${!$isOpen && wrapperModifiers.close()}
 		}
 	`}
 `;

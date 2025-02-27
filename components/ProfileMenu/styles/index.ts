@@ -2,66 +2,100 @@
 
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-
-export const ProfileMenuContainer = styled.nav`
-	display: flex;
-	border-bottom: 0.1rem solid #eaeaea;
-
-	@media (min-width: 768px) {
-		flex-direction: column;
-		border: 0;
-
-		a:not(:last-child) {
-			border-bottom: 0.1rem solid #eaeaea;
-		}
-	}
-`;
-
-const menuModifiers = {
-	default: () => css`
-		background-color: #fafafa;
-		color: #030517;
-	`,
-	active: () => css`
-		background-color: #f231a5;
-		color: #fafafa;
-	`
-};
+import { DefaultTheme } from "styled-components/dist/types";
+import media from "styled-media-query";
 
 type MenuProps = {
-	isActive?: boolean;
+	$isActive?: boolean;
 };
 
-export const Menu = styled(Link)<MenuProps>`
-	display: flex;
-	align-items: center;
-	text-decoration: none;
-	padding: 1.6rem 2.4rem;
-	transition:
-		background-color,
-		color,
-		0.3s ease-in-out;
+const menuModifiers = {
+	default: (theme: DefaultTheme) => css`
+		background: ${theme.colors.white};
+		color: ${theme.colors.black};
+	`,
+	active: (theme: DefaultTheme) => css`
+		background: ${theme.colors.primary};
+		color: ${theme.colors.white};
+	`,
+};
 
-	&:hover {
-		background: #f231a5;
-		color: #fafafa;
-	}
+export const ProfileMenuContainer = styled.nav`
+	${({ theme }) => css`
+		display: flex;
+		border-bottom: 0.1rem solid ${theme.colors.lightGray};
 
-	> span {
-		margin-left: 1.6rem;
-	}
+		${media.greaterThan('medium')`
+			flex-direction: column;
+			border: 0;
 
-	@media (max-width: 767px) {
-		justify-content: center;
-		flex: 1;
+			a:not(:last-child) {
+				border-bottom: 0.1rem solid ${theme.colors.lightGray};
+			}
+		`}
+	`}
+`;
+
+export const Menu = styled(Link) <MenuProps>`
+	${({ theme, $isActive }) => css`
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		padding: ${theme.spacings.xsmall} ${theme.spacings.small};
+		transition: background-color, color, ${theme.transition.default};
+
+		&:hover {
+			background-color: ${theme.colors.primary};
+      		color: ${theme.colors.white};
+		}
 
 		> span {
-			display: none;
+			margin-left: ${theme.spacings.xsmall};
 		}
-	}
 
-	${({ isActive }) =>
-		isActive ? menuModifiers.active() : menuModifiers.default()}
+		${media.lessThan('medium')`
+			justify-content: center;
+			flex: 1;
+
+			> span {
+				display: none;
+			}
+		`}
+
+		${!$isActive && menuModifiers.default(theme)};
+    	${$isActive && menuModifiers.active(theme)};
+	`}
+`;
+
+export const MenuLogout = styled.button<MenuProps>`
+	${({ theme, $isActive }) => css`
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		padding: ${theme.spacings.xsmall} ${theme.spacings.small};
+		transition: background-color, color, ${theme.transition.default};
+
+		&:hover {
+			background-color: ${theme.colors.primary};
+      		color: ${theme.colors.white};
+		}
+
+		> span {
+			margin-left: ${theme.spacings.xsmall};
+		}
+
+		${media.lessThan('medium')`
+			justify-content: center;
+			flex: 1;
+
+			> span {
+				display: none;
+			}
+		`}
+
+		${!$isActive && menuModifiers.default(theme)};
+    	${$isActive && menuModifiers.active(theme)};
+	`}
 `;
 
 export const MenuLabel = styled.span``;

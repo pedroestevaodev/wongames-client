@@ -1,7 +1,6 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { RadioProps } from '..';
 
 export const RadioContainer = styled.div``;
 
@@ -43,11 +42,11 @@ export const Input = styled.input`
 	`}
 `;
 
-export const Label = styled.label<Pick<RadioProps, 'labelColor'>>`
-	${({ labelColor }) => css`
+export const Label = styled.label<{ $labelColor: 'white' | 'black'}>`
+	${({ $labelColor }) => css`
 		cursor: pointer;
 		padding-left: 0.8rem;
-		color: ${labelColor === 'white' ? '#FAFAFA' : '#030517'};
+		color: ${$labelColor === 'white' ? '#FAFAFA' : '#030517'};
 		line-height: 1;
 	`}
 `;

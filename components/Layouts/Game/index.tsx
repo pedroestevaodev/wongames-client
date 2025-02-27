@@ -37,20 +37,20 @@ const Game = ({
 	recommendedTitle,
 	recommendedGames
 }: GameLayoutProps) => {
-	console.log('cover', gallery);
-
 	return (
 		<Base>
-			<S.Cover src={cover} role="image" aria-label="cover" />
+			<S.Cover $src={cover} role="image" aria-label="cover" />
 
 			<S.Main>
 				<S.SectionGameInfo>
 					<GameInfo {...gameInfo} />
 				</S.SectionGameInfo>
 
-				<S.SectionGallery>
-					{!!gallery && <Gallery items={gallery} />}
-				</S.SectionGallery>
+				{!!gallery?.length && (
+					<S.SectionGallery>
+						<Gallery items={gallery} />
+					</S.SectionGallery>
+				)}
 
 				<S.SectionDescription>
 					<TextContent title="Description" content={description} />

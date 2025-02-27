@@ -12,10 +12,11 @@ export default {
 			default: 'dark'
 		}
 	},
-	args: {
-		items: cartListMock,
-		total: 330,
-		onClick: fn()
+	argTypes: {
+		cartContextValue: {
+			type: ''
+		},
+		total: '',
 	},
 	decorators: [
 		(Story) => (
@@ -26,16 +27,21 @@ export default {
 	]
 } as Meta<CartListProps>;
 
-export const Default: StoryObj<CartListProps> = {};
-
-export const WithButton: StoryObj<CartListProps> = {
+export const Default: StoryObj = {
 	args: {
-		hasButton: true
-	}
+		total: 'R$ 330,00',
+		cartContextValue: { items: cartListMock },
+		onClick: fn()
+	},
 };
 
-export const Empty: StoryObj<CartListProps> = {
+export const WithButton: StoryObj = {
 	args: {
-		items: []
-	}
+		hasButton: true,
+		total: 'R$ 330,00',
+		cartContextValue: { items: cartListMock },
+		onClick: fn()
+	},
 };
+
+export const Empty: StoryObj<CartListProps> = {};

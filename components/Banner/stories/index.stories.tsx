@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Banner, { BannerProps } from '@/components/Banner';
+import Banner, { BannerProps } from '../';
 import { fn } from "@storybook/test";
 
 export default {
@@ -11,10 +11,9 @@ export default {
 		}
 	},
 	args: {
-		img: 'https://source.unsplash.com/user/willianjusten/1042x580',
+		img: 'https://images.unsplash.com/photo-1674461315270-d6b04eaff631',
 		title: 'Defy death',
-		subTitle:
-			'<p>Play the new <strong className="text-primary font-bold">CrashLands</strong> season</p>',
+		subTitle: '<p>Play the new <strong>CrashLands</strong> season</p>',
 		buttonLabel: 'Buy now',
 		buttonLink: '/games/defy-death',
 		onClick: fn()

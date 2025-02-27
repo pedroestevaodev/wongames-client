@@ -2,17 +2,23 @@
 
 import React from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ThemeProvider } from "styled-components";
+import { theme } from "@/public/styles/theme";
 
-export default function ThemeProviderWrapper({
+const ThemeProviderWrapper = ({
 	children
-}: React.PropsWithChildren) {
+}: React.PropsWithChildren) => {
 	return (
-		<NextThemesProvider
-			attribute="data-theme-mode"
-			defaultTheme="light"
-			themes={['light', 'dark']}
-		>
-			{children}
-		</NextThemesProvider>
+		<ThemeProvider theme={theme}>
+			<NextThemesProvider
+				attribute="data-theme-mode"
+				defaultTheme="light"
+				themes={['light', 'dark']}
+			>
+				{children}
+			</NextThemesProvider>
+		</ThemeProvider>
 	);
-}
+};
+
+export default ThemeProviderWrapper;

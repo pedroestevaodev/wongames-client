@@ -17,7 +17,7 @@ const Slider: React.ForwardRefRenderFunction<SlickSlider, SliderProps> = (
 ) => {
 	return (
 		<S.SliderContainer>
-			<SlickSlider ref={ref} {...settings}>
+			<SlickSlider ref={ref} {...settings} data-testid="banner-slider">
 				{children}
 			</SlickSlider>
 		</S.SliderContainer>

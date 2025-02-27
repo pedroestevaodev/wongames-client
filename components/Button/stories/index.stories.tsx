@@ -3,6 +3,7 @@ import Button, { ButtonProps } from '@/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { fn } from "@storybook/test";
+import Link from "next/link";
 
 export default {
 	title: 'Form/Button',
@@ -50,7 +51,7 @@ export const AsLink: StoryObj<ButtonProps> = {
 	args: {
 		size: 'large',
 		children: 'Buy now',
-		as: 'a',
+		as: Link,
 		href: '/link'
 	}
 };

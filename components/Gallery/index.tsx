@@ -66,11 +66,14 @@ export type GalleryProps = {
 
 const Gallery = ({ items }: GalleryProps) => {
 	const slider = useRef<SlickSlider>(null);
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
 		const handleKeyUp = ({ key }: KeyboardEvent) => {
-			key === 'Escape' && setIsOpen(false);
+			if (key === 'Escape') {
+				setIsOpen(false);
+			}
 		};
 
 		window.addEventListener('keyup', handleKeyUp);
@@ -96,13 +99,13 @@ const Gallery = ({ items }: GalleryProps) => {
 				))}
 			</Slider>
 
-			<S.Modal isOpen={isOpen} aria-label="modal" aria-hidden={!isOpen}>
+			<S.Modal $isOpen={isOpen} aria-label="modal" aria-hidden={!isOpen}>
 				<S.Close
 					role="button"
 					aria-label="close modal"
-					// onClicl={() => setIsOpen(false)}
+					onClick={() => setIsOpen(false)}
 				>
-					<RiCloseLine size={40} onClick={() => setIsOpen(false)} />
+					<RiCloseLine size={40} />
 				</S.Close>
 
 				<S.Content>

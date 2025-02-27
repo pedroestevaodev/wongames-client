@@ -9,12 +9,12 @@ export default {
 	parameters: {
 		layout: 'centered',
 		backgrounds: {
-			default: 'dark'
-		}
+			default: 'dark',
+		},
 	},
 	args: {
 		items: ordersListMock,
-		onClick: fn()
+		onClick: fn(),
 	},
 	decorators: [
 		(Story) => (

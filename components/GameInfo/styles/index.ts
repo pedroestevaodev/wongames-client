@@ -1,60 +1,67 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as RibbonStyles from '@/components/Ribbon/styles';
+import media from "styled-media-query";
 
 export const GameInfoContainer = styled.div`
-	position: relative;
-	background: #fafafa;
-	padding: 2.4rem;
+	${({ theme }) => css`
+		position: relative;
+		background: ${theme.colors.white};
+		padding: ${theme.spacings.small};
 
-	${RibbonStyles.RibbonContainer} {
+		${RibbonStyles.RibbonContainer} {
 		right: -1rem;
 
 		&:before {
 			border-right-width: 1rem;
 		}
-	}
-
-	@media (min-width: 768px) {
-		${RibbonStyles.RibbonContainer} {
-			right: 2.4rem;
-			top: 2.4rem;
-			font-size: 1.8rem;
-
-			&:before {
-				border: none;
-			}
 		}
-	}
+
+		${media.greaterThan('medium')`
+			${RibbonStyles.RibbonContainer} {
+				right: ${theme.spacings.small};
+				top: ${theme.spacings.small};
+				font-size: ${theme.font.sizes.large};
+
+				&:before {
+					border: none;
+				}
+			}
+		`}
+	`}
 `;
 
 export const Description = styled.p`
-	font-size: 1.4rem;
-	color: #8f8f8f;
-	margin-bottom: 2.4rem;
+	${({ theme }) => css`
+		font-size: ${theme.font.sizes.small};
+		color: ${theme.colors.gray};
+		margin-bottom: ${theme.spacings.small};
 
-	@media (min-width: 768px) {
-		max-width: 77rem;
-	}
+		${media.greaterThan('medium')`
+			max-width: 77rem;
+		`}
+	`}
 `;
 
 export const ButtonsWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	> button {
-		width: 100%;
-		margin-bottom: 0.8rem;
-	}
-
-	@media (min-width: 768px) {
-		flex-direction: row-reverse;
+	${({ theme }) => css`
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
 		> button {
-			width: initial;
-			margin-bottom: 0;
+			width: 100%;
+			margin-bottom: ${theme.spacings.xxsmall};
 		}
-	}
+
+		${media.greaterThan('medium')`
+			flex-direction: row-reverse;
+
+			> button {
+				width: initial;
+				margin-bottom: 0;
+			}
+		`}
+	`}
 `;

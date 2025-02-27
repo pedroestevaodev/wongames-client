@@ -1,29 +1,25 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { TextFieldProps } from '..';
-
-type IconPositionProps = Pick<TextFieldProps, 'iconPosition'>;
-
-type ContainerProps = Pick<TextFieldProps, 'disabled'> & { error?: boolean };
+import { DefaultTheme } from "styled-components/dist/types";
 
 const containerModifiers = {
-	error: () => css`
+	error: (theme: DefaultTheme) => css`
 		${InputWrapper} {
-			border-color: #ff6347;
+			border-color: ${theme.colors.red};
 		}
 
 		${Icon},
 		${Label} {
-			color: #ff6347;
+			color: ${theme.colors.red};
 		}
 	`,
-	disabled: () => css`
+	disabled: (theme: DefaultTheme) => css`
 		${Label},
 		${Input},
         ${Icon} {
 			cursor: not-allowed;
-			color: #8f8f8f;
+			color: ${theme.colors.gray};
 
 			&::placeholder {
 				color: currentColor;
@@ -32,67 +28,78 @@ const containerModifiers = {
 	`
 };
 
-export const TextFieldContainer = styled.div<ContainerProps>`
-	${({ disabled, error }) => css`
-		${disabled && containerModifiers.disabled()}
-		${error && containerModifiers.error()}
+export const TextFieldContainer = styled.div<{ $disabled?: boolean; $error?: boolean; }>`
+	${({ theme, $disabled, $error }) => css`
+		${$disabled && containerModifiers.disabled(theme)}
+		${$error && containerModifiers.error(theme)}
 	`}
 `;
 
 export const InputWrapper = styled.div`
-	${() => css`
+	${({ theme }) => css`
 		display: flex;
-		background-color: #eaeaea;
+		background-color: ${theme.colors.lightGray};
 		border-radius: 0.2rem;
-		padding: 0 1.6rem;
+		padding: 0 ${theme.spacings.xsmall};
 		border: 0.2rem solid;
-		border-color: #eaeaea;
+		border-color: ${theme.colors.lightGray};
 
 		&:focus-within {
-			box-shadow: 0 0 0.5rem #f231a5;
+			box-shadow: 0 0 0.5rem ${theme.colors.primary};
 		}
 	`}
 `;
 
-export const Input = styled.input<IconPositionProps>`
-	${({ iconPosition }) => css`
-		color: #030517;
-		font-family: 'Poppins', sans-serif;
-		font-size: 1.8rem;
-		padding: 0.8rem 0;
-        padding-${iconPosition}: 1.6rem;
+export const Input = styled.input<{ $iconPosition?: "left" | "right" | undefined; }>`
+	${({ theme, $iconPosition }) => css`
+		color: ${theme.colors.black};
+		font-family: ${theme.font.family};
+		font-size: ${theme.font.sizes.medium};
+		padding: ${theme.spacings.xxsmall} 0;
+        padding-${$iconPosition}: ${theme.spacings.xsmall};
 		background: transparent;
 		border: 0;
 		outline: none;
-		width: 100%;
+		width: ${$iconPosition === 'right' ? `calc(100% - 2.2rem)` : `100%`};
+
+		&:-webkit-autofill {
+			-webkit-box-shadow: 0 0 0 ${theme.spacings.small} ${theme.colors.lightGray} inset;
+			filter: none;
+
+			&::first-line {
+				font-family: ${theme.font.family};
+				font-size: ${theme.font.sizes.medium};
+			}
+		}
 	`}
 `;
 
 export const Label = styled.label`
-	${() => css`
-		font-size: 2.4rem;
-		color: #030517;
+	${({ theme }) => css`
+		font-size: ${theme.font.sizes.small};
+		color: ${theme.colors.black};
 		cursor: pointer;
 	`}
 `;
 
-export const Icon = styled.div<IconPositionProps>`
-	${({ iconPosition }) => css`
+export const Icon = styled.div<{ $iconPosition?: "left" | "right" | undefined; }>`
+	${({ theme, $iconPosition }) => css`
 		display: flex;
 		align-items: center;
 		width: 2.2rem;
-		color: #8f8f8f;
-		order: ${iconPosition === 'right' ? 1 : 0};
+		color: ${theme.colors.gray};
+		order: ${$iconPosition === 'right' ? 1 : 0};
 
 		& > svg {
-			width: 100%;
+			width: 2.2rem;
+      		height: 100%;
 		}
 	`}
 `;
 
 export const Error = styled.p`
-	${() => css`
-		color: #ff6347;
-		font-size: 1.6rem;
+	${({ theme }) => css`
+		color: ${theme.colors.red};
+		font-size: ${theme.font.sizes.xsmall};
 	`}
 `;
