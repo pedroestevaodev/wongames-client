@@ -71,7 +71,7 @@ export const ordersMapper = (orders: OrdersFragmentFragment[] | undefined) => {
 			id: order.id,
 			paymentInfo: {
 				flag: order.card_brand,
-				img: order.card_brand ? `/img/cards/${order.card_brand}.png` : null,
+				img: order.card_brand ? `/img/${order.card_brand}.png` : null,
 				number: order.card_last4
 					? `**** **** **** ${order.card_last4}`
 					: 'Free Game',

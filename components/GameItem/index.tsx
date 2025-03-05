@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import * as S from './styles';
 import Image from 'next/image';
@@ -38,8 +40,10 @@ const GameItem = ({
 				</S.ImageBox>
 
 				<S.Content>
-					<S.Title>
-						{title}
+					<div className="flex items-center mb-[0.8rem]">
+						<S.Title className="truncate">
+							{title}
+						</S.Title>
 						{!!downloadLink && (
 							<S.DownloadLink
 								href={downloadLink}
@@ -49,7 +53,7 @@ const GameItem = ({
 								<RiDownloadCloudFill size={22} />
 							</S.DownloadLink>
 						)}
-					</S.Title>
+					</div>
 					<S.Group>
 						<S.Price>{price}</S.Price>
 						{isInCart(id) && (

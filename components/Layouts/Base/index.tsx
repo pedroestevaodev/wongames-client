@@ -1,13 +1,15 @@
+'use client';
+
 import React from 'react';
 import * as S from './styles';
 import Container from '@/components/Container';
 import Menu from '@/components/Menu';
 import Footer from '@/components/Footer';
-import { auth } from "@/services/auth";
 import { ChildrenProps } from "@/@types/nextjs";
+import { useSession } from "next-auth/react";
 
-const Base = async ({ children }: ChildrenProps) => {
-	const session = await auth();
+const Base = ({ children }: ChildrenProps) => {
+	const { data: session } = useSession();
 
 	return (
 		<S.BaseContainer>
