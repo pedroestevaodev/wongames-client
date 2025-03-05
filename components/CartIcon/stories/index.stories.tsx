@@ -1,24 +1,35 @@
 import { Meta, StoryObj } from '@storybook/react';
-import CartIcon, { CartIconProps } from '@/components/CartIcon';
+import CartIcon from '@/components/CartIcon';
 import { fn } from "@storybook/test";
 
 export default {
 	title: 'CartIcon',
 	component: CartIcon,
+	args: {
+		onClick: fn()
+	},
 	parameters: {
 		layout: 'centered',
 		backgrounds: {
 			default: 'dark'
 		}
 	},
-	args: {
-		onClick: fn()
-	}
-} as Meta<CartIconProps>;
+	decorators: [
+		(Story) => (
+			<div style={{ width: '100%', height: '100vh' }}>
+				<div
+					style={{ maxWidth: '104rem', margin: '0 auto', padding: '50px 0' }}
+				>
+					<Story />
+				</div>
+			</div>
+		)
+	]
+} as Meta;
 
-export const Default: StoryObj<CartIconProps> = {};
+export const Default: StoryObj = {};
 
-export const WithItems: StoryObj<CartIconProps> = {
+export const WithItems: StoryObj = {
 	args: {
 		quantity: 3
 	}

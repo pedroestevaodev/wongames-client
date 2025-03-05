@@ -2,32 +2,45 @@
 
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
+import { DefaultTheme } from "styled-components/dist/types";
 
 type PriceProps = {
-	isPromotional?: boolean;
+	$isPromotional?: boolean;
 };
 
 const priceModifiers = {
-	default: () => css`
-		color: #fafafa;
-		padding: 0 0.8rem;
-		background-color: #3cd3c1;
-		border-radius: 0.4rem;
-		margin-right: calc(0.8rem / 2);
+	default: (theme: DefaultTheme) => css`
+		color: ${theme.colors.white};
+		padding: 0 ${theme.spacings.xxsmall};
+		background-color: ${theme.colors.secondary};
+		border-radius: ${theme.border.radius};
+		margin-right: calc(${theme.spacings.xxsmall} / 2);
 	`,
-
-	promotional: () => css`
-		color: #8f8f8f;
+	promotional: (theme: DefaultTheme) => css`
+		color: ${theme.colors.gray};
 		text-decoration: line-through;
-		margin-right: 1.6rem;
-	`
+		margin-right: ${theme.spacings.xxsmall};
+	`,
 };
 
 export const GameCardContainer = styled(Link)`
-	text-decoration: none;
+	${({ theme }) => css`
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		background-color: ${theme.colors.white};
+		border-radius: 6px;
+		text-decoration: none;
+	`}
 `;
 
 export const ImageBox = styled.div`
+	position: relative;
+	height: 14rem;
+	min-height: 14rem;
+	width: 100%;
 	background-color: #f6f7f8;
 	background-image: linear-gradient(
 		to right,
@@ -37,11 +50,10 @@ export const ImageBox = styled.div`
 		#f6f7f8 100%
 	);
 	background-size: 80rem 14rem;
+	overflow: hidden;
 	animation: placeholderShimmer 1s linear infinite forwards;
 
 	img {
-		width: 100%;
-		height: 100%;
 		object-fit: cover;
 	}
 
@@ -55,35 +67,74 @@ export const ImageBox = styled.div`
 	}
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+	${({ theme }) => css`
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+		height: 100%;
+		margin: ${theme.spacings.xsmall};
+	`}
+`;
 
 export const Info = styled.div`
 	max-width: calc(100% - 2.5rem);
 `;
 
 export const Title = styled.h3`
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	${({ theme }) => css`
+		font-size: ${theme.font.sizes.medium};
+		line-height: ${theme.font.sizes.medium};
+		font-weight: ${theme.font.bold};
+		color: ${theme.colors.black};
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	`}
 `;
 
 export const Developer = styled.h4`
-	word-wrap: break-word;
-	overflow: hidden;
+	${({ theme }) => css`
+		font-size: ${theme.font.sizes.small};
+		font-weight: ${theme.font.bold};
+		color: ${theme.colors.gray};
+		word-wrap: break-word;
+		overflow: hidden;
+	`}
 `;
 
-export const FavButton = styled.div``;
+export const FavButton = styled.div`
+	${({ theme }) => css`
+		position: absolute;
+		right: -1rem;
+		top: -0.5rem;
+		color: ${theme.colors.primary};
+		cursor: pointer;
 
-export const BuyBox = styled.div``;
+		svg {
+			width: 2.5rem;
+		}
+	`}
+`;
+
+export const BuyBox = styled.div`
+	${({ theme }) => css`
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin-top: ${theme.spacings.xxsmall};
+	`}
+`;
 
 export const Price = styled.div<PriceProps>`
-	${({ isPromotional }) => css`
+	${({ theme, $isPromotional }) => css`
 		display: inline-flex;
-		font-weight: 600;
+		font-weight: ${theme.font.bold};
 		height: 3rem;
 		align-items: center;
 
-		${!isPromotional && priceModifiers.default};
-		${isPromotional && priceModifiers.promotional};
+		${!$isPromotional && priceModifiers.default(theme)};
+		${$isPromotional && priceModifiers.promotional(theme)};
 	`}
 `;

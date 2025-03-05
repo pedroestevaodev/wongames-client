@@ -16,7 +16,13 @@ export const Default: StoryObj<CheckboxProps> = {
 	render: (args) => (
 		<>
 			<div style={{ padding: 10 }}>
-				<Checkbox name="category" label="Action" labelFor="action" {...args} />
+				<Checkbox 
+					name="category"
+					label="Action"
+					labelFor="action" 
+					isChecked
+					{...args} 
+				/>
 			</div>
 			<div style={{ padding: 10 }}>
 				<Checkbox

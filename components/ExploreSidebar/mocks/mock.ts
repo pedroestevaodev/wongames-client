@@ -46,8 +46,8 @@ const exploreSidebarMock = [
 		]
 	},
 	{
-		title: 'System',
-		name: 'system',
+		title: 'Platforms',
+		name: 'platforms',
 		type: 'checkbox',
 		fields: [
 			{
@@ -65,8 +65,8 @@ const exploreSidebarMock = [
 		]
 	},
 	{
-		title: 'Genre',
-		name: 'genre',
+		title: 'Categories',
+		name: 'categories',
 		type: 'checkbox',
 		fields: [
 			{

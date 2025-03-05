@@ -1,8 +1,5 @@
-'use client';
-
 import React from 'react';
 import * as S from './styles';
-import { useWindowSize } from 'usehooks-ts';
 import Heading from '../Heading';
 import { RiWindowsFill, RiAppleFill, RiUbuntuFill } from '@remixicon/react';
 import { formatDate } from '@/utils/formats';
@@ -28,8 +25,6 @@ const GameDetails = ({
 	rating,
 	genres
 }: GameDetailsProps) => {
-	const { width } = useWindowSize();
-
 	const platformIcons = {
 		windows: <RiWindowsFill size={18} />,
 		linux: <RiUbuntuFill size={18} />,
@@ -38,11 +33,9 @@ const GameDetails = ({
 
 	return (
 		<S.GameDetailsContainer>
-			{width > 575 && (
-				<Heading lineLeft lineColor="secondary">
-					Game Details
-				</Heading>
-			)}
+			<Heading className="hidden sm:block" lineLeft lineColor="secondary">
+				Game Details
+			</Heading>
 
 			<S.Content>
 				<S.Block>

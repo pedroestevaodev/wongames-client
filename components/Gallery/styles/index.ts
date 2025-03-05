@@ -44,7 +44,7 @@ export const GalleryContainer = styled.div`
 `;
 
 type ModalProps = {
-	isOpen: boolean;
+	$isOpen: boolean;
 };
 
 const modalModifiers = {
@@ -70,21 +70,19 @@ export const Modal = styled.div<ModalProps>`
 	z-index: 40;
 	transition: opacity 0.3s ease-in-out;
 
-	${({ isOpen }) => (isOpen ? modalModifiers.open() : modalModifiers.close())}
+	${({ $isOpen }) => ($isOpen ? modalModifiers.open() : modalModifiers.close())}
 `;
 
 export const Close = styled.div`
 	color: #fafafa;
 	position: absolute;
-	left: 0;
+	right: 0;
 	top: 0;
 	cursor: pointer;
-	width: 100%;
-	height: 100%;
-	text-align: right;
 `;
 
 export const Content = styled.div`
+	width: 100%;
 	max-width: min(120rem, 100%);
 	max-height: 80rem;
 `;

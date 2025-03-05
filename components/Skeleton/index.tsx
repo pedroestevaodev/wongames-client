@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-// import { useTheme } from "next-themes";
 
 interface SkeletonContainerProps {
     numberOfElements?: number;
@@ -10,7 +9,6 @@ const SkeletonContainer = ({
     numberOfElements = 1,
     children,
 }: SkeletonContainerProps) => {
-    // const { theme } = useTheme();
 
     const elementsNumber = numberOfElements <= 0 ? 1 : numberOfElements;
 

@@ -4,14 +4,14 @@ const nextConfig = {
 	reactStrictMode: true,
 	compress: true,
 	compiler: {
-		removeConsole: true,
+		// removeConsole: true,
 		styledComponents: true
 	},
 	images: {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'source.unsplash.com',
+				hostname: 'images.unsplash.com',
 				port: ''
 			},
 			{

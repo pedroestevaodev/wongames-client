@@ -1,28 +1,33 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import media from "styled-media-query";
 
 export const BaseContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	height: 100%;
+	height: 100vh;
 `;
 
 export const Content = styled.div`
-	flex: 1 0 auto;
-	margin-top: 4.8rem;
+	${({ theme }) => css`
+		flex: 1 0 auto;
+		margin-top: ${theme.spacings.xlarge};
+	`}
 `;
 
 export const SectionFooter = styled.section`
-	margin-top: 4rem;
-	padding-bottom: 1.6rem;
-	padding-top: 5.6rem;
-	background-color: #fafafa;
-	clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 100%);
+	${({ theme }) => css`
+		margin-top: ${theme.spacings.large};
+		padding-bottom: ${theme.spacings.xsmall};
+		padding-top: ${theme.spacings.xxlarge};
+		background-color: ${theme.colors.white};
+		clip-path: polygon(0 5%, 100% 0%, 100% 100%, 0 100%);
 
-	@media (min-width: 768px) {
-		padding-top: calc(5.6rem * 2);
-		clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0 100%);
-	}
+		${media.greaterThan('medium')`
+			padding-top: calc(${theme.spacings.xxlarge} * 2);
+			clip-path: polygon(0 15%, 100% 0%, 100% 100%, 0 100%);
+		`}
+	`}
 `;

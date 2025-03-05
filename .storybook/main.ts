@@ -6,9 +6,9 @@ const config: StorybookConfig = {
 		name: '@storybook/nextjs',
 		options: {
 			builder: {
-                fsCache: true,
-                lazyCompilation: true
-            }
+				fsCache: true,
+				lazyCompilation: true
+			}
 		}
 	},
 	stories: [
@@ -16,27 +16,27 @@ const config: StorybookConfig = {
 		'../app/**/*.stories.@(ts|tsx)'
 	],
 	addons: [
-        '@storybook/addon-controls',
-        '@storybook/addon-essentials',
-        '@storybook/addon-interactions',
-        '@storybook/addon-links',
-        '@storybook/addon-onboarding',
-        '@storybook/addon-styling-webpack',
-        '@storybook/addon-themes',
-        '@storybook/icons',
-        '@chromatic-com/storybook'
-    ],
+		'@storybook/addon-controls',
+		'@storybook/addon-essentials',
+		'@storybook/addon-interactions',
+		'@storybook/addon-links',
+		'@storybook/addon-onboarding',
+		'@storybook/addon-styling-webpack',
+		'@storybook/addon-themes',
+		'@storybook/icons',
+		'@chromatic-com/storybook'
+	],
 	typescript: {
 		reactDocgen: 'react-docgen-typescript'
 	},
-	docs: {
-		autodocs: 'tag'
-	},
 	staticDirs: ['../public'],
-	async webpackFinal(config, { configType }) {
+	webpackFinal: async (config, { configType }) => {
 		config.resolve = config.resolve ?? {};
-		config.resolve.alias = config.resolve.alias ?? {};
-		config.resolve.alias['@'] = path.resolve(__dirname, '../');
+		config.resolve.alias = {
+			...(config.resolve.alias || {}),
+			'@': path.resolve(__dirname, '../'),
+			'@/components': path.resolve(__dirname, '../components'),
+		};
 
 		if (configType === 'DEVELOPMENT') {
 			config.devtool = 'eval-source-map';
@@ -46,6 +46,6 @@ const config: StorybookConfig = {
 		}
 
 		return config;
-	}
+	},
 };
 export default config;

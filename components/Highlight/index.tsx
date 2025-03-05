@@ -4,6 +4,7 @@ import React from 'react';
 import * as S from './styles';
 import Button from '../Button';
 import Link from 'next/link';
+import Image from "next/image";
 
 export type HighlightProps = {
 	title: string;
@@ -25,27 +26,16 @@ const Highlight = ({
 	alignment = 'right'
 }: HighlightProps) => {
 	return (
-		<S.HighlightContainer
-			className="relative h-[23rem] grid md:h-[32rem] rounded-[6px] overflow-hidden after:absolute after:w-full after:h-full after:bg-[rgba(0,0,0,0.6)] after:rounded-[6px]"
-			backgroundImage={backgroundImage}
-			alignment={alignment}
-		>
+		<S.HighlightContainer $alignment={alignment} data-cy="highlight">
+			<Image src={backgroundImage} alt={`${title} background`} fill />
 			{!!floatImage && (
-				<S.FloatImage
-					src={floatImage}
-					className="self-end z-10 max-h-[23rem] max-w-full md:max-h-[32rem]"
-					width={266}
-					height={311}
-					alt={title}
-				/>
+				<S.FloatImageWrapper>
+					<Image src={floatImage} alt={title} width={400} height={300} />
+				</S.FloatImageWrapper>
 			)}
-			<S.Content className="z-10 p-xsmall md:self-end md:p-xlarge">
-				<S.Title className="text-large font-bold text-white md:text-xxlarge">
-					{title}
-				</S.Title>
-				<S.SubTitle className="text-small font-light text-white mb-medium md:text-large">
-					{subTitle}
-				</S.SubTitle>
+			<S.Content>
+				<S.Title>{title}</S.Title>
+				<S.SubTitle>{subTitle}</S.SubTitle>
 				<Button as={Link} href={buttonLink}>
 					{buttonLabel}
 				</Button>

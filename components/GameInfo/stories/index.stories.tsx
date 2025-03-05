@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 import GameInfo, { GameInfoProps } from '@/components/GameInfo';
 import GameInfoItens from '../mocks/mock';
+import { CartContextData } from "@/hooks/useCart";
 
 export default {
 	title: 'Game/GameInfo',
@@ -22,3 +23,9 @@ export default {
 } as Meta<GameInfoProps>;
 
 export const Default: StoryObj<GameInfoProps> = {};
+
+export const IsInCart: StoryObj<GameInfoProps & CartContextData> = {
+	args: {
+		isInCart: () => true,
+	},
+};

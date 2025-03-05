@@ -3,92 +3,100 @@
 import styled, { css } from 'styled-components';
 import * as HeadingStyles from '@/components/Heading/styles';
 import * as LogoStyles from '@/components/Logo/styles';
+import media from "styled-media-query";
 
 export const AuthContainer = styled.main`
 	display: grid;
 	grid-template-columns: 1fr;
 	height: 100vh;
 
-	@media (min-width: 768px) {
+	${media.greaterThan("medium")`
 		grid-template-columns: 1fr 1fr;
-	}
+	`}
 `;
 
 export const BannerBlock = styled.div`
-	position: relative;
-	background-image: url('/img/auth-bg.jpg');
-	background-size: cover;
-	background-position: center center;
-	padding: 5.6rem 5.6rem 4rem;
+	${({ theme }) => css`
+		position: relative;
+		padding: ${theme.spacings.xxlarge} ${theme.spacings.xxlarge} ${theme.spacings.large};
+		
+		${media.lessThan('medium')`
+			display: none;
+		`}
 
-	@media (max-width: 767px) {
-		display: none;
-	}
-
-	&:after {
-		content: '';
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		background: #030517;
-		opacity: 0.85;
-	}
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color: ${theme.colors.black};
+			opacity: 0.85;
+		}
+	`}
 `;
 
 export const BannerContent = styled.div`
-	color: #fafafa;
-	display: grid;
-	grid-template-columns: 1fr;
-	justify-content: space-between;
-	height: 100%;
-	position: relative;
-	z-index: 10;
+	${({ theme }) => css`
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr;
+		justify-content: space-between;
+		color: ${theme.colors.white};
+		height: 100%;
+		z-index: ${theme.layers.base};
 
-	a {
-		width: fit-content;
-		height: fit-content;
-	}
+		a {
+			width: fit-content;
+			height: fit-content;
+		}
+	`}
 `;
 
 export const Subtitle = styled.h3`
-	font-size: 5.6rem;
-	font-weight: 300;
-	margin-top: 0.8rem;
+	${({ theme }) => css`
+		font-size: ${theme.font.sizes.xxlarge};
+		font-weight: ${theme.font.light};
+		margin-top: ${theme.spacings.xxsmall};
 
-	strong {
-		color: #f231a5;
-	}
+		strong {
+			color: ${theme.colors.primary};
+		}
+	`}
 `;
 
 export const Footer = styled.p`
-	font-size: 1.2rem;
-	text-align: center;
-	align-self: end;
+	${({ theme }) => css`
+		font-size: ${theme.font.sizes.xsmall};
+		text-align: center;
+		align-self: end;
+	`}
 `;
 
 export const Content = styled.div`
-	background: #fafafa;
-	display: grid;
-	align-items: center;
-	justify-content: center;
+	${({ theme }) => css`
+		background: ${theme.colors.white};
+		display: grid;
+		align-items: center;
+		justify-content: center;
+	`}
 `;
 
 export const ContentWrapper = styled.div`
-	${() => css`
+	${({ theme }) => css`
 		width: 30rem;
 
-		@media (min-width: 768px) {
+		${media.greaterThan('medium')`
 			width: 36rem;
-		}
+		`}
 
 		${LogoStyles.LogoContainer} {
-			margin: 0 auto 5.6rem;
+			margin: 0 auto ${theme.spacings.xxlarge};
 		}
 
 		${HeadingStyles.HeadingContainer} {
-			margin-bottom: 3.2rem;
+			margin-bottom: ${theme.spacings.medium};
 		}
 	`}
 `;

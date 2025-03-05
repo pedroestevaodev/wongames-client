@@ -9,7 +9,7 @@
 		"noEmit": true,
 		"esModuleInterop": true,
 		"module": "ESNext",
-		"moduleResolution": "Node",
+		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
@@ -17,14 +17,15 @@
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["./*"],
-			"@types/*": ["./@types/*"]
+			"@types/*": ["@types/*"],
+			"@/components/*": ["components/*"]
 		},
 		"plugins": [
 			{
 				"name": "next"
 			}
 		],
-		"typeRoots": ["./@types", "./node_modules/@types"]
+		"typeRoots": ["@types", "node_modules/@types"]
 	},
 	"include": [
 		"next-env.d.ts",

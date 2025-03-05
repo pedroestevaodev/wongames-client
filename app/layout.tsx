@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
-import StyledComponentsRegistry from '@/lib/registry';
-import { Providers } from '@/components/Providers';
+import Providers from '@/components/Providers';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,14 +10,14 @@ export const metadata: Metadata = {
 	manifest: 'manifest.json'
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const RootLayout = ({ children }: { children: ReactNode }) => {
 	return (
 		<html lang="pt-BR">
 			<body>
-				<StyledComponentsRegistry>
-					<Providers>{children}</Providers>
-				</StyledComponentsRegistry>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);
-}
+};
+
+export default RootLayout;

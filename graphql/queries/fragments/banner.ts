@@ -5,11 +5,7 @@ export const BannerFragment = gql`
 		title
 		subTitle
 		image {
-			data {
-				attributes {
-					url
-				}
-			}
+			url
 		}
 		button {
 			label

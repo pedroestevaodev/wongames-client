@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import * as S from './styles';
 
-type ButtonTypes =
+export type ButtonTypes =
 	| AnchorHTMLAttributes<HTMLAnchorElement>
 	| ButtonHTMLAttributes<HTMLButtonElement>;
 
@@ -32,24 +32,15 @@ const Button: React.ForwardRefRenderFunction<S.ContainerProps, ButtonProps> = (
 ) => {
 	return (
 		<S.ButtonContainer
-			className={`inline-flex items-center justify-center border-0 rounded-4 p-xxsmall no-underline
-                ${
-									size === 'small'
-										? 'h-[3rem] text-xsmall'
-										: size === 'medium'
-										? 'h-[4rem] text-small px-medium py-xxsmall'
-										: 'h-[5rem] text-medium px-xlarge py-xxsmall'
-								}
-				${minimal ? 'bg-none' : 'bg-gradient-to-b from-orange to-pink text-[white]'}
-                ${fullWidth ? 'w-full' : 'w-fit'}
-            `}
-			hasIcon={!!icon}
-			minimal={minimal}
+			$size={size}
+			$fullWidth={fullWidth}
+			$hasIcon={!!icon}
+			$minimal={minimal}
 			ref={ref}
 			{...props}
 		>
 			{!!icon && icon}
-			{!!children && <span className="leading-normal">{children}</span>}
+			{!!children && <span>{children}</span>}
 		</S.ButtonContainer>
 	);
 };

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import Games, { GamesLayoutProps } from '@/components/Layouts/Games';
-import gamePageMock from '../mocks/mock';
+import { gamePageMock } from '../mocks/mock';
 
 export default {
 	title: 'Layout/Games',

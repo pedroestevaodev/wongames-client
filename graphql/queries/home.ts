@@ -6,11 +6,7 @@ import { HighlightFragment } from './fragments/highlight';
 export const GET_HOME = gql`
 	query GetHome($date: Date!) {
 		banners {
-			data {
-				attributes {
-					...BannerFragment
-				}
-			}
+			...BannerFragment
 		}
 
 		newGames: games(
@@ -18,11 +14,7 @@ export const GET_HOME = gql`
 			sort: "release_date:desc"
 			pagination: { limit: 8 }
 		) {
-			data {
-				attributes {
-					...GameFragment
-				}
-			}
+			...GameFragment
 		}
 
 		upcomingGames: games(
@@ -30,11 +22,7 @@ export const GET_HOME = gql`
 			sort: "release_date:asc"
 			pagination: { limit: 8 }
 		) {
-			data {
-				attributes {
-					...GameFragment
-				}
-			}
+			...GameFragment
 		}
 
 		freeGames: games(
@@ -42,50 +30,38 @@ export const GET_HOME = gql`
 			sort: "release_date:desc"
 			pagination: { limit: 8 }
 		) {
-			data {
-				attributes {
-					...GameFragment
-				}
-			}
+			...GameFragment
 		}
 
 		sections: home {
-			data {
-				attributes {
-					newGames {
-						title
-						highlight {
-							...HighlightFragment
-						}
-					}
+			newGames {
+				title
+				highlight {
+					...HighlightFragment
+				}
+			}
 
-					popularGames {
-						title
-						highlight {
-							...HighlightFragment
-						}
-						games(pagination: { limit: 8 }) {
-							data {
-								attributes {
-									...GameFragment
-								}
-							}
-						}
-					}
+			popularGames {
+				title
+				highlight {
+					...HighlightFragment
+				}
+				games(pagination: { limit: 8 }) {
+					...GameFragment
+				}
+			}
 
-					upcomingGames {
-						title
-						highlight {
-							...HighlightFragment
-						}
-					}
+			upcomingGames {
+				title
+				highlight {
+					...HighlightFragment
+				}
+			}
 
-					freeGames {
-						title
-						highlight {
-							...HighlightFragment
-						}
-					}
+			freeGames {
+				title
+				highlight {
+					...HighlightFragment
 				}
 			}
 		}

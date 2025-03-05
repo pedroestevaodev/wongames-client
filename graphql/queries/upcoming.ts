@@ -9,22 +9,14 @@ export const GET_UPCOMING = gql`
 			sort: "release_date:asc"
 			pagination: { limit: 8 }
 		) {
-			data {
-				attributes {
-					...GameFragment
-				}
-			}
+			...GameFragment
 		}
 
 		showcase: home {
-			data {
-				attributes {
-					upcomingGames {
-						title
-						highlight {
-							...HighlightFragment
-						}
-					}
+			upcomingGames {
+				title
+				highlight {
+					...HighlightFragment
 				}
 			}
 		}

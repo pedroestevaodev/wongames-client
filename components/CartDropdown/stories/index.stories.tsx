@@ -12,11 +12,6 @@ export default {
 			default: 'dark'
 		}
 	},
-	args: {
-		items: cartListMock,
-		total: 330,
-		onClick: fn()
-	},
 	decorators: [
 		(Story) => (
 			<div
@@ -28,10 +23,15 @@ export default {
 	]
 } as Meta<CartDropdownProps>;
 
-export const Default: StoryObj<CartDropdownProps> = {};
-
-export const Empty: StoryObj<CartDropdownProps> = {
+export const Default: StoryObj = {
 	args: {
-		items: []
-	}
+		cartContextValue: {
+			items: cartListMock,
+			quantity: cartListMock.length,
+    		total: 'R$ 300,00'
+		},
+		onClick: fn()
+	},
 };
+
+export const Empty: StoryObj<CartDropdownProps> = {};

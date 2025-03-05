@@ -2,14 +2,16 @@ import { GameItemProps } from '@/components/GameItem';
 
 const cartListMock: GameItemProps[] = [
 	{
-		img: 'https://source.unsplash.com/user/willianjusten/151x70',
+		id: '1',
+		img: 'https://images.unsplash.com/photo-1674461315270-d6b04eaff631',
 		title: 'Red Dead Redemption 2',
-		price: 215
+		price: 'R$ 215,00'
 	},
 	{
-		img: 'https://source.unsplash.com/user/willianjusten/151x70',
+		id: '2',
+		img: 'https://images.unsplash.com/photo-1674461315270-d6b04eaff631',
 		title: 'Borderlands 3',
-		price: 215
+		price: 'R$ 215,00',
 	}
 ];
 

@@ -1,3 +1,6 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export const formatPrice = (price: number | bigint) => {
 	return new Intl.NumberFormat('en', {
 		style: 'currency',
@@ -11,4 +14,20 @@ export const formatDate = (date: string) => {
 		month: 'short',
 		year: 'numeric'
 	}).format(new Date(date));
+};
+
+export const formatImageUrl = (url: string | undefined) => {
+	if (process.env.NEXT_PUBLIC_API_URL) {
+		return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
+	}
+
+	if (url) {
+		return url;
+	}
+
+	return null;
+};
+
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
 };

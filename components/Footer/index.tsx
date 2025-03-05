@@ -11,7 +11,7 @@ const currentYear = new Date().getFullYear();
 const Footer = () => {
 	return (
 		<S.FooterContainer>
-			<Logo color="black" />
+			<Logo $color="black" />
 
 			<div className="ra-content grid grid-cols-minmax-50 gap-gutter mt-medium md:grid-cols-4">
 				<div className="ra-column">

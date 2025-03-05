@@ -1,39 +1,32 @@
-'use client';
-
 import React from 'react';
 import * as S from './styles';
 import Heading from '../Heading';
 import Ribbon from '../Ribbon';
-import Button from '../Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { formatPrice } from '@/utils/formats';
+import CartButton from "../CartButton";
+import WishlistButton from "../WishlistButton";
 
 export type GameInfoProps = {
+	id: string;
 	title: string;
 	description: string;
-	price: number | bigint;
+	price: number;
 };
 
-const GameInfo = ({ title, description, price }: GameInfoProps) => {
+const GameInfo = ({ id, title, description, price }: GameInfoProps) => {
 	return (
-		<S.GameInfoContainer>
+		<S.GameInfoContainer data-cy="game-info">
 			<Heading color="black" lineBottom>
 				{title}
 			</Heading>
 
-			<Ribbon color="secondary">{price === 0 ? "FREE" : formatPrice(price)}</Ribbon>
+			<Ribbon color="secondary">{formatPrice(price)}</Ribbon>
 
 			<S.Description>{description}</S.Description>
 
 			<S.ButtonsWrapper>
-				<Button icon={<FontAwesomeIcon icon={faCartShopping} />} size="large">
-					Add to cart
-				</Button>
-				<Button icon={<FontAwesomeIcon icon={faHeart} />} size="large" minimal>
-					Wishlist
-				</Button>
+				<CartButton id={id} size="large" hasText />
+				<WishlistButton id={id} hasText size="large" />
 			</S.ButtonsWrapper>
 		</S.GameInfoContainer>
 	);

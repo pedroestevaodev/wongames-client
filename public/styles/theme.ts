@@ -1,4 +1,4 @@
-export default {
+export const theme = {
 	grid: {
 		container: '130rem',
 		gutter: '3.2rem'
@@ -7,8 +7,7 @@ export default {
 		radius: '0.4rem'
 	},
 	font: {
-		family:
-			"Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+		family: "Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
 		light: 300,
 		normal: 400,
 		bold: 600,
@@ -54,4 +53,6 @@ export default {
 		default: '0.3s ease-in-out',
 		fast: '0.1s ease-in-out'
 	}
-} as const;
+};
+
+export type ThemeType = typeof theme;

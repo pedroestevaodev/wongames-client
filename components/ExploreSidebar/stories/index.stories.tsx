@@ -10,7 +10,7 @@ export default {
 	component: ExploreSidebar,
 	args: { 
 		items,
-		onClick: fn()
+		onFilter: fn()
 	},
 	parameters: {
 		layout: 'fullscreen'
@@ -29,10 +29,8 @@ export const Default: StoryObj<ExploreSidebarProps> = {};
 export const WithInitialValues: StoryObj<ExploreSidebarProps> = {
 	args: {
 		initialValues: {
-			price: 'under-50',
-			sort_by: 'low-to-high',
-			system: 'windows',
-			genre: 'rpg'
+			platforms: ['windows', 'linux'],
+			sort_by: 'low-to-high'
 		}
 	}
 };

@@ -12,7 +12,7 @@ export const Main = styled.main`
 `;
 
 type CoverProps = {
-	src: string;
+	$src: string;
 };
 
 export const Cover = styled.div<CoverProps>`
@@ -21,7 +21,7 @@ export const Cover = styled.div<CoverProps>`
 	right: 0;
 	left: 0;
 	height: 39.5rem;
-	background-image: url(${({ src }) => src});
+	background-image: url(${({ $src }) => $src});
 	background-size: cover;
 	background-position: top center;
 	opacity: 0.4;

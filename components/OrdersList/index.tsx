@@ -1,11 +1,17 @@
 import React from 'react';
 import * as S from './styles';
-import GameItem, { GameItemProps } from '../GameItem';
+import GameItem, { GameItemProps, PaymentInfoProps } from '../GameItem';
 import Heading from '../Heading';
 import Empty from '../Empty';
 
+export type OrderProps = {
+	id: string;
+	paymentInfo: PaymentInfoProps;
+	games: GameItemProps[];
+};
+
 export type OrdersListProps = {
-	items?: GameItemProps[];
+	items?: OrderProps[];
 };
 
 const OrdersList = ({ items = [] }: OrdersListProps) => {
@@ -16,7 +22,15 @@ const OrdersList = ({ items = [] }: OrdersListProps) => {
 			</Heading>
 
 			{items.length ? (
-				items.map((item) => <GameItem key={item.downloadLink} {...item} />)
+				items.map((order) => {
+					return order.games.map((game) => (
+						<GameItem 
+							key={`${order.id}-${game.id}`}
+							{...game}
+							paymentInfo={order.paymentInfo}
+						/>
+					))
+				})
 			) : (
 				<Empty
 					title="You have no orders yet"
