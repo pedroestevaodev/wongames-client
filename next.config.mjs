@@ -4,7 +4,7 @@ const nextConfig = {
 	reactStrictMode: true,
 	compress: true,
 	compiler: {
-		// removeConsole: true,
+		removeConsole: true,
 		styledComponents: true
 	},
 	images: {
@@ -21,7 +21,7 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'wongames-api-production.up.railway.app',
+				hostname: 'wongames-api-2801443db7ef.herokuapp.com/',
 				port: ''
 			}
 		]
