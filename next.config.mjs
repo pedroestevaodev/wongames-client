@@ -21,7 +21,7 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'wongames-api-2801443db7ef.herokuapp.com/',
+				hostname: 'wongames-api-2801443db7ef.herokuapp.com',
 				port: ''
 			}
 		]
