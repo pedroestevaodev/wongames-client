@@ -1,3 +1,5 @@
+'use client';
+
 import Button, { ButtonProps } from "@/components/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -16,11 +18,16 @@ const CartButton = ({
     const { isInCart, addToCart, removeFromCart } = useCart();
     const ButtonText = isInCart(id) ? 'Remove from cart' : 'Add to cart';
 
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        return isInCart(id) ? removeFromCart(id) : addToCart(id);
+    };
+
     return (
         <Button
             icon={isInCart(id) ? <FontAwesomeIcon icon={faCartArrowDown} /> : <FontAwesomeIcon icon={faCartPlus} />}
             size={size}
-            onClick={() => (isInCart(id) ? removeFromCart(id) : addToCart(id))}
+            onClick={handleClick}
             aria-label={ButtonText}
         >
             {hasText && ButtonText}

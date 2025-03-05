@@ -1,23 +1,18 @@
-'use client';
-
 import React from 'react';
 import * as S from './styles';
 import Container from '@/components/Container';
 import Menu from '@/components/Menu';
 import Footer from '@/components/Footer';
-import { useSession } from "next-auth/react";
+import { auth } from "@/services/auth";
+import { ChildrenProps } from "@/@types/nextjs";
 
-export type BaseLayoutProps = {
-	children: React.ReactNode;
-};
-
-const Base = ({ children }: BaseLayoutProps) => {
-	const { data, status } = useSession();
+const Base = async ({ children }: ChildrenProps) => {
+	const session = await auth();
 
 	return (
 		<S.BaseContainer>
 			<Container>
-				<Menu username={data?.user?.name} loading={status === "loading"} />
+				<Menu username={session?.user?.name} />
 			</Container>
 
 			<S.Content>{children}</S.Content>

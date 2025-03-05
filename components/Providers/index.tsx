@@ -8,6 +8,7 @@ import NextProgressbar from "../NextProgressbar";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/services/auth";
 import { WishlistProvider } from "@/hooks/useWishlist";
+import ModalProvider from "./modalProvider";
 
 const Providers = async ({ children }: React.PropsWithChildren) => {
 	const session = await auth();
@@ -19,9 +20,11 @@ const Providers = async ({ children }: React.PropsWithChildren) => {
 					<ThemeProviderWrapper>
 						<CartProvider>
 							<WishlistProvider>
-								<GlobalStyles removeBg={false} />
-								<NextProgressbar />
-								{children}
+								<ModalProvider>
+									<GlobalStyles removeBg={false} />
+									<NextProgressbar />
+									{children}
+								</ModalProvider>
 							</WishlistProvider>
 						</CartProvider>
 					</ThemeProviderWrapper>

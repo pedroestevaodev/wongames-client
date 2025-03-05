@@ -36,6 +36,7 @@ export const HighlightContainer = styled.section<HighlightStyleProps>`
 		position: relative;
 		height: 23rem;
 		display: grid;
+		margin-bottom: 3.2rem;
 
 		&::after {
 			content: '';
@@ -60,6 +61,7 @@ export const HighlightContainer = styled.section<HighlightStyleProps>`
 
 export const FloatImageWrapper = styled.div`
 	${({ theme }) => css`
+		display: flex;
 		grid-area: floatimage;
 		z-index: ${theme.layers.base};
 		max-height: 23rem;
@@ -69,6 +71,7 @@ export const FloatImageWrapper = styled.div`
 		img {
 			position: relative;
 			object-fit: contain;
+			width: fit-content;
 		}
 
 		${media.greaterThan('medium')`

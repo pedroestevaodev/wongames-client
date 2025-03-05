@@ -4,7 +4,6 @@ import React from 'react';
 import * as S from './styles';
 import {
 	RiAccountCircleLine,
-	RiBankCard2Line,
 	RiListUnordered,
 	RiLogoutCircleRLine
 } from '@remixicon/react';
@@ -32,15 +31,6 @@ const ProfileMenu = ({ activeLink }: ProfileMenuProps) => {
 			>
 				<RiAccountCircleLine size={24} />
 				<S.MenuLabel>My profile</S.MenuLabel>
-			</S.Menu>
-
-			<S.Menu
-				href="/profile/cards"
-				$isActive={activeLink === '/profile/cards'}
-				title="My cards"
-			>
-				<RiBankCard2Line size={24} />
-				<S.MenuLabel>My cards</S.MenuLabel>
 			</S.Menu>
 
 			<S.Menu
