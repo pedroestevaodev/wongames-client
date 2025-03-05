@@ -28,6 +28,6 @@ export const formatImageUrl = (url: string | undefined) => {
 	return null;
 };
 
-export function cn(...inputs: ClassValue[]) {
+export const cn = (...inputs: ClassValue[]) => {
 	return twMerge(clsx(inputs));
 };

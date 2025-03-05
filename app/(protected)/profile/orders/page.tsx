@@ -23,6 +23,8 @@ const ProfileOrdersPage = async () => {
 		},
 	});
 
+	if (!data) return null;
+
 	return (
 		<Profile>
 			<OrdersList items={ordersMapper(data.orders as OrdersFragmentFragment[])} />

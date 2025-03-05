@@ -50,11 +50,12 @@ export const Content = styled.div`
 
 export const Title = styled.h3`
 	${({ theme }) => css`
+		display: grid;
 		font-size: ${theme.font.sizes.small};
 		line-height: ${theme.font.sizes.small};
 		font-weight: ${theme.font.bold};
 		color: ${theme.colors.black};
-		margin-bottom: ${theme.spacings.xxsmall};
+		margin-bottom: 0px;
 
 		${media.greaterThan('medium')`
 			font-size: 2rem;
@@ -94,12 +95,6 @@ export const DownloadLink = styled(Link)`
 		color: ${theme.colors.primary};
 		margin-left: ${theme.spacings.xxsmall};
 		position: relative;
-
-		& > svg {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-		}
 	`}
 `;
 
