@@ -39,6 +39,12 @@ The project was developed using the following technologies and tools:
 - [Husky](https://typicode.github.io/husky/) - Git hook tool.
 - [GitHub CI](https://github.com/features/actions) - Continuous Integration on GitHub.
 
+## 👾 Try the Demo!
+
+Curious to see it in action? Experience the full potential of our project by testing the live demo!
+
+🔗 [Try the Demo Now](https://wongames-client-eta.vercel.app/)
+
 ## 🚀 Requirements
 
 To run the Client, you need to have the API pre-configured on your machine.
