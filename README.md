@@ -86,7 +86,7 @@ To run the development server locally, just execute the following command:
 $ pnpm run dev
 ```
 
-Open your browser and visit http://localhost:3000 to see the project in action.
+Open your browser and visit `http://localhost:3000` to see the project in action.
 
 You can start editing the homepage by modifying the `app/page.tsx` file. The browser will automatically update as you make changes to the code.
 
