@@ -2,9 +2,9 @@
 
 <br/>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Pedro-Estevao/boilerplate-nextjs/master/public/img/logo.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Pedro-Estevao/boilerplate-nextjs/master/public/img/logo-gh.svg">
-  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://raw.githubusercontent.com/Pedro-Estevao/boilerplate-nextjs/master/public/img/logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/pedroestevaodev/boilerplate-nextjs/master/public/img/logo.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/pedroestevaodev/boilerplate-nextjs/master/public/img/logo-gh.svg">
+  <img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://raw.githubusercontent.com/pedroestevaodev/boilerplate-nextjs/master/public/img/logo.svg">
 </picture>
 
 <br/>
@@ -42,9 +42,9 @@ The project was developed using the following technologies and tools:
 ## 🚀 Requirements
 
 To run the Client, you need to have the API pre-configured on your machine.
-This client project consumes the WonGames API, available in the [wongames-api](https://github.com/Pedro-Estevao/wongames-api) repository. The API provides dynamic data such as games, categories, and payment information.
+This client project consumes the WonGames API, available in the [wongames-api](https://github.com/pedroestevaodev/wongames-api) repository. The API provides dynamic data such as games, categories, and payment information.
 
-- **API Repository (e-commerce backend):** [WonGames API](https://github.com/Pedro-Estevao/wongames-api)
+- **API Repository (e-commerce backend):** [WonGames API](https://github.com/pedroestevaodev/wongames-api)
 - **FIGMA DESIGN:** [WonGames Design](https://www.figma.com/design/ovvUTvKUFwLzOlU2LNmohM/Won-Games-English?node-id=43-1&p=f&t=5FZQegZOJjGpufOd-0)
 
 ## 🔧 Setup and Installation
