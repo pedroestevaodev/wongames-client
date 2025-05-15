@@ -110,14 +110,14 @@ Here are the main commands available for the project:
 
 To learn more about the technologies used in this project, check out the following resources:
 
-- [Documentação do Next.js](https://nextjs.org/docs) - Learn more about Next.js features and APIs.
-- [Aprenda Next.js](https://nextjs.org/learn) - Interactive tutorial to learn Next.js.
-- [Documentação do React](https://pt-br.react.dev/learn) - Access the official React guide.
-- [Documentação do Tailwind CSS](https://tailwindcss.com/docs) - Learn how to use Tailwind CSS to style your application.
+- [Next.js Docs](https://nextjs.org/docs) - Learn more about Next.js features and APIs.
+- [Next.js Learn](https://nextjs.org/learn) - Interactive tutorial to learn Next.js.
+- [React Docs](https://pt-br.react.dev/learn) - Access the official React guide.
+- [Tailwind CSS Docs](https://tailwindcss.com/docs) - Learn how to use Tailwind CSS to style your application.
 
 ## ☁️ Deploy on Vercel
 
-The easiest way to deploy your Next.js application is by using the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), created by the developers of Next.js.
+The easiest way to deploy your Next.js application is by using the [Vercel Platform](https://vercel.com/new), created by the developers of Next.js.
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
