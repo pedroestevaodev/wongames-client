@@ -13,7 +13,7 @@ import { OrderProps } from "@/components/OrdersList";
 export const bannerMapper = (banners: BannerFragmentFragment[]) => {
 	return (
 		(banners.map((banner) => ({
-			img: `${process.env.NEXT_PUBLIC_API_URL}${banner.image.url}`,
+			img: `${banner.image.url}`,
 			title: banner.title || '',
 			subTitle: banner.subTitle || '',
 			buttonLabel: banner.button?.label || '',
@@ -28,6 +28,7 @@ export const bannerMapper = (banners: BannerFragmentFragment[]) => {
 };
 
 export const gamesMapper = (games: GameFragmentFragment[]) => {
+	console.log('gamesMapper', games);
 	return (
 		(games.map((game) => ({
 			id: game.id,

@@ -17,10 +17,6 @@ export const formatDate = (date: string) => {
 };
 
 export const formatImageUrl = (url: string | undefined) => {
-	if (process.env.NEXT_PUBLIC_API_URL) {
-		return `${process.env.NEXT_PUBLIC_API_URL}${url}`;
-	}
-
 	if (url) {
 		return url;
 	}
