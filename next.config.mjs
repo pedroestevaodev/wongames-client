@@ -4,7 +4,7 @@ const nextConfig = {
 	reactStrictMode: true,
 	compress: true,
 	compiler: {
-		// removeConsole: true,
+		removeConsole: true,
 		styledComponents: true
 	},
 	images: {
