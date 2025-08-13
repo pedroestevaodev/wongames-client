@@ -62,7 +62,7 @@ const Index = async ({ params }: { params: { slug: string } }) => {
 
 	return (
 		<Game
-			cover={`${process.env.NEXT_PUBLIC_API_URL}${data.games[0]?.cover?.url}` || ''}
+			cover={`${data.games[0]?.cover?.url}` || ''}
 			gameInfo={{
 				id: data.games[0]?.id || '',
 				title: data.games[0]?.name || '',
@@ -71,7 +71,7 @@ const Index = async ({ params }: { params: { slug: string } }) => {
 			}}
 			gallery={
 				(data.games[0]?.gallery.map((image) => ({
-					src: `${process.env.NEXT_PUBLIC_API_URL}${image?.url}`,
+					src: `${image?.url}`,
 					label: image?.alternativeText
 				})) as unknown as GalleryImageProps[]) ?? []
 			}
