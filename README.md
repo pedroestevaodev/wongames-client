@@ -67,10 +67,9 @@ Create an `.env` file in the root of the project, or edit if it already exists, 
 ```bash
 NEXT_PUBLIC_API_URL="http://localhost:1337"
 NEXT_PUBLIC_GRAPHQL_SCHEMA="http://localhost:1337/graphql"
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="tobemodified"
 AUTH_URL="http://127.0.0.1:3000"
 AUTH_SECRET="tobemodified"
-APPLICATION_URL="http://127.0.0.1:3000"
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="tobemodified"
 NODE_ENV="tobemodified"
 ```
 
