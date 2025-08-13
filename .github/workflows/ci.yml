@@ -2,49 +2,40 @@ name: ci
 on: [pull_request]
 
 permissions:
-  contents: read
+    contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.x
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18.x
+                  check-latest: true
+                  cache: 'pnpm'
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 8.x
+                  cache: 'pnpm'
 
-      - name: Restore pnpm cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-        if: success()
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: pnpm install
+            - name: Linting
+              run: pnpm lint
 
-      - name: Linting
-        run: pnpm run lint
+            - name: Typecheck
+              run: pnpm typecheck
 
-      - name: Typecheck
-        run: pnpm typecheck
+            - name: Test
+              run: pnpm test
 
-      - name: Build
-        run: pnpm run build
-
-      - name: Save pnpm cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-        if: success()
-        
+            - name: Build
+              run: pnpm build

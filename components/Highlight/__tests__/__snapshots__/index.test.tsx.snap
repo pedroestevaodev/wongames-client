@@ -5,6 +5,7 @@ exports[`<Highlight /> should render headings and button 1`] = `
   position: relative;
   height: 23rem;
   display: grid;
+  margin-bottom: 3.2rem;
   grid-template-areas: 'floatimage content';
   grid-template-columns: 1.3fr 2fr;
 }
