@@ -28,7 +28,6 @@ export const bannerMapper = (banners: BannerFragmentFragment[]) => {
 };
 
 export const gamesMapper = (games: GameFragmentFragment[]) => {
-	console.log('gamesMapper', games);
 	return (
 		(games.map((game) => ({
 			id: game.id,
