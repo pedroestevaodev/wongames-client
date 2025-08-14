@@ -22,7 +22,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         identifier: email,
                         password: password,
                     };
-    
+
                     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`, {
                         method: 'POST',
                         headers: {
@@ -30,11 +30,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         },
                         body: JSON.stringify(credentialDetails),
                     });
-    
+
                     const data = await response.json();
 
-                    console.log(data);
-    
                     if (data.user) {
                         return { ...data.user, name: data.user.username, jwt: data.jwt };
                     } else {
