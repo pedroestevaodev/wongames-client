@@ -43,7 +43,7 @@ The project was developed using the following technologies and tools:
 
 Curious to see it in action? Experience the full potential of our project by testing the live demo!
 
-🔗 [Try the Demo Now](https://wongames-client-eta.vercel.app/)
+🔗 [Try the Demo Now](https://wongames-client-puce.vercel.app/)
 
 ## 🚀 Requirements
 
