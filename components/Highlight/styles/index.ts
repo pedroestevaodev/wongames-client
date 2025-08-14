@@ -16,6 +16,10 @@ const highlightModifiers = {
 		${Content} {
 			text-align: right;
 		}
+
+		${FloatImage} {
+			margin-right: 2rem;
+		}
 	`,
 	left: () => css`
 		grid-template-areas: 'content floatimage';
@@ -26,6 +30,7 @@ const highlightModifiers = {
 		}
 
 		${FloatImage} {
+			margin-left: 2rem;
 			justify-self: end;
 		}
 	`,
@@ -64,6 +69,7 @@ export const FloatImageWrapper = styled.div`
 		display: flex;
 		grid-area: floatimage;
 		z-index: ${theme.layers.base};
+		height: 100%;
 		max-height: 23rem;
 		max-width: 100%;
 		align-self: end;
