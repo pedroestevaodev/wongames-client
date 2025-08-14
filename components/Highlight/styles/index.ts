@@ -18,8 +18,8 @@ const highlightModifiers = {
 		}
 
 		${FloatImageWrapper} {
-			margin-right: 2rem;
-			justify-content: flex-end;
+			margin-left: 2rem;
+			justify-content: flex-start;
 		}
 	`,
 	left: () => css`
@@ -31,8 +31,8 @@ const highlightModifiers = {
 		}
 
 		${FloatImageWrapper} {
-			margin-left: 2rem;
-			justify-content: flex-start;
+			margin-right: 2rem;
+			justify-content: flex-end;
 		}
 	`,
 };
