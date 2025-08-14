@@ -40,7 +40,7 @@ const FormSignUp = () => {
 				login({
 					email: form.getValues("email") as string,
 					password: form.getValues("password") as string,
-				}, "/");
+				});
 			}
 		},
 	});
@@ -99,7 +99,7 @@ const FormSignUp = () => {
 				</FormSuccess>
 			)}
 
-			<form 
+			<form
 				method="POST"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
@@ -131,7 +131,7 @@ const FormSignUp = () => {
 						/>
 					)}
 				/>
-				<Controller 
+				<Controller
 					control={form.control}
 					name="password"
 					render={({ field, fieldState }) => (
@@ -146,9 +146,9 @@ const FormSignUp = () => {
 					)}
 				/>
 
-				<Button 
+				<Button
 					type="submit"
-					size="large" 
+					size="large"
 					fullWidth
 					disabled={isPending}
 				>

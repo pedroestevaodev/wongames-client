@@ -9,7 +9,9 @@ import {
 	RiHeart3Line,
 	RiLogoutCircleRLine
 } from '@remixicon/react';
-import { logout } from "@/actions/logout";
+import { logout } from '@/actions/logout';
+import { signOut } from 'next-auth/react';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
 export type UserDropwdownProps = {
 	username: string;
@@ -19,9 +21,15 @@ export type UserDropwdownProps = {
 const UserDropdown = ({ username, className = '' }: UserDropwdownProps) => {
 	const handleLogout = async () => {
 		try {
-			await logout();
+			const result = await logout();
+
+			if (result?.error) {
+				console.error('Logout failed:', result.error);
+			}
+
+			await signOut({ redirectTo: DEFAULT_LOGIN_REDIRECT });
 		} catch (error) {
-			console.error("Logout failed:", error);
+			console.error('Logout failed:', error);
 		}
 	};
 

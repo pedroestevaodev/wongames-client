@@ -1,56 +1,69 @@
 'use client';
 
 import React, { useState, useTransition } from 'react';
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import * as S from './styles';
 import Button from '../Button';
 import TextField from '../TextField';
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock, faCircleExclamation, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { useSearchParams } from "next/navigation";
-import { LoginSchema } from "@/schemas/authSchema";
-import { login } from "@/actions/login";
-import { FormError, FormLink, FormLoading, FormSuccess, FormWrapper } from "../Form";
-import { useSession } from "next-auth/react";
+import {
+	faEnvelope,
+	faLock,
+	faCircleExclamation,
+	faCheck
+} from '@fortawesome/free-solid-svg-icons';
+import { useSearchParams } from 'next/navigation';
+import { LoginSchema } from '@/schemas/authSchema';
+import { login } from '@/actions/login';
+import {
+	FormError,
+	FormLink,
+	FormLoading,
+	FormSuccess,
+	FormWrapper
+} from '../Form';
+import { signIn } from 'next-auth/react';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
 const FormSignIn = () => {
-	const { update } = useSession();
-
 	const searchParams = useSearchParams();
-    const callbackUrl = searchParams.get("callbackUrl");
+	const callbackUrl = searchParams.get('callbackUrl');
 
-	const [error, setError] = useState<string | undefined>("");
-    const [success, setSuccess] = useState<string | undefined>("");
-    const [isPending, startTransition] = useTransition();
+	const [error, setError] = useState<string | undefined>('');
+	const [success, setSuccess] = useState<string | undefined>('');
+	const [isPending, startTransition] = useTransition();
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
-			email: "",
-			password: "",
-		},
+			email: '',
+			password: ''
+		}
 	});
 
 	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-		setError("");
-        setSuccess("");
+		setError('');
+		setSuccess('');
 
-		startTransition(() => {
-			login(values, callbackUrl)
-				.then((data) => {
-					if (data?.error) {
-						form.reset();
-						setError(data.error);
-					}
+		startTransition(async () => {
+			try {
+				const result = await login(values);
 
-					update();
-				}).catch((error) => {
-					console.log("Error in login", error);
-                    setError("Something went wrong!");
-                });
+				if (result?.error) {
+					form.reset();
+					setError(result.error);
+				}
+
+				await signIn('credentials', {
+					redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT
+				});
+			} catch (error) {
+				console.log('Error in login', error);
+				setError('Something went wrong!');
+			}
 		});
 	};
 
@@ -69,11 +82,8 @@ const FormSignIn = () => {
 				</FormSuccess>
 			)}
 
-			<form 
-				method="POST"
-				onSubmit={form.handleSubmit(onSubmit)}
-			>
-				<Controller 
+			<form method="POST" onSubmit={form.handleSubmit(onSubmit)}>
+				<Controller
 					control={form.control}
 					name="email"
 					render={({ field, fieldState }) => (
@@ -87,7 +97,7 @@ const FormSignIn = () => {
 						/>
 					)}
 				/>
-				<Controller 
+				<Controller
 					control={form.control}
 					name="password"
 					render={({ field, fieldState }) => (
@@ -102,20 +112,23 @@ const FormSignIn = () => {
 					)}
 				/>
 
-				<S.ForgotPassword 
-					href="/forgot-password"
-				>
+				<S.ForgotPassword href="/forgot-password">
 					Forgot your password?
 				</S.ForgotPassword>
 
-				<Button 
+				<Button
 					type="submit"
-					size="large" 
+					size="large"
 					fullWidth
 					disabled={isPending}
 				>
 					{isPending ? (
-						<FormLoading src="/img/dots.svg" alt="Loading" width={20} height={20} />
+						<FormLoading
+							src="/img/dots.svg"
+							alt="Loading"
+							width={20}
+							height={20}
+						/>
 					) : (
 						<span>Sign in now</span>
 					)}
