@@ -32,7 +32,7 @@ const GameCard = ({
 	ribbonSize = 'small',
 }: GameCardProps) => {
 	return (
-		<S.GameCardContainer 
+		<S.GameCardContainer
 			href={`/game/${slug}`}
 			data-cy="game-card"
 		>
@@ -42,7 +42,7 @@ const GameCard = ({
 				</Ribbon>
 			)}
 			<S.ImageBox className="rounded-t-[6px] rounded-b-[0px]">
-				<Image src={img} fill alt={title} priority />
+				<Image src={`${img}`} fill alt={title} priority />
 			</S.ImageBox>
 			<S.Content>
 				<S.Info>
