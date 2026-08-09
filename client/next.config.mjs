@@ -26,6 +26,11 @@ const nextConfig = {
 			},
 			{
 				protocol: 'https',
+				hostname: 'wongamesapi.pedroestevao.com',
+				port: ''
+			},
+			{
+				protocol: 'https',
 				hostname: 'res.cloudinary.com',
 				port: ''
 			}

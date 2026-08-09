@@ -645,6 +645,14 @@ bun run --cwd ./client start
 
 Public environment variables are included during the build. Verify production values before building and deploying the application.
 
+During `next build`, public pages fetch data from `NEXT_PUBLIC_GRAPHQL_SCHEMA`. The API must be reachable and return a successful GraphQL response for the best static output. If the API is temporarily unavailable, `/games` degrades to an empty catalog and hydrates on the client; other pages may still fail the build when their queries throw.
+
+Recommended deploy order on Dokploy:
+
+1. Deploy and validate the API (`https://wongamesapi.pedroestevao.com/graphql` must not return 502).
+2. Set client build-time env vars (`NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_GRAPHQL_SCHEMA`, `AUTH_URL`, `AUTH_SECRET`, Stripe key).
+3. Deploy the client.
+
 ## Continuous Integration
 
 The client workflow is located at:
