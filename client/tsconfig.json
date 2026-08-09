@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "ES2017",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -14,11 +14,11 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
-		"baseUrl": "./",
 		"paths": {
-			"@/*": ["./*"],
-			"@types/*": ["@types/*"],
-			"@/components/*": ["components/*"]
+			"@/*": ["${configDir}/*"],
+			"@types/*": ["${configDir}/@types/*"],
+			"@/components/*": ["${configDir}/components/*"],
+			"components/*": ["${configDir}/components/*"]
 		},
 		"plugins": [
 			{
@@ -32,7 +32,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"__tests__/index.test.js", 
+		"__tests__/index.test.js",
 		"generators/plopfile.js"
 	],
 	"exclude": ["node_modules"]
