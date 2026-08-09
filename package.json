@@ -1,40 +1,40 @@
 {
-    "name": "wongames",
-    "version": "1.0.0",
-    "private": true,
-    "engines": {
-      "node": ">=20 <21",
-      "npm": ">=10"
-    },
-    "workspaces": [
-      "client",
-      "api"
-    ],
-    "scripts": {
-      "dev": "concurrently \"npm run dev --workspace=@wongames/client\" \"npm run dev --workspace=@wongames/api\"",
-      "dev:client": "npm run dev --workspace=@wongames/client",
-      "dev:api": "npm run dev --workspace=@wongames/api",
-  
-      "build": "npm run build:client && npm run build:api",
-      "build:client": "npm run build --workspace=@wongames/client",
-      "build:api": "npm run build --workspace=@wongames/api",
-  
-      "lint": "npm run lint --workspaces --if-present",
-      "lint:client": "npm run lint --workspace=@wongames/client",
-      "lint:api": "npm run lint --workspace=@wongames/api --if-present",
-  
-      "typecheck": "npm run typecheck --workspaces --if-present",
-      "typecheck:client": "npm run typecheck --workspace=@wongames/client",
-      "typecheck:api": "npm run typecheck --workspace=@wongames/api --if-present",
-  
-      "test": "npm run test --workspaces --if-present",
-      "test:client": "npm run test --workspace=@wongames/client",
-      "test:ci": "npm run test:ci --workspaces --if-present",
-  
-      "codegen": "npm run codegen --workspace=@wongames/client",
-      "storybook": "npm run storybook --workspace=@wongames/client"
-    },
-    "devDependencies": {
-      "concurrently": "^9.0.0"
-    }
+  "name": "wongames",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20 <21",
+    "npm": ">=10"
+  },
+  "workspaces": [
+    "client",
+    "api"
+  ],
+  "scripts": {
+    "dev": "concurrently \"bun run dev:client\" \"bun run dev:api\"",
+    "dev:client": "bun run --cwd ./client dev",
+    "dev:api": "bun run --cwd ./api dev",
+
+    "build": "bun run build:client && bun run build:api",
+    "build:client": "bun run --cwd ./client build",
+    "build:api": "bun run --cwd ./api build",
+
+    "lint": "concurrently \"bun run lint:client\" \"bun run lint:api\"",
+    "lint:client": "bun run --cwd ./client lint",
+    "lint:api": "bun run --cwd ./api lint",
+
+    "typecheck": "concurrently \"bun run typecheck:client\" \"bun run typecheck:api\"",
+    "typecheck:client": "bun run --cwd ./client typecheck",
+    "typecheck:api": "bun run --cwd ./api typecheck",
+
+    "test": "bun run test:client",
+    "test:client": "bun run --cwd ./client test",
+    "test:ci": "bun run --cwd ./client test:ci",
+
+    "codegen": "bun run --cwd ./client codegen",
+    "storybook": "bun run --cwd ./client storybook"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
   }
+}
