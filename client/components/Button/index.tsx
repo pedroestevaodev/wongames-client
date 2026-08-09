@@ -19,7 +19,7 @@ export type ButtonProps = {
 	as?: React.ElementType;
 } & ButtonTypes;
 
-const Button: React.ForwardRefRenderFunction<S.ContainerProps, ButtonProps> = (
+const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 	{
 		children,
 		icon,
