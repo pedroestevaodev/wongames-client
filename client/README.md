@@ -16,45 +16,45 @@ For repository-wide setup and workspace commands, see the [root documentation](.
 
 The client is responsible for:
 
-* Rendering public and authenticated pages
-* User registration and authentication
-* Password recovery and reset
-* Protected route handling
-* Game catalog navigation
-* Search and filtering
-* Game detail pages
-* Recommended and upcoming game sections
-* Shopping cart management
-* Wishlist management
-* User profile management
-* Stripe checkout integration
-* Order confirmation pages
-* Typed GraphQL communication
-* Reusable UI component development
-* Component documentation through Storybook
+- Rendering public and authenticated pages
+- User registration and authentication
+- Password recovery and reset
+- Protected route handling
+- Game catalog navigation
+- Search and filtering
+- Game detail pages
+- Recommended and upcoming game sections
+- Shopping cart management
+- Wishlist management
+- User profile management
+- Stripe checkout integration
+- Order confirmation pages
+- Typed GraphQL communication
+- Reusable UI component development
+- Component documentation through Storybook
 
 ## Technology Stack
 
-* Next.js 14.2
-* React 18
-* TypeScript 5
-* Apollo Client
-* GraphQL
-* GraphQL Code Generator
-* Auth.js 5
-* Styled Components
-* Tailwind CSS
-* React Hook Form
-* Zod
-* Stripe.js
-* Jest
-* Testing Library
-* Storybook
-* Mock Service Worker
-* ESLint
-* Prettier
-* Husky
-* lint-staged
+- Next.js 14.2
+- React 18
+- TypeScript 5
+- Apollo Client
+- GraphQL
+- GraphQL Code Generator
+- Auth.js 5
+- Styled Components
+- Tailwind CSS
+- React Hook Form
+- Zod
+- Stripe.js
+- Jest
+- Testing Library
+- Storybook
+- Mock Service Worker
+- ESLint
+- Prettier
+- Husky
+- lint-staged
 
 ## Directory Structure
 
@@ -97,11 +97,11 @@ client/
 
 Contains Server Actions for operations such as:
 
-* Sign in
-* Sign out
-* Password recovery
-* Password reset
-* Profile updates
+- Sign in
+- Sign out
+- Password recovery
+- Password reset
+- Profile updates
 
 ### `app`
 
@@ -126,11 +126,11 @@ app/
 
 Public routes include:
 
-* Home page
-* Game catalog
-* Game details
-* Authentication API routes
-* Not-found page
+- Home page
+- Game catalog
+- Game details
+- Authentication API routes
+- Not-found page
 
 ### `components`
 
@@ -138,19 +138,19 @@ Contains reusable UI components and composed page sections.
 
 Examples include:
 
-* Banners
-* Buttons
-* Form fields
-* Game cards
-* Cart components
-* Dropdowns
-* Galleries
-* Header and footer
-* Menus
-* Modals
-* Navigation elements
-* Product detail sections
-* Page layouts
+- Banners
+- Buttons
+- Form fields
+- Game cards
+- Cart components
+- Dropdowns
+- Galleries
+- Header and footer
+- Menus
+- Modals
+- Navigation elements
+- Product detail sections
+- Page layouts
 
 ### `graphql`
 
@@ -166,15 +166,15 @@ graphql/
 
 Queries cover resources such as:
 
-* Categories
-* Games
-* Home page content
-* Orders
-* Platforms
-* User profile
-* Recommendations
-* Upcoming games
-* Wishlist
+- Categories
+- Games
+- Home page content
+- Orders
+- Platforms
+- User profile
+- Recommendations
+- Upcoming games
+- Wishlist
 
 Mutations include user registration and wishlist operations.
 
@@ -182,9 +182,9 @@ Mutations include user registration and wishlist operations.
 
 Contains reusable hooks, including logic related to:
 
-* Shopping cart state
-* Wishlist state
-* Responsive media queries
+- Shopping cart state
+- Wishlist state
+- Responsive media queries
 
 ### `schemas`
 
@@ -196,22 +196,22 @@ Contains authentication and external communication services.
 
 ## Requirements
 
-* Node.js 20
-* npm 10 or later
-* WonGames API running locally or accessible remotely
+- Node.js 20
+- Bun 1.3 or later
+- WonGames API running locally or accessible remotely
 
 Dependencies are installed from the repository root:
 
 ```bash
-npm install
+bun install
 ```
 
-Do not run a separate installation that creates a `client/package-lock.json`.
+Do not run a separate installation that creates a `client/bun.lock`.
 
 The repository must maintain only the root lockfile:
 
 ```text
-../package-lock.json
+../bun.lock
 ```
 
 ## Environment Variables
@@ -251,12 +251,12 @@ Variables prefixed with `NEXT_PUBLIC_` are included in the browser bundle.
 
 Never use the `NEXT_PUBLIC_` prefix for:
 
-* Stripe secret keys
-* Database credentials
-* Cloudinary secrets
-* SMTP passwords
-* Strapi application secrets
-* Private authentication credentials
+- Stripe secret keys
+- Database credentials
+- Cloudinary secrets
+- SMTP passwords
+- Strapi application secrets
+- Private authentication credentials
 
 Generate a local authentication secret with:
 
@@ -269,13 +269,13 @@ openssl rand -base64 32
 From the repository root:
 
 ```bash
-npm run dev:client
+bun run dev:client
 ```
 
 Alternatively:
 
 ```bash
-npm run dev --workspace=@wongames/client
+bun run --cwd ./client dev
 ```
 
 The application will be available at:
@@ -294,31 +294,31 @@ http://localhost:1337
 
 The following scripts are declared in `client/package.json`:
 
-| Command                                                | Description                           |
-| ------------------------------------------------------ | ------------------------------------- |
-| `npm run dev --workspace=@wongames/client`             | Starts the Next.js development server |
-| `npm run build --workspace=@wongames/client`           | Creates the production build          |
-| `npm run start --workspace=@wongames/client`           | Starts the production build           |
-| `npm run lint --workspace=@wongames/client`            | Runs the Next.js ESLint validation    |
-| `npm run typecheck --workspace=@wongames/client`       | Runs TypeScript validation            |
-| `npm run test --workspace=@wongames/client`            | Runs the Jest test suite              |
-| `npm run test:watch --workspace=@wongames/client`      | Runs Jest in watch mode               |
-| `npm run test:ci --workspace=@wongames/client`         | Runs Jest using the CI configuration  |
-| `npm run generate --workspace=@wongames/client`        | Runs the Plop generators              |
-| `npm run codegen --workspace=@wongames/client`         | Generates GraphQL artifacts           |
-| `npm run storybook --workspace=@wongames/client`       | Starts Storybook                      |
-| `npm run build-storybook --workspace=@wongames/client` | Builds the static Storybook output    |
+| Command                                  | Description                           |
+| ---------------------------------------- | ------------------------------------- |
+| `bun run --cwd ./client dev`             | Starts the Next.js development server |
+| `bun run --cwd ./client build`           | Creates the production build          |
+| `bun run --cwd ./client start`           | Starts the production build           |
+| `bun run --cwd ./client lint`            | Runs the Next.js ESLint validation    |
+| `bun run --cwd ./client typecheck`       | Runs TypeScript validation            |
+| `bun run --cwd ./client test`            | Runs the Jest test suite              |
+| `bun run --cwd ./client test:watch`      | Runs Jest in watch mode               |
+| `bun run --cwd ./client test:ci`         | Runs Jest using the CI configuration  |
+| `bun run --cwd ./client generate`        | Runs the Plop generators              |
+| `bun run --cwd ./client codegen`         | Generates GraphQL artifacts           |
+| `bun run --cwd ./client storybook`       | Starts Storybook                      |
+| `bun run --cwd ./client build-storybook` | Builds the static Storybook output    |
 
 Root aliases are also available:
 
 ```bash
-npm run dev:client
-npm run build:client
-npm run lint:client
-npm run typecheck:client
-npm run test:client
-npm run codegen
-npm run storybook
+bun run dev:client
+bun run build:client
+bun run lint:client
+bun run typecheck:client
+bun run test:client
+bun run codegen
+bun run storybook
 ```
 
 ## Routing
@@ -366,10 +366,10 @@ NEXT_PUBLIC_GRAPHQL_SCHEMA=http://localhost:1337/graphql
 
 The API must be available when:
 
-* Querying content during development
-* Testing authenticated flows
-* Running GraphQL Code Generator
-* Validating application behavior against the current schema
+- Querying content during development
+- Testing authenticated flows
+- Running GraphQL Code Generator
+- Validating application behavior against the current schema
 
 ## GraphQL Code Generator
 
@@ -378,22 +378,22 @@ GraphQL operations are typed from the API schema.
 Run the generator from the repository root:
 
 ```bash
-npm run codegen
+bun run codegen
 ```
 
 Or target the client workspace directly:
 
 ```bash
-npm run codegen --workspace=@wongames/client
+bun run --cwd ./client codegen
 ```
 
 The generator uses:
 
-* The API GraphQL schema
-* Queries under `graphql/queries`
-* Mutations under `graphql/mutations`
-* Shared fragments under `graphql/fragments`
-* The configuration in `codegen.ts`
+- The API GraphQL schema
+- Queries under `graphql/queries`
+- Mutations under `graphql/mutations`
+- Shared fragments under `graphql/fragments`
+- The configuration in `codegen.ts`
 
 Generated files are stored under:
 
@@ -406,10 +406,10 @@ Do not edit generated files manually.
 When changing a GraphQL operation or API content type:
 
 ```bash
-npm run codegen
-npm run typecheck:client
-npm run test:ci --workspace=@wongames/client
-npm run build:client
+bun run codegen
+bun run typecheck:client
+bun run --cwd ./client test:ci
+bun run build:client
 ```
 
 ## Authentication
@@ -418,14 +418,14 @@ Authentication is implemented with Auth.js and the WonGames API.
 
 The supported flow includes:
 
-* User registration
-* Sign in
-* Sign out
-* Session persistence
-* Password recovery
-* Password reset
-* Protected pages
-* User profile updates
+- User registration
+- Sign in
+- Sign out
+- Session persistence
+- Password recovery
+- Password reset
+- Protected pages
+- User profile updates
 
 Authentication API routes are located under:
 
@@ -473,13 +473,13 @@ The project uses Styled Components as its primary component styling solution and
 
 When adding or modifying components:
 
-* Reuse existing design tokens.
-* Keep component-specific styles close to the component.
-* Avoid unnecessary duplicated values.
-* Preserve responsive behavior.
-* Preserve keyboard navigation.
-* Provide accessible names and labels.
-* Avoid mixing styling strategies without a clear reason.
+- Reuse existing design tokens.
+- Keep component-specific styles close to the component.
+- Avoid unnecessary duplicated values.
+- Preserve responsive behavior.
+- Preserve keyboard navigation.
+- Provide accessible names and labels.
+- Avoid mixing styling strategies without a clear reason.
 
 ## Storybook
 
@@ -488,13 +488,13 @@ Storybook is used for isolated component development and visual documentation.
 Start Storybook:
 
 ```bash
-npm run storybook
+bun run storybook
 ```
 
 Or:
 
 ```bash
-npm run storybook --workspace=@wongames/client
+bun run --cwd ./client storybook
 ```
 
 The default address is:
@@ -506,65 +506,65 @@ http://localhost:6006
 Build the static Storybook output:
 
 ```bash
-npm run build-storybook --workspace=@wongames/client
+bun run --cwd ./client build-storybook
 ```
 
 Reusable components should include stories when isolated visual validation adds value.
 
 Relevant states may include:
 
-* Default
-* Loading
-* Empty
-* Error
-* Disabled
-* Mobile
-* Desktop
-* Authenticated
-* Unauthenticated
+- Default
+- Loading
+- Empty
+- Error
+- Disabled
+- Mobile
+- Desktop
+- Authenticated
+- Unauthenticated
 
 ## Testing
 
 The client test suite uses:
 
-* Jest
-* Testing Library
-* jest-dom
-* Mock Service Worker
-* jest-styled-components
+- Jest
+- Testing Library
+- jest-dom
+- Mock Service Worker
+- jest-styled-components
 
 Run the tests:
 
 ```bash
-npm run test:client
+bun run test:client
 ```
 
 Run in watch mode:
 
 ```bash
-npm run test:watch --workspace=@wongames/client
+bun run --cwd ./client test:watch
 ```
 
 Run the CI configuration:
 
 ```bash
-npm run test:ci --workspace=@wongames/client
+bun run --cwd ./client test:ci
 ```
 
 Tests should prioritize observable behavior instead of internal implementation details.
 
 Relevant scenarios include:
 
-* Component states
-* User interaction
-* Form validation
-* Success and error responses
-* Loading indicators
-* Empty states
-* Authentication behavior
-* Protected content
-* GraphQL responses
-* Cart and wishlist updates
+- Component states
+- User interaction
+- Form validation
+- Success and error responses
+- Loading indicators
+- Empty states
+- Authentication behavior
+- Protected content
+- GraphQL responses
+- Cart and wishlist updates
 
 ## Code Generators
 
@@ -573,7 +573,7 @@ The client uses Plop to generate standardized project files.
 Run:
 
 ```bash
-npm run generate --workspace=@wongames/client
+bun run --cwd ./client generate
 ```
 
 Generator templates are located in:
@@ -598,35 +598,35 @@ Avoid broad or unrestricted hostname rules.
 
 ## Code Standards
 
-* Use TypeScript consistently.
-* Avoid `any` unless there is a documented reason.
-* Keep components focused on a single responsibility.
-* Keep GraphQL operations in dedicated files.
-* Reuse GraphQL fragments for recurring field selections.
-* Centralize form validation in Zod schemas.
-* Reuse existing hooks and services.
-* Separate Server Components from Client Components correctly.
-* Avoid external requests directly inside visual components.
-* Handle loading, empty, success, and error states.
-* Preserve accessibility.
-* Update tests when behavior changes.
-* Do not edit generated GraphQL files manually.
+- Use TypeScript consistently.
+- Avoid `any` unless there is a documented reason.
+- Keep components focused on a single responsibility.
+- Keep GraphQL operations in dedicated files.
+- Reuse GraphQL fragments for recurring field selections.
+- Centralize form validation in Zod schemas.
+- Reuse existing hooks and services.
+- Separate Server Components from Client Components correctly.
+- Avoid external requests directly inside visual components.
+- Handle loading, empty, success, and error states.
+- Preserve accessibility.
+- Update tests when behavior changes.
+- Do not edit generated GraphQL files manually.
 
 ## Validation Before Commit
 
 Run:
 
 ```bash
-npm run lint:client
-npm run typecheck:client
-npm run test:ci --workspace=@wongames/client
-npm run build:client
+bun run lint:client
+bun run typecheck:client
+bun run --cwd ./client test:ci
+bun run build:client
 ```
 
 GraphQL-related changes must also run:
 
 ```bash
-npm run codegen
+bun run codegen
 ```
 
 ## Production Build
@@ -634,13 +634,13 @@ npm run codegen
 Create the production build:
 
 ```bash
-npm run build:client
+bun run build:client
 ```
 
 Start the production server:
 
 ```bash
-npm run start --workspace=@wongames/client
+bun run --cwd ./client start
 ```
 
 Public environment variables are included during the build. Verify production values before building and deploying the application.
@@ -653,19 +653,19 @@ The client workflow is located at:
 .github/workflows/client-ci.yml
 ```
 
-Because the project uses npm Workspaces, the workflow must install dependencies from the repository root:
+Because the project uses a root Bun lockfile, the workflow must install dependencies from the repository root:
 
 ```bash
-npm ci
+bun install --frozen-lockfile
 ```
 
-Client commands should target the workspace:
+Client commands should use the root aliases or `--cwd`:
 
 ```bash
-npm run lint --workspace=@wongames/client
-npm run typecheck --workspace=@wongames/client
-npm run test:ci --workspace=@wongames/client
-npm run build --workspace=@wongames/client
+bun run lint:client
+bun run typecheck:client
+bun run test:ci
+bun run build:client
 ```
 
 The workflow should monitor changes to:
@@ -673,22 +673,19 @@ The workflow should monitor changes to:
 ```text
 client/**
 package.json
-package-lock.json
+bun.lock
 .github/workflows/client-ci.yml
 ```
 
 ## Troubleshooting
 
-### npm cannot find the client workspace
+### Bun cannot find the client scripts
 
-Verify the root `package.json`:
+Verify the root `package.json` workspaces and scripts:
 
 ```json
 {
-  "workspaces": [
-    "client",
-    "api"
-  ]
+	"workspaces": ["client", "api"]
 }
 ```
 
@@ -696,35 +693,35 @@ Verify the client package name:
 
 ```json
 {
-  "name": "@wongames/client"
+	"name": "@wongames/client"
 }
 ```
 
-Then run:
+Then run from the repository root:
 
 ```bash
-npm pkg get name --workspaces
+bun run --cwd ./client --help
 ```
 
 ### GraphQL generation fails
 
 Verify that:
 
-* The API is running.
-* `NEXT_PUBLIC_GRAPHQL_SCHEMA` is correct.
-* The GraphQL endpoint is accessible.
-* The current operations are compatible with the API schema.
+- The API is running.
+- `NEXT_PUBLIC_GRAPHQL_SCHEMA` is correct.
+- The GraphQL endpoint is accessible.
+- The current operations are compatible with the API schema.
 
 ### Authentication fails
 
 Verify:
 
-* `AUTH_URL`
-* `AUTH_SECRET`
-* API URL
-* Authentication provider configuration
-* Cookies and domain configuration
-* Local system time
+- `AUTH_URL`
+- `AUTH_SECRET`
+- API URL
+- Authentication provider configuration
+- Cookies and domain configuration
+- Local system time
 
 ### Remote images do not load
 
@@ -736,19 +733,19 @@ Remove the Next.js build cache and rebuild:
 
 ```bash
 rm -rf client/.next
-npm run build:client
+bun run build:client
 ```
 
 ## Security
 
-* Never expose private keys through `NEXT_PUBLIC_*`.
-* Never log authentication tokens.
-* Do not rely exclusively on client-side route protection.
-* Validate external data before rendering.
-* Avoid rendering unsanitized external HTML.
-* Use a different `AUTH_SECRET` for each environment.
-* Review authentication and payment dependency updates carefully.
-* Keep payment calculations on the API.
+- Never expose private keys through `NEXT_PUBLIC_*`.
+- Never log authentication tokens.
+- Do not rely exclusively on client-side route protection.
+- Validate external data before rendering.
+- Avoid rendering unsanitized external HTML.
+- Use a different `AUTH_SECRET` for each environment.
+- Review authentication and payment dependency updates carefully.
+- Keep payment calculations on the API.
 
 ---
 

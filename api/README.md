@@ -16,37 +16,37 @@ For repository-wide setup and workspace commands, see the [root documentation](.
 
 The API is responsible for:
 
-* Game catalog management
-* Category and platform management
-* Developer and publisher management
-* Home page content
-* Banner management
-* Recommendations
-* User registration and authentication
-* Password recovery
-* Wishlist persistence
-* Order creation and retrieval
-* Stripe payment integration
-* Cloudinary media storage
-* SMTP email delivery
-* REST and GraphQL endpoints
-* Strapi administration panel
-* Database migrations
-* Authorization and permission enforcement
+- Game catalog management
+- Category and platform management
+- Developer and publisher management
+- Home page content
+- Banner management
+- Recommendations
+- User registration and authentication
+- Password recovery
+- Wishlist persistence
+- Order creation and retrieval
+- Stripe payment integration
+- Cloudinary media storage
+- SMTP email delivery
+- REST and GraphQL endpoints
+- Strapi administration panel
+- Database migrations
+- Authorization and permission enforcement
 
 ## Technology Stack
 
-* Node.js 20
-* npm 10
-* TypeScript 5
-* Strapi 5.10
-* PostgreSQL
-* GraphQL
-* Strapi Users & Permissions
-* Stripe
-* Cloudinary
-* Nodemailer
-* CKEditor
+- Node.js 20
+- Bun 1.3+
+- TypeScript 5
+- Strapi 5.10
+- PostgreSQL
+- GraphQL
+- Strapi Users & Permissions
+- Stripe
+- Cloudinary
+- Nodemailer
+- CKEditor
 
 ## Directory Structure
 
@@ -82,15 +82,15 @@ api/
 
 Contains application configuration for:
 
-* HTTP server
-* Database
-* Administration panel
-* REST API
-* Middlewares
-* Plugins
-* Email provider
-* Upload provider
-* GraphQL
+- HTTP server
+- Database
+- Administration panel
+- REST API
+- Middlewares
+- Plugins
+- Email provider
+- Upload provider
+- GraphQL
 
 ### `database/migrations`
 
@@ -146,25 +146,25 @@ Custom routes should remain separate from automatically generated Strapi routes.
 
 ## Requirements
 
-* Node.js 20
-* npm 10 or later
-* PostgreSQL
-* Stripe credentials for payment operations
-* Cloudinary credentials for media uploads
-* SMTP credentials for transactional emails
+- Node.js 20
+- Bun 1.3 or later
+- PostgreSQL
+- Stripe credentials for payment operations
+- Cloudinary credentials for media uploads
+- SMTP credentials for transactional emails
 
 Dependencies are installed from the repository root:
 
 ```bash
-npm install
+bun install
 ```
 
-Do not create a separate `api/package-lock.json`.
+Do not create a separate `api/bun.lock`.
 
 The repository must maintain only:
 
 ```text
-../package-lock.json
+../bun.lock
 ```
 
 ## Environment Variables
@@ -320,24 +320,24 @@ DATABASE_HOST=postgres
 
 The database user must have permission to:
 
-* Connect to the configured database
-* Create and alter tables
-* Create indexes
-* Execute migrations
-* Read and write application data
+- Connect to the configured database
+- Create and alter tables
+- Create indexes
+- Execute migrations
+- Read and write application data
 
 ## Running the API
 
 From the repository root:
 
 ```bash
-npm run dev:api
+bun run dev:api
 ```
 
 Alternatively:
 
 ```bash
-npm run dev --workspace=@wongames/api
+bun run --cwd ./api dev
 ```
 
 The API will be available at:
@@ -358,28 +358,28 @@ On the first run, Strapi will request the creation of an administrator account.
 
 The following scripts are declared in `api/package.json`:
 
-| Command                                    | Description                                              |
-| ------------------------------------------ | -------------------------------------------------------- |
-| `npm run dev --workspace=@wongames/api`    | Starts Strapi in development mode                        |
-| `npm run start --workspace=@wongames/api`  | Starts Strapi in production mode                         |
-| `npm run build --workspace=@wongames/api`  | Builds the administration panel and production artifacts |
-| `npm run strapi --workspace=@wongames/api` | Runs the Strapi CLI                                      |
+| Command                      | Description                                              |
+| ---------------------------- | -------------------------------------------------------- |
+| `bun run --cwd ./api dev`    | Starts Strapi in development mode                        |
+| `bun run --cwd ./api start`  | Starts Strapi in production mode                         |
+| `bun run --cwd ./api build`  | Builds the administration panel and production artifacts |
+| `bun run --cwd ./api strapi` | Runs the Strapi CLI                                      |
 
 Root aliases are also available:
 
 ```bash
-npm run dev:api
-npm run build:api
+bun run dev:api
+bun run build:api
 ```
 
 Examples using the Strapi CLI:
 
 ```bash
-npm run strapi --workspace=@wongames/api -- --help
+bun run --cwd ./api strapi -- --help
 ```
 
 ```bash
-npm run strapi --workspace=@wongames/api -- content-types:list
+bun run --cwd ./api strapi -- content-types:list
 ```
 
 The separator `--` forwards the remaining arguments to the Strapi CLI.
@@ -394,14 +394,14 @@ http://localhost:1337/admin
 
 The administration panel is used to:
 
-* Manage content types
-* Create and edit games
-* Manage categories and platforms
-* Manage developers and publishers
-* Upload and organize media
-* Review users
-* Configure roles and permissions
-* Manage home page content
+- Manage content types
+- Create and edit games
+- Manage categories and platforms
+- Manage developers and publishers
+- Upload and organize media
+- Review users
+- Configure roles and permissions
+- Manage home page content
 
 ### GraphQL
 
@@ -425,9 +425,9 @@ Strapi permissions are separated by role.
 
 The main access contexts are:
 
-* Public
-* Authenticated
-* Administrative roles
+- Public
+- Authenticated
+- Administrative roles
 
 After creating or changing a content type:
 
@@ -458,10 +458,10 @@ After modifying a content type:
 From the repository root:
 
 ```bash
-npm run codegen
-npm run typecheck:client
-npm run test:ci --workspace=@wongames/client
-npm run build
+bun run codegen
+bun run typecheck:client
+bun run --cwd ./client test:ci
+bun run build
 ```
 
 Breaking GraphQL changes should preferably update the API and client within the same pull request.
@@ -472,14 +472,14 @@ Authentication uses the Strapi Users & Permissions plugin.
 
 The flow includes:
 
-* User registration
-* User authentication
-* JWT generation
-* Password recovery
-* Password reset
-* User profile retrieval
-* User profile updates
-* Association of orders and wishlists with authenticated users
+- User registration
+- User authentication
+- JWT generation
+- Password recovery
+- Password reset
+- User profile retrieval
+- User profile updates
+- Association of orders and wishlists with authenticated users
 
 User content type extensions are located under:
 
@@ -507,14 +507,14 @@ The amount sent by the client must never be considered authoritative.
 
 The API must validate:
 
-* User authentication
-* Product existence
-* Current prices
-* Currency
-* Payment status
-* Duplicate requests
-* Order ownership
-* Stripe errors
+- User authentication
+- Product existence
+- Current prices
+- Currency
+- Payment status
+- Duplicate requests
+- Order ownership
+- Stripe errors
 
 The Stripe secret key must exist only in the API environment:
 
@@ -539,12 +539,12 @@ The local `public/uploads` directory should only be treated as development stora
 
 Upload configuration should consider:
 
-* Allowed file types
-* Maximum upload size
-* Environment-specific folders
-* Access permissions
-* Deletion behavior
-* Credential security
+- Allowed file types
+- Maximum upload size
+- Environment-specific folders
+- Access permissions
+- Deletion behavior
+- Credential security
 
 Cloudinary credentials must not be exposed to the client.
 
@@ -562,14 +562,14 @@ Email-dependent features include password recovery and other transactional messa
 
 Production email configuration should:
 
-* Use a verified domain
-* Use TLS when available
-* Configure SPF
-* Configure DKIM
-* Configure DMARC
-* Define the sender through environment variables
-* Avoid hardcoded personal addresses
-* Avoid logging message contents containing sensitive information
+- Use a verified domain
+- Use TLS when available
+- Configure SPF
+- Configure DKIM
+- Configure DMARC
+- Define the sender through environment variables
+- Avoid hardcoded personal addresses
+- Avoid logging message contents containing sensitive information
 
 ## Database Migrations
 
@@ -581,12 +581,12 @@ database/migrations/
 
 Each migration should:
 
-* Have a single responsibility
-* Be safe for existing data
-* Consider previously populated databases
-* Avoid destructive operations without a transition strategy
-* Be tested before production deployment
-* Be committed with the related application change
+- Have a single responsibility
+- Be safe for existing data
+- Consider previously populated databases
+- Avoid destructive operations without a transition strategy
+- Be tested before production deployment
+- Be committed with the related application change
 
 Direct production database modifications should not replace versioned migrations.
 
@@ -600,15 +600,15 @@ src/api/<domain>/content-types/<content-type>/schema.json
 
 When creating or changing a content type:
 
-* Use consistent naming.
-* Define required fields explicitly.
-* Review relationships and cardinality.
-* Avoid duplicated data.
-* Review draft and publish behavior.
-* Regenerate related types.
-* Validate the GraphQL contract.
-* Update the client when necessary.
-* Review public and authenticated permissions.
+- Use consistent naming.
+- Define required fields explicitly.
+- Review relationships and cardinality.
+- Avoid duplicated data.
+- Review draft and publish behavior.
+- Regenerate related types.
+- Validate the GraphQL contract.
+- Update the client when necessary.
+- Review public and authenticated permissions.
 
 ## Controllers, Services, and Routes
 
@@ -616,22 +616,22 @@ When creating or changing a content type:
 
 Controllers should:
 
-* Validate request data
-* Validate authentication and authorization
-* Delegate business rules to services
-* Return consistent responses
-* Use appropriate HTTP status codes
-* Avoid exposing internal errors
+- Validate request data
+- Validate authentication and authorization
+- Delegate business rules to services
+- Return consistent responses
+- Use appropriate HTTP status codes
+- Avoid exposing internal errors
 
 ### Services
 
 Services should contain:
 
-* Business rules
-* Reusable domain logic
-* Payment operations
-* External service integration
-* Database orchestration
+- Business rules
+- Reusable domain logic
+- Payment operations
+- External service integration
+- Database orchestration
 
 Reusable business logic should not remain inside controllers.
 
@@ -639,24 +639,24 @@ Reusable business logic should not remain inside controllers.
 
 Custom routes should explicitly define:
 
-* HTTP method
-* Path
-* Handler
-* Policies
-* Middlewares
-* Authentication requirements
+- HTTP method
+- Path
+- Handler
+- Policies
+- Middlewares
+- Authentication requirements
 
 ## Error Handling
 
 Errors should:
 
-* Use appropriate HTTP status codes
-* Return safe and actionable messages
-* Avoid production stack traces
-* Avoid exposing tokens or credentials
-* Preserve diagnostic context in internal logs
-* Handle expected business failures explicitly
-* Distinguish validation, authorization, integration, and infrastructure errors
+- Use appropriate HTTP status codes
+- Return safe and actionable messages
+- Avoid production stack traces
+- Avoid exposing tokens or credentials
+- Preserve diagnostic context in internal logs
+- Handle expected business failures explicitly
+- Distinguish validation, authorization, integration, and infrastructure errors
 
 External integration errors should be translated into stable application responses instead of exposing provider-specific details directly to the client.
 
@@ -665,13 +665,13 @@ External integration errors should be translated into stable application respons
 Build the API from the repository root:
 
 ```bash
-npm run build:api
+bun run build:api
 ```
 
 Start the production application:
 
 ```bash
-npm run start --workspace=@wongames/api
+bun run --cwd ./api start
 ```
 
 Production must not use:
@@ -682,29 +682,29 @@ strapi develop
 
 Before deployment, verify:
 
-* PostgreSQL connectivity
-* Strapi application secrets
-* Cloudinary configuration
-* SMTP configuration
-* Stripe secret key
-* Public API URL
-* Content type permissions
-* Administration panel build
-* CORS configuration
+- PostgreSQL connectivity
+- Strapi application secrets
+- Cloudinary configuration
+- SMTP configuration
+- Stripe secret key
+- Public API URL
+- Content type permissions
+- Administration panel build
+- CORS configuration
 
 ## Deployment Requirements
 
 The API production environment should provide:
 
-* Node.js 20
-* A persistent application process
-* PostgreSQL
-* HTTPS
-* External media storage
-* Secure environment variables
-* Centralized logs
-* Database backups
-* Availability monitoring
+- Node.js 20
+- A persistent application process
+- PostgreSQL
+- HTTPS
+- External media storage
+- Secure environment variables
+- Centralized logs
+- Database backups
+- Availability monitoring
 
 The database must not depend on an ephemeral application filesystem.
 
@@ -712,12 +712,12 @@ The database must not depend on an ephemeral application filesystem.
 
 A production backup strategy should include:
 
-* Scheduled PostgreSQL backups
-* Retention policy
-* Encryption
-* Storage outside the main application server
-* Periodic restoration tests
-* Version tracking between application releases and backups
+- Scheduled PostgreSQL backups
+- Retention policy
+- Encryption
+- Storage outside the main application server
+- Periodic restoration tests
+- Version tracking between application releases and backups
 
 Cloudinary assets should follow the retention and backup capabilities of the configured account.
 
@@ -729,16 +729,16 @@ The API workflow is located at:
 .github/workflows/api-ci.yml
 ```
 
-Because the project uses npm Workspaces, dependencies must be installed from the repository root:
+Because the project uses a root Bun lockfile, dependencies must be installed from the repository root:
 
 ```bash
-npm ci
+bun install --frozen-lockfile
 ```
 
-The build command should target the API workspace:
+The build command should use the root alias or `--cwd`:
 
 ```bash
-npm run build --workspace=@wongames/api
+bun run build:api
 ```
 
 The workflow should monitor changes to:
@@ -746,7 +746,7 @@ The workflow should monitor changes to:
 ```text
 api/**
 package.json
-package-lock.json
+bun.lock
 .github/workflows/api-ci.yml
 ```
 
@@ -759,40 +759,37 @@ CI environment variables must use non-production values.
 Build the API:
 
 ```bash
-npm run build:api
+bun run build:api
 ```
 
 Changes affecting the GraphQL contract should also validate the client:
 
 ```bash
-npm run codegen
-npm run typecheck:client
-npm run test:ci --workspace=@wongames/client
-npm run build:client
+bun run codegen
+bun run typecheck:client
+bun run --cwd ./client test:ci
+bun run build:client
 ```
 
 The recommended next quality improvement for the API is automated coverage for:
 
-* Custom controllers
-* Order services
-* Price calculation
-* Wishlist ownership
-* Order authorization
-* Stripe integration behavior
-* External service failures
+- Custom controllers
+- Order services
+- Price calculation
+- Wishlist ownership
+- Order authorization
+- Stripe integration behavior
+- External service failures
 
 ## Troubleshooting
 
-### npm cannot find the API workspace
+### Bun cannot find the API scripts
 
-Verify the root `package.json`:
+Verify the root `package.json` workspaces and scripts:
 
 ```json
 {
-  "workspaces": [
-    "client",
-    "api"
-  ]
+	"workspaces": ["client", "api"]
 }
 ```
 
@@ -800,61 +797,61 @@ Verify the API package name:
 
 ```json
 {
-  "name": "@wongames/api"
+	"name": "@wongames/api"
 }
 ```
 
-Then run:
+Then run from the repository root:
 
 ```bash
-npm pkg get name --workspaces
+bun run --cwd ./api --help
 ```
 
 ### API cannot connect to PostgreSQL
 
 Verify:
 
-* PostgreSQL is running.
-* `DATABASE_HOST` is correct.
-* `DATABASE_PORT` is correct.
-* The database exists.
-* Username and password are correct.
-* SSL configuration matches the environment.
-* The database is reachable from the API process.
+- PostgreSQL is running.
+- `DATABASE_HOST` is correct.
+- `DATABASE_PORT` is correct.
+- The database exists.
+- Username and password are correct.
+- SSL configuration matches the environment.
+- The database is reachable from the API process.
 
 ### GraphQL is unavailable
 
 Verify:
 
-* The GraphQL plugin is installed.
-* Strapi started successfully.
-* The plugin configuration is valid.
-* The requested content type is registered.
-* The relevant role has permission.
-* No schema generation errors appear in the logs.
+- The GraphQL plugin is installed.
+- Strapi started successfully.
+- The plugin configuration is valid.
+- The requested content type is registered.
+- The relevant role has permission.
+- No schema generation errors appear in the logs.
 
 ### Media uploads fail
 
 Verify:
 
-* Cloudinary credentials.
-* Environment variable names.
-* Account limits.
-* File size.
-* File type.
-* Upload provider configuration.
+- Cloudinary credentials.
+- Environment variable names.
+- Account limits.
+- File size.
+- File type.
+- Upload provider configuration.
 
 ### Emails are not delivered
 
 Verify:
 
-* SMTP host.
-* SMTP port.
-* Username and password.
-* TLS requirements.
-* Sender configuration.
-* Provider restrictions.
-* Application logs.
+- SMTP host.
+- SMTP port.
+- Username and password.
+- TLS requirements.
+- Sender configuration.
+- Provider restrictions.
+- Application logs.
 
 ### The administration panel build fails
 
@@ -862,24 +859,24 @@ Remove local build artifacts and try again:
 
 ```bash
 rm -rf api/.cache api/build api/dist
-npm run build:api
+bun run build:api
 ```
 
 ## Security
 
-* Restrict access to the administration panel.
-* Use strong administrator passwords.
-* Review public and authenticated permissions.
-* Restrict CORS to required origins.
-* Never log passwords or JWTs.
-* Keep secrets in environment variables.
-* Use HTTPS in production.
-* Rotate secrets periodically.
-* Validate external service responses.
-* Calculate prices and totals on the server.
-* Add rate limiting to sensitive endpoints.
-* Keep Strapi and plugins updated.
-* Review third-party plugins before major upgrades.
+- Restrict access to the administration panel.
+- Use strong administrator passwords.
+- Review public and authenticated permissions.
+- Restrict CORS to required origins.
+- Never log passwords or JWTs.
+- Keep secrets in environment variables.
+- Use HTTPS in production.
+- Rotate secrets periodically.
+- Validate external service responses.
+- Calculate prices and totals on the server.
+- Add rate limiting to sensitive endpoints.
+- Keep Strapi and plugins updated.
+- Review third-party plugins before major upgrades.
 
 ---
 

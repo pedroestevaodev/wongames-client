@@ -19,25 +19,25 @@ The project is divided into two independently deployable applications:
 | Client      | `client/` | User interface, authentication, catalog, cart, wishlist, profile, and checkout |
 | API         | `api/`    | Content management, users, orders, payments, media, email, and database access |
 
-Both applications are managed through npm Workspaces and share a single dependency lockfile at the repository root.
+Both applications are managed from the repository root with Bun. Dependencies are installed once at the root and shared via workspaces, with a single `bun.lock` lockfile.
 
 ## Main Features
 
-* Game catalog with categories, platforms, developers, and publishers
-* Game search and filtering
-* Product detail pages
-* User registration and authentication
-* Password recovery and reset
-* Protected user area
-* Profile management
-* Shopping cart
-* Wishlist
-* Recommended and upcoming games
-* Stripe checkout integration
-* Order history
-* Administrative content management
-* Cloudinary media storage
-* GraphQL communication between the client and API
+- Game catalog with categories, platforms, developers, and publishers
+- Game search and filtering
+- Product detail pages
+- User registration and authentication
+- Password recovery and reset
+- Protected user area
+- Profile management
+- Shopping cart
+- Wishlist
+- Recommended and upcoming games
+- Stripe checkout integration
+- Order history
+- Administrative content management
+- Cloudinary media storage
+- GraphQL communication between the client and API
 
 ## Repository Structure
 
@@ -77,7 +77,7 @@ wongames/
 │   └── README.md
 │
 ├── package.json
-├── package-lock.json
+├── bun.lock
 └── README.md
 ```
 
@@ -86,10 +86,7 @@ The workspace paths are relative to the root `package.json`:
 ```json
 {
   "private": true,
-  "workspaces": [
-    "client",
-    "api"
-  ]
+  "workspaces": ["client", "api"]
 }
 ```
 
@@ -99,64 +96,64 @@ Do not prefix these paths with the repository name.
 
 ### Client
 
-* Next.js 14
-* React 18
-* TypeScript
-* Apollo Client
-* GraphQL Code Generator
-* Auth.js
-* Styled Components
-* Tailwind CSS
-* React Hook Form
-* Zod
-* Stripe.js
-* Jest
-* Testing Library
-* Storybook
-* Mock Service Worker
+- Next.js 14
+- React 18
+- TypeScript
+- Apollo Client
+- GraphQL Code Generator
+- Auth.js
+- Styled Components
+- Tailwind CSS
+- React Hook Form
+- Zod
+- Stripe.js
+- Jest
+- Testing Library
+- Storybook
+- Mock Service Worker
 
 ### API
 
-* Strapi 5
-* TypeScript
-* PostgreSQL
-* GraphQL
-* Strapi Users & Permissions
-* Stripe
-* Cloudinary
-* Nodemailer
+- Strapi 5
+- TypeScript
+- PostgreSQL
+- GraphQL
+- Strapi Users & Permissions
+- Stripe
+- Cloudinary
+- Nodemailer
 
 ### Repository Tooling
 
-* Node.js 20
-* npm 10
-* npm Workspaces
-* GitHub Actions
-* ESLint
-* Prettier
-* Husky
-* lint-staged
-* concurrently
+- Node.js 20
+- Bun 1.3+
+- Bun workspaces
+- GitHub Actions
+- ESLint
+- Prettier
+- Husky
+- lint-staged
+- concurrently
 
 ## Requirements
 
 Install the following tools before starting:
 
-* Node.js 20
-* npm 10 or later
-* PostgreSQL
-* Git
+- Node.js 20
+- Bun 1.3 or later
+- PostgreSQL
+- Git
 
 Optional infrastructure tools:
 
-* Docker
-* Docker Compose
+- Docker
+- Docker Compose
 
 External service credentials may also be required:
 
-* Stripe
-* Cloudinary
-* SMTP provider
+- Stripe
+- Cloudinary
+- SMTP provider
 
 ## Installation
 
@@ -170,10 +167,10 @@ cd wongames
 Install all workspace dependencies from the repository root:
 
 ```bash
-npm install
+bun install
 ```
 
-The installation must be executed from the root directory. npm will resolve dependencies for both workspaces and generate a single `package-lock.json`.
+The installation must be executed from the root directory. Bun will resolve dependencies for both workspaces and generate a single `bun.lock`.
 
 Do not maintain separate lockfiles inside `client/` or `api/`.
 
@@ -181,14 +178,14 @@ The expected lockfile structure is:
 
 ```text
 wongames/
-└── package-lock.json
+└── bun.lock
 ```
 
 The following files should not exist:
 
 ```text
-client/package-lock.json
-api/package-lock.json
+client/bun.lock
+api/bun.lock
 ```
 
 ## Environment Configuration
@@ -202,8 +199,8 @@ cp api/.env.example api/.env
 
 Configure the values according to the internal documentation:
 
-* [Client configuration](client/README.md)
-* [API configuration](api/README.md)
+- [Client configuration](client/README.md)
+- [API configuration](api/README.md)
 
 Environment files, credentials, private keys, and tokens must not be committed to version control.
 
@@ -212,40 +209,26 @@ Environment files, credentials, private keys, and tokens must not be committed t
 Start both applications concurrently:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
-This command executes:
+This command starts both apps via the root scripts:
 
 ```bash
-npm run dev --workspace=@wongames/client
-npm run dev --workspace=@wongames/api
-```
-
-The applications are selected by the `name` property declared in their respective `package.json` files:
-
-```json
-{
-  "name": "@wongames/client"
-}
-```
-
-```json
-{
-  "name": "@wongames/api"
-}
+bun run --cwd ./client dev
+bun run --cwd ./api dev
 ```
 
 ### Run only the client
 
 ```bash
-npm run dev:client
+bun run dev:client
 ```
 
 ### Run only the API
 
 ```bash
-npm run dev:api
+bun run dev:api
 ```
 
 ## Local Services
@@ -263,46 +246,46 @@ The API and PostgreSQL must be available for features that depend on authenticat
 
 ## Root Scripts
 
-| Command                    | Description                                          |
-| -------------------------- | ---------------------------------------------------- |
-| `npm run dev`              | Starts the client and API concurrently               |
-| `npm run dev:client`       | Starts only the client                               |
-| `npm run dev:api`          | Starts only the API                                  |
-| `npm run build`            | Builds the client and API                            |
-| `npm run build:client`     | Builds only the client                               |
-| `npm run build:api`        | Builds only the API                                  |
-| `npm run lint`             | Runs lint scripts in workspaces that provide them    |
-| `npm run lint:client`      | Runs the client lint validation                      |
-| `npm run lint:api`         | Runs the API lint script when available              |
-| `npm run typecheck`        | Runs TypeScript validation in supported workspaces   |
-| `npm run typecheck:client` | Runs the client TypeScript validation                |
-| `npm run typecheck:api`    | Runs the API TypeScript validation when available    |
-| `npm run test`             | Runs tests in workspaces that provide a test script  |
-| `npm run test:client`      | Runs the client test suite                           |
-| `npm run test:ci`          | Runs workspace test suites in CI mode when available |
-| `npm run codegen`          | Generates the client GraphQL artifacts               |
-| `npm run storybook`        | Starts the client Storybook environment              |
+| Command                    | Description                                            |
+| -------------------------- | ------------------------------------------------------ |
+| `bun run dev`              | Starts the client and API concurrently                 |
+| `bun run dev:client`       | Starts only the client                                 |
+| `bun run dev:api`          | Starts only the API                                    |
+| `bun run build`            | Builds the client and API                              |
+| `bun run build:client`     | Builds only the client                                 |
+| `bun run build:api`        | Builds only the API                                    |
+| `bun run lint`             | Runs client and API lint concurrently                  |
+| `bun run lint:client`      | Runs the client lint validation                        |
+| `bun run lint:api`         | Runs the API lint script when available                |
+| `bun run typecheck`        | Runs client and API TypeScript validation concurrently |
+| `bun run typecheck:client` | Runs the client TypeScript validation                  |
+| `bun run typecheck:api`    | Runs the API TypeScript validation when available      |
+| `bun run test`             | Runs the client test suite                             |
+| `bun run test:client`      | Runs the client test suite                             |
+| `bun run test:ci`          | Runs the client test suite in CI mode                  |
+| `bun run codegen`          | Generates the client GraphQL artifacts                 |
+| `bun run storybook`        | Starts the client Storybook environment                |
 
 ## Workspace Commands
 
-Commands may also be executed directly against a workspace.
+Commands may also be executed directly against a workspace directory.
 
 ### Client
 
 ```bash
-npm run dev --workspace=@wongames/client
-npm run build --workspace=@wongames/client
-npm run test:ci --workspace=@wongames/client
+bun run --cwd ./client dev
+bun run --cwd ./client build
+bun run --cwd ./client test:ci
 ```
 
 ### API
 
 ```bash
-npm run dev --workspace=@wongames/api
-npm run build --workspace=@wongames/api
+bun run --cwd ./api dev
+bun run --cwd ./api build
 ```
 
-Workspace commands should normally be executed from the repository root.
+Prefer the root aliases (`bun run dev:client`, `bun run build:api`, etc.) when available.
 
 ## Dependency Management
 
@@ -311,30 +294,30 @@ Dependencies that belong exclusively to one application should be declared in th
 Install a dependency in the client:
 
 ```bash
-npm install <package-name> --workspace=@wongames/client
+bun add <package-name> --cwd ./client
 ```
 
 Install a development dependency in the client:
 
 ```bash
-npm install <package-name> --save-dev --workspace=@wongames/client
+bun add -d <package-name> --cwd ./client
 ```
 
 Install a dependency in the API:
 
 ```bash
-npm install <package-name> --workspace=@wongames/api
+bun add <package-name> --cwd ./api
 ```
 
 Install a root development dependency:
 
 ```bash
-npm install <package-name> --save-dev
+bun add -d <package-name>
 ```
 
 Root dependencies should be limited to tooling shared by the repository, such as `concurrently`.
 
-After changing dependencies, commit both the relevant `package.json` and the root `package-lock.json`.
+After changing dependencies, commit both the relevant `package.json` and the root `bun.lock`.
 
 ## Application Architecture
 
@@ -385,7 +368,7 @@ The client generates TypeScript artifacts from the API GraphQL schema.
 With the API running, execute:
 
 ```bash
-npm run codegen
+bun run codegen
 ```
 
 Generated files must not be edited manually.
@@ -399,10 +382,10 @@ When an API content type, query, mutation, fragment, or GraphQL response changes
 5. Build both applications.
 
 ```bash
-npm run codegen
-npm run typecheck:client
-npm run test:ci
-npm run build
+bun run codegen
+bun run typecheck:client
+bun run test:ci
+bun run build
 ```
 
 ## Database
@@ -439,27 +422,27 @@ DATABASE_HOST=postgres
 
 The repository applies the following validation tools:
 
-* ESLint for static analysis
-* TypeScript for type validation
-* Jest and Testing Library for automated tests
-* Storybook for isolated component development
-* Husky and lint-staged for Git hooks
-* GitHub Actions for pull request and branch validation
-* Production builds for integration validation
+- ESLint for static analysis
+- TypeScript for type validation
+- Jest and Testing Library for automated tests
+- Storybook for isolated component development
+- Husky and lint-staged for Git hooks
+- GitHub Actions for pull request and branch validation
+- Production builds for integration validation
 
 Before opening a pull request, run:
 
 ```bash
-npm run lint
-npm run typecheck
-npm run test:ci
-npm run build
+bun run lint
+bun run typecheck
+bun run test:ci
+bun run build
 ```
 
 GraphQL changes must also run:
 
 ```bash
-npm run codegen
+bun run codegen
 ```
 
 ## Continuous Integration
@@ -479,7 +462,7 @@ The client workflow should run when changes affect:
 ```text
 client/**
 package.json
-package-lock.json
+bun.lock
 .github/workflows/client-ci.yml
 ```
 
@@ -487,8 +470,8 @@ The expected validation steps are:
 
 1. Checkout the repository.
 2. Configure Node.js 20.
-3. Restore the npm cache.
-4. Install dependencies with `npm ci`.
+3. Install Bun.
+4. Install dependencies with `bun install --frozen-lockfile`.
 5. Run client lint.
 6. Run client type validation.
 7. Run client tests.
@@ -501,7 +484,7 @@ The API workflow should run when changes affect:
 ```text
 api/**
 package.json
-package-lock.json
+bun.lock
 .github/workflows/api-ci.yml
 ```
 
@@ -509,25 +492,25 @@ The expected validation steps are:
 
 1. Checkout the repository.
 2. Configure Node.js 20.
-3. Restore the npm cache.
-4. Install dependencies with `npm ci`.
+3. Install Bun.
+4. Install dependencies with `bun install --frozen-lockfile`.
 5. Configure the required environment variables.
 6. Build the API.
 
 Future API tests can be added to the same workflow.
 
-Both workflows must execute `npm ci` from the repository root because the project uses a single lockfile and npm Workspaces.
+Both workflows must execute `bun install --frozen-lockfile` from the repository root because the project uses a single `bun.lock`.
 
 ## Branch Strategy
 
 The recommended branch naming convention is:
 
-* `main`: stable version
-* `develop`: integration branch
-* `feature/*`: new features
-* `fix/*`: bug fixes
-* `refactor/*`: internal improvements
-* `chore/*`: maintenance and infrastructure changes
+- `main`: stable version
+- `develop`: integration branch
+- `feature/*`: new features
+- `fix/*`: bug fixes
+- `refactor/*`: internal improvements
+- `chore/*`: maintenance and infrastructure changes
 
 Examples:
 
@@ -556,13 +539,13 @@ chore: update workspace configuration
 
 Each pull request should:
 
-* Describe the problem or requirement.
-* Explain the implemented solution.
-* Include testing instructions.
-* Include screenshots for visual changes.
-* Document new environment variables.
-* Keep a limited and well-defined scope.
-* Pass all applicable CI validations.
+- Describe the problem or requirement.
+- Explain the implemented solution.
+- Include testing instructions.
+- Include screenshots for visual changes.
+- Document new environment variables.
+- Keep a limited and well-defined scope.
+- Pass all applicable CI validations.
 
 Changes affecting the GraphQL contract should preferably update the API and client in the same pull request.
 
@@ -576,61 +559,61 @@ The client requires an environment compatible with Next.js.
 
 Production configuration must include:
 
-* Public API URL
-* GraphQL endpoint
-* Auth.js URL
-* Auth.js secret
-* Stripe publishable key
+- Public API URL
+- GraphQL endpoint
+- Auth.js URL
+- Auth.js secret
+- Stripe publishable key
 
 Build the client with:
 
 ```bash
-npm run build:client
+bun run build:client
 ```
 
 ### API deployment
 
 The API requires:
 
-* Node.js 20
-* PostgreSQL
-* Cloudinary credentials
-* SMTP credentials
-* Stripe secret key
-* Strapi application secrets
+- Node.js 20
+- PostgreSQL
+- Cloudinary credentials
+- SMTP credentials
+- Stripe secret key
+- Strapi application secrets
 
 Build the API with:
 
 ```bash
-npm run build:api
+bun run build:api
 ```
 
 Production must use the Strapi `start` command rather than `develop`.
 
 ```bash
-npm run start --workspace=@wongames/api
+bun run --cwd ./api start
 ```
 
 ## Security Guidelines
 
-* Never expose private keys in the client.
-* Never commit environment files.
-* Use different secrets for each environment.
-* Restrict access to the Strapi administration panel.
-* Use HTTPS in production.
-* Review public and authenticated Strapi permissions.
-* Restrict CORS to known origins.
-* Do not log passwords, JWTs, payment data, or private credentials.
-* Calculate payment amounts on the API.
-* Rotate credentials after any suspected exposure.
-* Keep dependencies updated and review major version upgrades before deployment.
+- Never expose private keys in the client.
+- Never commit environment files.
+- Use different secrets for each environment.
+- Restrict access to the Strapi administration panel.
+- Use HTTPS in production.
+- Review public and authenticated Strapi permissions.
+- Restrict CORS to known origins.
+- Do not log passwords, JWTs, payment data, or private credentials.
+- Calculate payment amounts on the API.
+- Rotate credentials after any suspected exposure.
+- Keep dependencies updated and review major version upgrades before deployment.
 
 ## Internal Documentation
 
 Application-specific instructions are available in:
 
-* [Client documentation](client/README.md)
-* [API documentation](api/README.md)
+- [Client documentation](client/README.md)
+- [API documentation](api/README.md)
 
 ---
 
