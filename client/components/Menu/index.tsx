@@ -68,7 +68,6 @@ const Menu = ({ username, loading }: MenuProps) => {
 							<Button
 								as={Link}
 								href="/sign-in"
-								prefetch
 								className="hidden md:inline-flex"
 							>
 								Sign in
@@ -104,7 +103,7 @@ const Menu = ({ username, loading }: MenuProps) => {
 
 						{!username && (
 							<S.RegisterBox>
-								<Button as={Link} href="/sign-in" prefetch fullWidth size="large">
+								<Button as={Link} href="/sign-in" fullWidth size="large">
 									Sign In
 								</Button>
 								<span className="block my-xxsmall mx-0 text-xsmall">or</span>

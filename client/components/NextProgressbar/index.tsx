@@ -15,7 +15,7 @@ let startedAt = 0;
 let urlWhenStarted = '';
 let destinationUrl: string | null = null;
 let historyPatched = false;
-let listeners = new Set<() => void>();
+const listeners = new Set<() => void>();
 let snapshot: ProgressSnapshot = { visible: false, width: 0 };
 
 const emit = (): void => {
