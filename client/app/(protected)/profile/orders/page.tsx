@@ -17,6 +17,7 @@ const ProfileOrdersPage = async () => {
 			identifier: session?.user.id as string,
 		},
 		context: {
+			authenticated: true,
 			fetchOptions: {
 				next: { revalidate: 60 }
 			}

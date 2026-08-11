@@ -50,7 +50,7 @@ describe('<ExploreSidebar />', () => {
 		expect(screen.getByRole('radio', { name: /low to high/i })).toBeChecked();
 	});
 
-	it('should filter with initial values', () => {
+	it('should not filter on mount with initial values', () => {
 		const onFilter = jest.fn();
 
 		render(
@@ -61,10 +61,7 @@ describe('<ExploreSidebar />', () => {
 			/>
 		);
 
-		expect(onFilter).toBeCalledWith({
-			platforms: ['windows'],
-			sort_by: 'low-to-high'
-		});
+		expect(onFilter).not.toHaveBeenCalled();
 	});
 
 	it('should filter with checked values', async () => {
@@ -76,7 +73,8 @@ describe('<ExploreSidebar />', () => {
 		await userEvent.click(screen.getByLabelText(/linux/i));
 		await userEvent.click(screen.getByLabelText(/low to high/i));
 
-		expect(onFilter).toHaveBeenCalledTimes(4);
+		// Mount skip + 3 user interactions
+		expect(onFilter).toHaveBeenCalledTimes(3);
 
 		expect(onFilter).toBeCalledWith({
 			platforms: ['windows', 'linux'],

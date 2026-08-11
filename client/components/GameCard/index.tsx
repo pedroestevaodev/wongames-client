@@ -42,7 +42,12 @@ const GameCard = ({
 				</Ribbon>
 			)}
 			<S.ImageBox className="rounded-t-[6px] rounded-b-[0px]">
-				<Image src={`${img}`} fill alt={title} priority />
+				<Image
+					src={img || '/img/empty.svg'}
+					fill
+					alt={title}
+					priority
+				/>
 			</S.ImageBox>
 			<S.Content>
 				<S.Info>

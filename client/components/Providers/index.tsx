@@ -14,7 +14,8 @@ const Providers = async ({ children }: React.PropsWithChildren) => {
 	const session = await auth();
 
 	return (
-		<SessionProvider session={session}>
+		<SessionProvider session={session} refetchOnWindowFocus>
+			<NextProgressbar />
 			<StyledComponentsRegistry>
 				<ApolloProviderWrapper>
 					<ThemeProviderWrapper>
@@ -22,7 +23,6 @@ const Providers = async ({ children }: React.PropsWithChildren) => {
 							<WishlistProvider>
 								<ModalProvider>
 									<GlobalStyles removeBg={false} />
-									<NextProgressbar />
 									{children}
 								</ModalProvider>
 							</WishlistProvider>

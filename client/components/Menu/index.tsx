@@ -5,20 +5,27 @@ import * as S from './styles';
 import Logo from '../Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import Button from '../Button';
 import CartDropdown from '../CartDropdown';
 import UserDropdown from '../UserDropdown';
+import MenuSearch from '../MenuSearch';
 
 export type MenuProps = {
 	username?: string | null;
 	loading?: boolean;
 };
 
+type HeaderDropdown = 'cart' | 'user' | null;
+
 const Menu = ({ username, loading }: MenuProps) => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [openDropdown, setOpenDropdown] = useState<HeaderDropdown>(null);
+
+	const handleDropdownOpenChange = (id: Exclude<HeaderDropdown, null>) => (open: boolean) => {
+		setOpenDropdown(open ? id : null);
+	};
 
 	return (
 		<S.MenuContainer $isOpen={isOpen}>
@@ -40,8 +47,8 @@ const Menu = ({ username, loading }: MenuProps) => {
 			{!loading && (
 				<>
 					<S.MenuGroup>
-						<S.IconWrapper>
-							<FontAwesomeIcon icon={faMagnifyingGlass} className="!size-[16px]" aria-label="Search" />
+						<S.IconWrapper className="!w-auto !h-auto">
+							<MenuSearch onOpen={() => setOpenDropdown(null)} />
 						</S.IconWrapper>
 						<S.IconWrapper>
 							<Link href="/cart" className="flex items-center justify-center md:hidden">
@@ -51,18 +58,28 @@ const Menu = ({ username, loading }: MenuProps) => {
 									aria-label="Open Shopping Cart"
 								/>
 							</Link>
-							<CartDropdown className="hidden md:block" />
+							<CartDropdown
+								className="hidden md:block"
+								isOpen={openDropdown === 'cart'}
+								onOpenChange={handleDropdownOpenChange('cart')}
+							/>
 						</S.IconWrapper>
 						{!username ? (
-							<Button 
-								as={Link} 
+							<Button
+								as={Link}
 								href="/sign-in"
+								prefetch
 								className="hidden md:inline-flex"
 							>
 								Sign in
 							</Button>
 						) : (
-							<UserDropdown className="hidden md:block" username={username} />
+							<UserDropdown
+								className="hidden md:block"
+								username={username}
+								isOpen={openDropdown === 'user'}
+								onOpenChange={handleDropdownOpenChange('user')}
+							/>
 						)}
 					</S.MenuGroup>
 
@@ -87,7 +104,7 @@ const Menu = ({ username, loading }: MenuProps) => {
 
 						{!username && (
 							<S.RegisterBox>
-								<Button as={Link} href="/sign-in" fullWidth size="large">
+								<Button as={Link} href="/sign-in" prefetch fullWidth size="large">
 									Sign In
 								</Button>
 								<span className="block my-xxsmall mx-0 text-xsmall">or</span>

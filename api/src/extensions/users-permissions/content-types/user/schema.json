@@ -69,7 +69,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::wishlist.wishlist",
-      "inversedBy": "user"
+      "mappedBy": "user"
     }
   }
 }

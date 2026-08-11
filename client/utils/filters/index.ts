@@ -68,5 +68,10 @@ export const parseQueryStringToObjFilter = (
 		}
 	});
 
+	const searchTerm = queryString.name;
+	if (typeof searchTerm === 'string' && searchTerm.trim()) {
+		filters.name = { containsi: searchTerm.trim() };
+	}
+
 	return filters;
 };

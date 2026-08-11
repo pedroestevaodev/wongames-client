@@ -6,12 +6,22 @@ import CartList from '../CartList';
 
 export type CartDropdownProps = {
 	className?: string;
+	isOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
 };
 
-const CartDropdown = ({ className = "" }: CartDropdownProps) => {
+const CartDropdown = ({
+	className = '',
+	isOpen,
+	onOpenChange,
+}: CartDropdownProps) => {
 	return (
 		<S.CartDropdownContainer className={className}>
-			<Dropdown title={<CartIcon />}>
+			<Dropdown
+				title={<CartIcon />}
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
+			>
 				<CartList hasButton />
 			</Dropdown>
 		</S.CartDropdownContainer>

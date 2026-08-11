@@ -5,15 +5,34 @@
  */
 export const publicRoutes = [
     "/",
-    "/game",
     "/games",
     "/forgot-password",
     "/reset-password",
 ];
 
 /**
+ * Dynamic public path prefixes (e.g. game detail pages).
+ */
+export const publicRoutePrefixes = [
+    "/game/",
+];
+
+/**
+ * Check whether a pathname is publicly accessible.
+ */
+export const isPublicRoute = (pathname: string): boolean => {
+    if (publicRoutes.includes(pathname)) {
+        return true;
+    }
+
+    return publicRoutePrefixes.some(
+        (prefix) => pathname === prefix.slice(0, -1) || pathname.startsWith(prefix)
+    );
+};
+
+/**
  * An array of routes that are used for authentication
- * These routes will redirect logged in users to /settings
+ * These routes will redirect logged in users to home
  * @type {string[]}
  */
 export const authRoutes = [

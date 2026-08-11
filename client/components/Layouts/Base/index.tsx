@@ -9,12 +9,15 @@ import { ChildrenProps } from "@/@types/nextjs";
 import { useSession } from "next-auth/react";
 
 const Base = ({ children }: ChildrenProps) => {
-	const { data: session } = useSession();
+	const { data: session, status } = useSession();
 
 	return (
 		<S.BaseContainer>
 			<Container>
-				<Menu username={session?.user?.name} />
+				<Menu
+					username={session?.user?.name}
+					loading={status === 'loading'}
+				/>
 			</Container>
 
 			<S.Content>{children}</S.Content>

@@ -8,12 +8,29 @@ export const { getClient } = registerApolloClient(() => {
 		uri: process.env.NEXT_PUBLIC_GRAPHQL_SCHEMA,
 	});
 
-	const authLink = setContext(async (_, { headers, session: clientSession }) => {
-		const session = await auth();
-		const jwt = session?.user.jwt || clientSession?.jwt || '';
-		const authorization = jwt ? `Bearer ${jwt}` : '';
+	const authLink = setContext(async (_, { headers, authenticated, session: contextSession }) => {
+		const shouldAuthenticate = authenticated === true || Boolean(contextSession);
 
-		return { headers: { ...headers, authorization } };
+		if (!shouldAuthenticate) {
+			return { headers };
+		}
+
+		let jwt =
+			contextSession?.jwt ||
+			contextSession?.user?.jwt ||
+			'';
+
+		if (!jwt) {
+			const session = await auth();
+			jwt = session?.user?.jwt || '';
+		}
+
+		return {
+			headers: {
+				...headers,
+				...(jwt ? { authorization: `Bearer ${jwt}` } : {}),
+			},
+		};
 	});
 
 	return new ApolloClient({

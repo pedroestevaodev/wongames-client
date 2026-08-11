@@ -16,19 +16,19 @@ const gameMock = (id: string) => ({
 export const wishlistMock = {
     request: {
         query: GET_WISHLIST,
-        context: { session: { jwt: '123' } },
+        context: { authenticated: true },
         variables: {
-            identifier: 'lorem@ipsum.com'
+            documentId: 'user-document-id'
         }
     },
     result: {
         data: {
-            wishlists: [
-                {
-                    id: 1,
+            usersPermissionsUser: {
+                wishlist: {
+                    id: '1',
                     games: [gameMock('1'), gameMock('2')]
                 }
-            ]
+            }
         }
     }
 }
@@ -36,7 +36,7 @@ export const wishlistMock = {
 export const createWishlistMock = {
     request: {
         query: MUTATION_CREATE_WISHLIST,
-        context: { session: { jwt: '123' } },
+        context: { authenticated: true },
         variables: {
             input: {
                 data: {
@@ -60,7 +60,7 @@ export const createWishlistMock = {
 export const updateWishlistMock = {
     request: {
         query: MUTATION_UPDATE_WISHLIST,
-        context: { session: { jwt: '123' } },
+        context: { authenticated: true },
         variables: {
             input: {
                 where: { id: 1 },
@@ -83,7 +83,7 @@ export const updateWishlistMock = {
 export const removeWishlistMock = {
     request: {
         query: MUTATION_UPDATE_WISHLIST,
-        context: { session: { jwt: '123' } },
+        context: { authenticated: true },
         variables: {
             input: {
                 where: { id: 1 },

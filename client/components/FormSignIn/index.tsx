@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
+import React, { useState } from 'react';
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import * as S from './styles';
 import Button from '../Button';
 import TextField from '../TextField';
@@ -15,7 +17,6 @@ import {
 	faCircleExclamation,
 	faCheck
 } from '@fortawesome/free-solid-svg-icons';
-import { useSearchParams } from 'next/navigation';
 import { LoginSchema } from '@/schemas/authSchema';
 import { login } from '@/actions/login';
 import {
@@ -25,16 +26,17 @@ import {
 	FormSuccess,
 	FormWrapper
 } from '../Form';
-import { signIn } from 'next-auth/react';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { resolvePostAuthRedirect } from '@/helpers/auth-redirect';
 
 const FormSignIn = () => {
 	const searchParams = useSearchParams();
+	const { update } = useSession();
 	const callbackUrl = searchParams.get('callbackUrl');
 
 	const [error, setError] = useState<string | undefined>('');
 	const [success, setSuccess] = useState<string | undefined>('');
-	const [isPending, startTransition] = useTransition();
+	const [isPending, setIsPending] = useState(false);
 
 	const form = useForm<z.infer<typeof LoginSchema>>({
 		resolver: zodResolver(LoginSchema),
@@ -44,27 +46,35 @@ const FormSignIn = () => {
 		}
 	});
 
-	const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+	const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
 		setError('');
 		setSuccess('');
+		setIsPending(true);
 
-		startTransition(async () => {
-			try {
-				const result = await login(values);
+		try {
+			const result = await login(values);
 
-				if (result?.error) {
-					form.reset();
-					setError(result.error);
-				}
-
-				await signIn('credentials', {
-					redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT
-				});
-			} catch (error) {
-				console.log('Error in login', error);
-				setError('Something went wrong!');
+			if (result?.error) {
+				setError(result.error);
+				setIsPending(false);
+				return;
 			}
-		});
+
+			setSuccess('Signed in successfully!');
+
+			// Sync client SessionProvider with the cookie set by the server action.
+			await update();
+
+			// Full navigation so Root Providers re-run auth() with the new session.
+			// Soft router.push/refresh alone often leaves the UI on a stale null session.
+			window.location.assign(
+				resolvePostAuthRedirect(callbackUrl, DEFAULT_LOGIN_REDIRECT)
+			);
+		} catch (error) {
+			console.error('Error in login', error);
+			setError('Something went wrong!');
+			setIsPending(false);
+		}
 	};
 
 	return (

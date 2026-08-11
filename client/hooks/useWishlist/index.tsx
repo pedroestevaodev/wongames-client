@@ -42,25 +42,23 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
     const [wishlistItems, setWishlistItems] = useState<GameFragmentFragment[]>([]);
 
     const [createList, { loading: loadingCreate }] = useMutation(MUTATION_CREATE_WISHLIST, {
-        context: { session },
+        context: { authenticated: true },
         onCompleted: (data: MutationCreateWishlistMutation) => {
-            console.log('create', data);
             setWishlistId(data.createWishlist?.id ?? null);
             setWishlistItems((data.createWishlist?.games || []).filter((game): game is GameFragmentFragment => game !== null));
         },
     });
 
     const [updateList, { loading: loadingUpdate }] = useMutation(MUTATION_UPDATE_WISHLIST, {
-        context: { session },
+        context: { authenticated: true },
         onCompleted: (data: MutationUpdateWishlistMutation) => {
-            console.log('update', data);
             setWishlistItems((data.updateWishlist?.games || []).filter((game): game is GameFragmentFragment => game !== null));
         },
     });
 
     const options = {
-        skip: !session?.user.id,
-        context: { session },
+        skip: !session?.user?.id,
+        context: { authenticated: true },
         variables: {
             documentId: session?.user.id as string,
         },
@@ -69,19 +67,14 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
     const { data, loading: loadingQuery } = useQueryWishlist(options);
 
     useEffect(() => {
-        if (data?.wishlists?.length) {
-            const [wishlist] = data.wishlists;
-            console.log('wishlist useEffect',wishlist);
-            setWishlistItems(wishlist!.games.filter((game): game is GameFragmentFragment => game !== null));
-            setWishlistId(wishlist!.id);
+        const wishlist = data?.usersPermissionsUser?.wishlist;
+        if (wishlist) {
+            setWishlistItems((wishlist.games || []).filter((game): game is GameFragmentFragment => game !== null));
+            setWishlistId(wishlist.id);
         }
-    }, [data?.wishlists]);
+    }, [data?.usersPermissionsUser?.wishlist]);
 
     const wishlistIds = useMemo(() => wishlistItems.map((game) => game.id), [wishlistItems]);
-
-    useEffect(() => {
-        console.log('wishlistIds',wishlistIds);
-    }, [wishlistIds]);
 
     const isInWishlist = (id: string) => wishlistItems.some((game) => game.id === id);
 

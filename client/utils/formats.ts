@@ -16,12 +16,18 @@ export const formatDate = (date: string) => {
 	}).format(new Date(date));
 };
 
-export const formatImageUrl = (url: string | undefined) => {
-	if (url) {
+const DEFAULT_IMAGE_URL = '/img/empty.svg';
+
+/**
+ * Normalize Strapi/media URLs for next/image.
+ * Missing covers must never become the string "null".
+ */
+export const formatImageUrl = (url: string | null | undefined): string => {
+	if (typeof url === 'string' && url.length > 0 && url !== 'null') {
 		return url;
 	}
 
-	return null;
+	return DEFAULT_IMAGE_URL;
 };
 
 export const cn = (...inputs: ClassValue[]) => {

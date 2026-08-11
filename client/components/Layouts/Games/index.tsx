@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useTransition, useEffect } from 'react';
 import * as S from './styles';
 import Base from '../Base';
 import GameCard from '@/components/GameCard';
@@ -11,10 +11,13 @@ import { GameFragmentFragment } from "@/graphql/generated/graphql";
 import { useQueryGames } from "@/graphql/queries/games";
 import { gamesMapper } from "@/utils/mappers";
 import SkeletonContainer from "@/components/Skeleton";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { parseQueryStringToFilter, parseQueryStringToObjFilter } from "@/utils/filters";
 import { ParsedUrlQueryInput } from "querystring";
 import Empty from "@/components/Empty";
+import { useSearchParams } from "next/navigation";
+import SearchFilterBadge from "@/components/SearchFilterBadge";
+import { startProgress } from "@/components/NextProgressbar";
 
 export type GamesLayoutProps = {
 	filterItems: ItemProps[];
@@ -42,6 +45,10 @@ const Games = ({
 	const [isPending, startTransition] = useTransition();
 	const [games, setGames] = useState<GameFragmentFragment[]>(initialData);
 
+	useEffect(() => {
+		setGames(initialData);
+	}, [initialData]);
+
 	const filters = parseQueryStringToObjFilter(queryString, filterItems);
 
 	const { data, loading, fetchMore } = useQueryGames({
@@ -58,10 +65,28 @@ const Games = ({
 	});
 
 	const hasMoreGames = (data?.games?.length ?? 0) < (data?.gamesMeta?.pageInfo.total ?? 0);
+	const searchTerm =
+		typeof queryString.name === 'string' ? queryString.name.trim() : '';
+
+	const navigateGames = (href: string) => {
+		const current = `${window.location.pathname}${window.location.search}`;
+		if (href === current) return;
+		startProgress();
+		router.push(href);
+	};
 
 	const handleFilter = (items: ParsedUrlQueryInput) => {
-		const queryString = Object.entries(items).map(([key, value]) => `${key}=${encodeURIComponent(value?.toString() ?? '')}`).join('&');
-		router.push(`/games?${queryString}`);
+		const nextQuery = Object.entries(items)
+			.map(([key, value]) => `${key}=${encodeURIComponent(value?.toString() ?? '')}`)
+			.join('&');
+		navigateGames(nextQuery ? `/games?${nextQuery}` : '/games');
+	};
+
+	const handleClearSearch = () => {
+		const params = new URLSearchParams(searchParams.toString());
+		params.delete('name');
+		const nextQuery = params.toString();
+		navigateGames(nextQuery ? `/games?${nextQuery}` : '/games');
 	};
 
 	const handleShowMore = () => {
@@ -85,6 +110,13 @@ const Games = ({
 				/>
 
 				<section>
+					{!!searchTerm && (
+						<SearchFilterBadge
+							term={searchTerm}
+							onClear={handleClearSearch}
+						/>
+					)}
+
 					{games.length ? (
 						<>
 							<Grid>

@@ -1,13 +1,12 @@
 import { auth } from "@/services/auth";
 import { NextResponse } from "next/server";
-import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from "./routes";
+import { apiAuthPrefix, authRoutes, DEFAULT_LOGIN_REDIRECT, isPublicRoute } from "./routes";
 
 export default auth((req) => {
     const { pathname } = req.nextUrl;
     const isLoggedIn = !!req.auth;
 
     const isApiAuthRoute = pathname.startsWith(apiAuthPrefix);
-    const isPublicRoute = publicRoutes.includes(pathname);
     const isAuthRoute = authRoutes.includes(pathname);
 
     if (isApiAuthRoute) {
@@ -22,7 +21,7 @@ export default auth((req) => {
         return undefined;
     }
 
-    if (!isLoggedIn && !isPublicRoute) {
+    if (!isLoggedIn && !isPublicRoute(pathname)) {
         let callbackUrl = pathname;
 
         if (req.nextUrl.search) {

@@ -15,6 +15,25 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { login } from "@/actions/login";
 import { useSession } from "next-auth/react";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+
+const getErrorMessage = (error: unknown): string => {
+	if (typeof error === "string") return error;
+	if (error instanceof Error) return error.message;
+	if (
+		error &&
+		typeof error === "object" &&
+		"graphQLErrors" in error &&
+		Array.isArray(error.graphQLErrors) &&
+		error.graphQLErrors[0]?.message
+	) {
+		return String(error.graphQLErrors[0].message);
+	}
+	if (error && typeof error === "object" && "message" in error) {
+		return String(error.message);
+	}
+	return "Something went wrong!";
+};
 
 const FormSignUp = () => {
 	const { update } = useSession();
@@ -26,33 +45,23 @@ const FormSignUp = () => {
 	const form = useForm<z.infer<typeof RegisterSchema>>({
 		resolver: zodResolver(RegisterSchema),
 		defaultValues: {
+			username: "",
 			email: "",
 			password: "",
 		},
 	});
 
-	const [createUser] = useMutation(MUTATION_REGISTER, {
-		onError: (err) => {
-			setError(err.graphQLErrors[0].message);
-		},
-		onCompleted: () => {
-			if (!error) {
-				login({
-					email: form.getValues("email") as string,
-					password: form.getValues("password") as string,
-				});
-			}
-		},
-	});
+	const [createUser] = useMutation(MUTATION_REGISTER);
 
 	const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
 		setError("");
-        setSuccess("");
+		setSuccess("");
 
 		const validatedFields = RegisterSchema.safeParse(values);
 
 		if (!validatedFields.success) {
-			return { error: "Inválid fields!" };
+			setError("Invalid fields!");
+			return;
 		}
 
 		startTransition(() => {
@@ -64,24 +73,38 @@ const FormSignUp = () => {
 						password: values.password,
 					},
 				},
-			}).then((data) => {
-				if (data.errors) {
-					form.reset();
-					setError(data.errors[0].message);
-				}
-
-				if (data.data) {
-				    form.reset();
-				    setSuccess("Success to create user!");
-				}
-
-				update();
-			}).catch((error) => {
-				console.log("Error in login", error);
-				setError(error);
 			})
-		});
+				.then(async (result) => {
+					if (result.errors?.length) {
+						setError(result.errors[0].message);
+						return;
+					}
 
+					if (!result.data?.register) {
+						setError("Unable to create account.");
+						return;
+					}
+
+					const loginResult = await login({
+						email: values.email,
+						password: values.password,
+					});
+
+					if (loginResult?.error) {
+						setError(loginResult.error);
+						return;
+					}
+
+					form.reset();
+					setSuccess("Account created successfully!");
+					await update();
+					window.location.assign(DEFAULT_LOGIN_REDIRECT);
+				})
+				.catch((err) => {
+					console.error("Error in sign up", err);
+					setError(getErrorMessage(err));
+				});
+		});
 	};
 
 	return (

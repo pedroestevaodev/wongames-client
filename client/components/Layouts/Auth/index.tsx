@@ -18,10 +18,11 @@ const Auth = ({ title, children }: AuthProps) => {
 	return (
 		<S.AuthContainer>
 			<S.BannerBlock>
-				<Image 
+				<Image
 					src={"/img/auth-bg.jpg"}
 					className="object-cover"
 					fill
+					priority
 					alt="Auth background"
 				/>
 				<S.BannerContent>

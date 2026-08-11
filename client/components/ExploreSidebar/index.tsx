@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import xor from "lodash.xor";
 import { RiCloseLine, RiFilter2Line } from '@remixicon/react';
@@ -39,11 +39,16 @@ const ExploreSidebar = ({
 }: ExploreSidebarProps) => {
 	const [values, setValues] = useState<Values>(initialValues);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const isFirstFilterEffect = useRef(true);
 
 	useEffect(() => {
+		// Skip mount — URL already reflects initialValues from the server/page.
+		// Calling onFilter on mount re-pushed /games and restarted the top progress bar.
+		if (isFirstFilterEffect.current) {
+			isFirstFilterEffect.current = false;
+			return;
+		}
 		onFilter(values);
-		// this method comes from another template
-		// that we don't have access
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [values]);
 

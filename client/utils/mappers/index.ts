@@ -48,7 +48,9 @@ export const highlightMapper = (highlight: HighlightFragmentFragment | null | un
 			title: highlight.title,
 			subTitle: highlight.subTitle,
 			backgroundImage: formatImageUrl(highlight.background?.url),
-			floatImage: formatImageUrl(highlight.floatImage?.url),
+			floatImage: highlight.floatImage?.url
+				? formatImageUrl(highlight.floatImage.url)
+				: undefined,
 			buttonLabel: highlight.buttonLabel,
 			buttonLink: highlight.buttonLink,
 			alignment: highlight.alignment
@@ -85,7 +87,7 @@ export const ordersMapper = (orders: OrdersFragmentFragment[] | undefined) => {
 				id: game.id,
 				title: game.name,
 				downloadLink: 'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
-				img: `${formatImageUrl(game.cover?.url)}`,
+				img: formatImageUrl(game.cover?.url),
 				price: formatPrice(game.price)
 			}))
 		}

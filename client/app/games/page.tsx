@@ -7,16 +7,32 @@ import { GET_GAMES } from "@/graphql/queries/games";
 
 export const revalidate = 60;
 
-const GamesPage = async () => {
+type GamesPageProps = {
+	searchParams?: Record<string, string | string[] | undefined>;
+};
+
+const GamesPage = async ({ searchParams }: GamesPageProps) => {
 	const client = getClient();
 	const filterItems = await getFilterItems();
+
+	const rawName = searchParams?.name;
+	const searchName = Array.isArray(rawName) ? rawName[0] : rawName;
+	const filters =
+		typeof searchName === 'string' && searchName.trim()
+			? { name: { containsi: searchName.trim() } }
+			: undefined;
 
 	let initialData: GameFragmentFragment[] = [];
 
 	try {
 		const { data, error } = await client.query<GetGamesQuery, GetGamesQueryVariables>({
 			query: GET_GAMES,
-			variables: { limit: 15, start: 0, sort: "name:asc" },
+			variables: {
+				limit: 15,
+				start: 0,
+				sort: "name:asc",
+				...(filters ? { filters } : {}),
+			},
 			errorPolicy: "all",
 			context: {
 				fetchOptions: {

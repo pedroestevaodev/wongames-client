@@ -36,7 +36,12 @@ const GameItem = ({
 		<S.GameItemContainer data-cy="game-item">
 			<S.GameContent>
 				<S.ImageBox>
-					<Image src={img} width={151} height={70} alt={title} />
+					<Image
+						src={img || '/img/empty.svg'}
+						width={151}
+						height={70}
+						alt={title}
+					/>
 				</S.ImageBox>
 
 				<S.Content>

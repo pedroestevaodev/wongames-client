@@ -19,6 +19,7 @@ export const getUser = async () => {
     try {
         const { data } = await getClient().query<GetProfileMeQuery>({
             query: GET_PROFILE_ME,
+            context: { authenticated: true },
         });
 
         return data.me;

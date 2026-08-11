@@ -9,27 +9,29 @@ import {
 	RiHeart3Line,
 	RiLogoutCircleRLine
 } from '@remixicon/react';
-import { logout } from '@/actions/logout';
 import { signOut } from 'next-auth/react';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 
 export type UserDropwdownProps = {
 	username: string;
 	className?: string;
+	isOpen?: boolean;
+	onOpenChange?: (open: boolean) => void;
 };
 
-const UserDropdown = ({ username, className = '' }: UserDropwdownProps) => {
+const UserDropdown = ({
+	username,
+	className = '',
+	isOpen,
+	onOpenChange,
+}: UserDropwdownProps) => {
 	const handleLogout = async () => {
 		try {
-			const result = await logout();
-
-			if (result?.error) {
-				console.error('Logout failed:', result.error);
-			}
-
-			await signOut({ redirectTo: DEFAULT_LOGIN_REDIRECT });
+			await signOut({ redirect: false });
+			window.location.assign(DEFAULT_LOGIN_REDIRECT);
 		} catch (error) {
 			console.error('Logout failed:', error);
+			window.location.assign(DEFAULT_LOGIN_REDIRECT);
 		}
 	};
 
@@ -43,6 +45,8 @@ const UserDropdown = ({ username, className = '' }: UserDropwdownProps) => {
 						<RiArrowDownSLine size={24} className="arrow-down" />
 					</>
 				}
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
 			>
 				<S.Nav>
 					<S.UserDropdownLink href="/profile/me" title="Profile">
