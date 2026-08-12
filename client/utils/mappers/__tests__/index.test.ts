@@ -175,8 +175,7 @@ describe('ordersMapper()', () => {
                     {
                         id: '1',
                         title: 'game',
-                        downloadLink:
-                            'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
+                        downloadLink: 'https://www.pedroestevao.com',
                         img: '/image.jpg',
                         price: '$10.00'
                     }
@@ -225,8 +224,7 @@ describe('ordersMapper()', () => {
                     {
                         id: '1',
                         title: 'game',
-                        downloadLink:
-                            'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
+                        downloadLink: 'https://www.pedroestevao.com',
                         img: '/image.jpg',
                         price: '$0.00'
                     }

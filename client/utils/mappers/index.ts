@@ -10,6 +10,8 @@ import { formatImageUrl, formatPrice } from "../formats";
 import { OrdersFragmentFragment } from "@/@types/graphql-extended";
 import { OrderProps } from "@/components/OrdersList";
 
+const ORDER_GAME_DOWNLOAD_URL = 'https://www.pedroestevao.com';
+
 export const bannerMapper = (banners: BannerFragmentFragment[]) => {
 	return (
 		(banners.map((banner) => ({
@@ -86,7 +88,7 @@ export const ordersMapper = (orders: OrdersFragmentFragment[] | undefined) => {
 			games: (order.games as GameFragmentFragment[]).map((game) => ({
 				id: game.id,
 				title: game.name,
-				downloadLink: 'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
+				downloadLink: ORDER_GAME_DOWNLOAD_URL,
 				img: formatImageUrl(game.cover?.url),
 				price: formatPrice(game.price)
 			}))

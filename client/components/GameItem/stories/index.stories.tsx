@@ -23,7 +23,7 @@ export const Default: StoryObj<GameItemProps> = {};
 
 export const WithPayment: StoryObj<GameItemProps> = {
 	args: {
-		downloadLink: 'https://wongames.com/game/download/21312ndasd',
+		downloadLink: 'https://www.pedroestevao.com',
 		paymentInfo: {
 			flag: 'mastercard',
 			img: '/img/master-card.png',

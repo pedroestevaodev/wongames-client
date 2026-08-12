@@ -13,8 +13,7 @@ const ordersListMock: OrderProps[] = [
 			{
 				id: '1',
 				title: 'game',
-				downloadLink:
-					'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
+				downloadLink: 'https://www.pedroestevao.com',
 				img: 'http://localhost:1337/image.jpg',
 				price: '$10.00'
 			}
@@ -32,8 +31,7 @@ const ordersListMock: OrderProps[] = [
 			{
 				id: '2',
 				title: 'game',
-				downloadLink:
-					'https://wongames.com/game/download/yuYT56Tgh431LkjhNBgdf',
+				downloadLink: 'https://www.pedroestevao.com',
 				img: 'http://localhost:1337/image.jpg',
 				price: '$10.00'
 			}
