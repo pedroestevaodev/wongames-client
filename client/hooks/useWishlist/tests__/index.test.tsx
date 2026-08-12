@@ -10,8 +10,8 @@ jest.mock('next-auth/react', () => ({
 }));
 
 const session = {
-    user: { email: 'lorem@ipsum.com' },
-    expires: '9999-12-31T23:59:59.999Z',
+	user: { id: 'user-document-id', email: 'lorem@ipsum.com' },
+	expires: '9999-12-31T23:59:59.999Z',
 };
 
 (useSession as jest.Mock).mockReturnValue({
